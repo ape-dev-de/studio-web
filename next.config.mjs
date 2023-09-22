@@ -14,8 +14,11 @@ import { unifiedConditional } from 'unified-conditional'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
-  output: 'export',
+  output: process.env.NODE_ENV === 'development' ? 'standalone': 'export',
+  assetPrefix:  process.env.NODE_ENV === 'production' ? '/studio-web/' : '',
 }
+
+console.log(process.env.NODE_ENV);
 
 function remarkMDXLayout(source, metaName) {
   let parser = Parser.extend(jsx())
