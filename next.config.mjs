@@ -15,7 +15,7 @@ import { unifiedConditional } from 'unified-conditional'
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
   output: process.env.NODE_ENV === 'development' ? 'standalone': 'export',
-  basePath:  process.env.NODE_ENV === 'production' ? '/studio-web/' : '',
+  basePath:  process.env.NODE_ENV === 'production' ? '/studio-web' : '',
 }
 
 console.log(process.env.NODE_ENV);
