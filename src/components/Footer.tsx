@@ -9,7 +9,7 @@ const navigation = [
   {
     title: 'Work',
     links: [
-      { title: 'FamilyFund', href: '/work/family-fund' },
+      /*{ title: 'FamilyFund', href: '/work/family-fund' },
       { title: 'Unseal', href: '/work/unseal' },
       { title: 'Phobia', href: '/work/phobia' },
       {
@@ -19,7 +19,7 @@ const navigation = [
           </>
         ),
         href: '/work',
-      },
+      },*/
     ],
   },
   {
@@ -28,7 +28,7 @@ const navigation = [
       { title: 'About', href: '/about' },
       { title: 'Process', href: '/process' },
       { title: 'Blog', href: '/blog' },
-      { title: 'Contact us', href: '/contact' },
+      { title: 'Contact', href: '/contact' },
     ],
   },
   {
