@@ -10,6 +10,8 @@ import { SectionIntro } from '@/components/SectionIntro'
 import { StylizedImage } from '@/components/StylizedImage'
 import { Testimonial } from '@/components/Testimonial'
 import logoEsn from '@/images/clients/esn/esn_logo.svg'
+import logoEsnBlack from '@/images/clients/esn/esn_logo_black.svg'
+import logoCF from '@/images/clients/cf/logo-computerfutures-white.svg'
 import imageLaptop from '@/images/laptop.jpg'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
 
@@ -183,7 +185,7 @@ export default async function Home() {
             Elevate your tech projects,
             large or small,
             with our German-engineered software mastery.
-            We drive DevOps,
+            We drive Digitalization with DevOps,
             Lean Enterprise,
             and Agile excellence for rapid,
             efficient development.
@@ -194,15 +196,12 @@ export default async function Home() {
 
       <Clients />
 
-      <CaseStudies caseStudies={caseStudies} />
 
       <Testimonial
         className="mt-24 sm:mt-32 lg:mt-40"
-        client={{ name: 'Phobia', logo: logoEsn }}
+        client={{ name: 'Phobia', logo: logoCF }}
       >
-        The team at Studio went above and beyond with our onboarding, even
-        finding a way to access the user’s microphone without triggering one of
-        those annoying permission dialogs.
+        [...] Despite his technical skills as a developer and consultant I can also confirm his social skills since he's very reliable, always on time and has a very high standard regarding his own work. From my side, I would definitely work with him again and can recommend to everybody to do so as well.
       </Testimonial>
 
       <Services />

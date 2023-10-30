@@ -3,31 +3,31 @@ import Link from 'next/link'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { Logo } from '@/components/Logo'
-import { socialMediaProfiles } from '@/components/SocialMedia'
+import {SocialMedia, socialMediaProfiles} from '@/components/SocialMedia'
+import {Border} from "@/components/Border";
 
 const navigation = [
-  {
-    title: 'Work',
-    links: [
-      /*{ title: 'FamilyFund', href: '/work/family-fund' },
-      { title: 'Unseal', href: '/work/unseal' },
-      { title: 'Phobia', href: '/work/phobia' },
-      {
-        title: (
-          <>
-            See all <span aria-hidden="true">&rarr;</span>
-          </>
-        ),
-        href: '/work',
-      },*/
+            /*{
+              title: 'Work',
+              links: [
+                { title: 'FamilyFund', href: '/work/family-fund' },
+                { title: 'Unseal', href: '/work/unseal' },
+                { title: 'Phobia', href: '/work/phobia' },
+                {
+                  title: (
+                    <>
+                      See all <span aria-hidden="true">&rarr;</span>
+                    </>
+                  ),
+                  href: '/work',
+                },
     ],
-  },
+  },*/
   {
     title: 'Company',
     links: [
       { title: 'About', href: '/about' },
       { title: 'Process', href: '/process' },
-      { title: 'Blog', href: '/blog' },
       { title: 'Contact', href: '/contact' },
     ],
   },
@@ -116,8 +116,11 @@ export function Footer() {
       <FadeIn>
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
           <Navigation />
-          <div className="flex lg:justify-end">
-            <NewsletterForm />
+          <div >
+              <h2 className="font-display text-base font-semibold text-neutral-950">
+                Follow us
+              </h2>
+              <SocialMedia className="mt-6" />
           </div>
         </div>
         <div className="mb-20 mt-24 flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-t border-neutral-950/10 pt-12">
@@ -125,7 +128,7 @@ export function Footer() {
             <Logo className="h-8" fillOnHover />
           </Link>
           <p className="text-sm text-neutral-700">
-            © Studio Agency Inc. {new Date().getFullYear()}
+            © Ape Dev GmbH {new Date().getFullYear()}
           </p>
         </div>
       </FadeIn>

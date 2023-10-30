@@ -27,8 +27,8 @@ function InstagramIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 function LinkedInIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
     return (
-            <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                 width="24px" height="24px" viewBox="0 0 490.732 490.732">
+            <svg
+                 width="24px" height="24px" viewBox="0 0 490.732 490.732" {...props}>
 <g>
 	<g>
 		<path d="M472.366,0.003H18.36C8.219,0.003,0,8.222,0,18.363v454.005c0,10.143,8.219,18.361,18.36,18.361h454.012
