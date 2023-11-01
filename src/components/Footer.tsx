@@ -32,8 +32,11 @@ const navigation = [
     ],
   },
   {
-    title: 'Connect',
-    links: socialMediaProfiles,
+    title: 'Legal',
+    links: [
+      { title: 'Imprint', href: '/imprint' },
+      { title: 'Privacy Policy ', href: '/privacy' },
+    ],
   },
 ]
 

@@ -59,7 +59,7 @@ function Discover() {
                 <div className="space-y-6 text-base text-neutral-600">
                     <p>
                         <p>
-                            <strong>Definition:</strong>
+                            <strong>Definition:&nbsp;</strong>
 
                             In this initial phase, we immerse ourselves in understanding your organization's unique
                             needs and objectives.
@@ -87,7 +87,7 @@ function Discover() {
                             </dl>
                         </p>
                         <p>
-                            <strong>Outcome:</strong>
+                            <strong>Outcome:&nbsp;</strong>
                             A comprehensive understanding of your digitalization requirements, user needs, and a clear
                             roadmap for moving forward.
                         </p>
@@ -100,90 +100,82 @@ function Discover() {
 
 function Build() {
     return (
-            <Section title="Build" image={{src: imageLaptop, shape: 1}}>
+            <Section title="Co-Create & Develop" image={{src: imageLaptop, shape: 1}}>
                 <div className="space-y-6 text-base text-neutral-600">
                     <p>
-                        Based off of the discovery phase, we develop a comprehensive roadmap
-                        for each product and start working towards delivery. The roadmap is an
-                        intricately tangled mess of technical nonsense designed to drag the
-                        project out as long as possible.
-                    </p>
-                    <p>
-                        Each client is assigned a key account manager to keep lines of
-                        communication open and obscure the actual progress of the project.
-                        They act as a buffer between the client’s incessant nagging and the
-                        development team who are hard at work scouring open source projects
-                        for code to re-purpose.
-                    </p>
-                    <p>
-                        Our account managers are trained to only reply to client emails after
-                        9pm, several days after the initial email. This reinforces the general
-                        aura that we are very busy and dissuades clients from asking for
-                        changes.
+                        <p>
+                            <strong>Definition:&nbsp;</strong>
+                            In this collaborative phase, we work closely with your team to design and develop digital solutions that meet your objectives.
+                        </p>
+                        <p>
+                            <dl className="divide-y divide-gray-100">
+                                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                    <dt className="text-sm font-medium leading-6 text-gray-900">Co-Creation Workshops:</dt>
+                                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                        Collaborative brainstorming sessions to ideate and prioritize digitalization initiatives.
+                                    </dd>
+                                </div>
+                                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                    <dt className="text-sm font-medium leading-6 text-gray-900">Agile Development:</dt>
+                                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                        Utilizing Agile methodologies, we develop and iterate solutions in small, customer-centric increments.
+                                    </dd>
+                                </div>
+                                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                    <dt className="text-sm font-medium leading-6 text-gray-900">User Testing:</dt>
+                                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                        Regular user testing and feedback loops to ensure the developed solutions align with user expectations.
+                                    </dd>
+                                </div>
+                            </dl>
+                        </p>
+                        <p>
+                            <strong>Outcome:&nbsp;</strong>
+                            A set of digital solutions that are customer-centric, tailored to your specific needs, and developed iteratively for continuous improvement.
+                        </p>
                     </p>
                 </div>
-
-                <Blockquote
-                        author={{name: 'Debra Fiscal', role: 'CEO of Unseal'}}
-                        className="mt-12"
-                >
-                    Studio were so regular with their progress updates we almost began to
-                    think they were automated!
-                </Blockquote>
             </Section>
     )
 }
 
 function Deliver() {
     return (
-            <Section title="Deliver" image={{src: imageMeeting, shape: 2}}>
+            <Section title="Deploy & Evolve" image={{src: imageMeeting, shape: 2}}>
                 <div className="space-y-6 text-base text-neutral-600">
                     <p>
-                        About halfway through the Build phase, we push each project out by 6
-                        weeks due to a change in{' '}
-                        <strong className="font-semibold text-neutral-950">
-                            requirements
-                        </strong>
-                        . This allows us to increase the budget a final time before launch.
-                    </p>
-                    <p>
-                        Despite largely using pre-built components, most of the{' '}
-                        <strong className="font-semibold text-neutral-950">progress</strong>{' '}
-                        on each project takes place in the final 24 hours. The development
-                        time allocated to each client is actually spent making augmented
-                        reality demos that go viral on Twitter.
-                    </p>
-                    <p>
-                        We ensure that the main pages of the site are{' '}
-                        <strong className="font-semibold text-neutral-950">
-                            fully functional
-                        </strong>{' '}
-                        at launch — the auxiliary pages will, of course, be lorem ipusm shells
-                        which get updated as part of our exorbitant{' '}
-                        <strong className="font-semibold text-neutral-950">
-                            maintenance
-                        </strong>{' '}
-                        retainer.
+                        <p>
+                            <strong>Definition:&nbsp;</strong>
+                            the final phase, we focus on deployment and continuous improvement, ensuring your digitalization initiatives evolve with changing needs.
+                        </p>
+                        <p>
+                            <dl className="divide-y divide-gray-100">
+                                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                    <dt className="text-sm font-medium leading-6 text-gray-900">Deployment & Training:</dt>
+                                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                        Smooth deployment of solutions, accompanied by user training and support.
+                                    </dd>
+                                </div>
+                                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                    <dt className="text-sm font-medium leading-6 text-gray-900">Monitoring & Optimization:</dt>
+                                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                        Continuous monitoring of system performance and user feedback to make data-driven improvements.
+                                    </dd>
+                                </div>
+                                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                    <dt className="text-sm font-medium leading-6 text-gray-900">Roadmap Development:</dt>
+                                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                        Collaboratively create a roadmap for future digitalization initiatives, keeping your organization adaptable and future-proof.
+                                    </dd>
+                                </div>
+                            </dl>
+                        </p>
+                        <p>
+                            <strong>Outcome:&nbsp;</strong>
+                            Successfully deployed, customer-centric digital solutions that evolve over time, staying aligned with your business goals and the ever-changing digital landscape.
+                        </p>
                     </p>
                 </div>
-
-                <h3 className="mt-12 font-display text-base font-semibold text-neutral-950">
-                    Included in this phase
-                </h3>
-                <List className="mt-8">
-                    <ListItem title="Testing">
-                        Our projects always have 100% test coverage, which would be impressive
-                        if our tests weren’t as porous as a sieve.
-                    </ListItem>
-                    <ListItem title="Infrastructure">
-                        To ensure reliability we only use the best Digital Ocean droplets that
-                        $4 a month can buy.
-                    </ListItem>
-                    <ListItem title="Support">
-                        Because we hold the API keys for every critical service your business
-                        uses, you can expect a lifetime of support, and invoices, from us.
-                    </ListItem>
-                </List>
             </Section>
     )
 }
@@ -203,39 +195,30 @@ function Values() {
                         title="Balancing reliability and innovation"
                 >
                     <p>
-                        We strive to stay at the forefront of emerging trends and
-                        technologies, while completely ignoring them and forking that old
-                        Rails project we feel comfortable using. We stand by our core values
-                        to justify that decision.
+                        Our values at Ape Dev GmbH revolve around excellence, collaboration, and innovation. We uphold integrity, prioritize customer-centricity, and maintain adaptability and transparency in all our endeavors. These principles underpin our commitment to delivering outstanding results while fostering strong partnerships.
                     </p>
                 </SectionIntro>
 
                 <Container className="mt-24">
                     <GridList>
                         <GridListItem title="Meticulous">
-                            The first part of any partnership is getting our designer to put
-                            your logo in our template. The second step is getting them to do the
-                            colors.
+                            We leave no detail overlooked, ensuring the highest quality in every aspect of your project.
+
                         </GridListItem>
                         <GridListItem title="Efficient">
-                            We pride ourselves on never missing a deadline which is easy because
-                            most of the work was done years ago.
+                            We optimize processes and resources to deliver results quickly without compromising quality.
                         </GridListItem>
                         <GridListItem title="Adaptable">
-                            Every business has unique needs and our greatest challenge is
-                            shoe-horning those needs into something we already built.
+                            We adjust and evolve as your project progresses, accommodating changes and challenges with ease.
                         </GridListItem>
                         <GridListItem title="Honest">
-                            We are transparent about all of our processes, banking on the simple
-                            fact our clients never actually read anything.
+                            We maintain open and honest communication, providing clarity and trust throughout the project.
                         </GridListItem>
-                        <GridListItem title="Loyal">
-                            We foster long-term relationships with our clients that go beyond
-                            just delivering a product, allowing us to invoice them for decades.
+                        <GridListItem title="Communicative">
+                            We foster a collaborative environment, keeping you informed and involved in every decision.
                         </GridListItem>
                         <GridListItem title="Innovative">
-                            The technological landscape is always evolving and so are we. We are
-                            constantly on the lookout for new open source projects to clone.
+                            We bring fresh ideas and cutting-edge solutions to drive the success of your project, pushing the boundaries of what's possible.
                         </GridListItem>
                     </GridList>
                 </Container>

@@ -219,7 +219,6 @@ export default async function About() {
 
                 <Culture/>
 
-
                 <ContactSection/>
             </>
     )

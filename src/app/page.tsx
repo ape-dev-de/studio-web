@@ -10,13 +10,13 @@ import { SectionIntro } from '@/components/SectionIntro'
 import { StylizedImage } from '@/components/StylizedImage'
 import { Testimonial } from '@/components/Testimonial'
 import logoEsn from '@/images/clients/esn/esn_logo.svg'
-import logoEsnBlack from '@/images/clients/esn/esn_logo_black.svg'
 import logoCF from '@/images/clients/cf/logo-computerfutures-white.svg'
+import logoTqg from '@/images/clients/tqg/logo.webp'
 import imageLaptop from '@/images/laptop.jpg'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
 
 const clients = [
-  ['The Quality Group GmbH', logoEsn],
+  ['The Quality Group GmbH', logoTqg],
   ['ESN', logoEsn],
   ['Fitmart', logoEsn],
   ['More Nutrition', logoEsn],
