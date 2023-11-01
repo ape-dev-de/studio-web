@@ -61,7 +61,7 @@ function Discover() {
                         <p>
                             <strong>Definition:&nbsp;</strong>
 
-                            In this initial phase, we immerse ourselves in understanding your organization's unique
+                            In this initial phase, we immerse ourselves in understanding your organization&apos;s unique
                             needs and objectives.
                         </p>
                         <p>
@@ -218,7 +218,7 @@ function Values() {
                             We foster a collaborative environment, keeping you informed and involved in every decision.
                         </GridListItem>
                         <GridListItem title="Innovative">
-                            We bring fresh ideas and cutting-edge solutions to drive the success of your project, pushing the boundaries of what's possible.
+                            We bring fresh ideas and cutting-edge solutions to drive the success of your project, pushing the boundaries of what&apos;s possible.
                         </GridListItem>
                     </GridList>
                 </Container>

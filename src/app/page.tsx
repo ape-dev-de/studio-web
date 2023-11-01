@@ -16,17 +16,17 @@ import imageLaptop from '@/images/laptop.jpg'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
 
 const clients = [
-  ['The Quality Group GmbH', logoTqg],
+  //['The Quality Group GmbH', logoTqg],
   ['ESN', logoEsn],
-  ['Fitmart', logoEsn],
-  ['More Nutrition', logoEsn],
-  ['Synergy', logoEsn],
-  ['Foodist', logoEsn],
-  ['Movamo', logoEsn],
-  ['About You', logoEsn],
-  ['Jungheinrich Digital Solutions', logoEsn],
-  ['Check24', logoEsn],
-  ['Two S', logoEsn],
+  //['Fitmart', logoEsn],
+  //['More Nutrition', logoEsn],
+  //['Synergy', logoEsn],
+  //['Foodist', logoEsn],
+  //['Movamo', logoEsn],
+  //['About You', logoEsn],
+  //['Jungheinrich Digital Solutions', logoEsn],
+  //['Check24', logoEsn],
+  //['Two S', logoEsn],
 ]
 
 function Clients() {
@@ -201,7 +201,7 @@ export default async function Home() {
         className="mt-24 sm:mt-32 lg:mt-40"
         client={{ name: 'Phobia', logo: logoCF }}
       >
-        [...] Despite his technical skills as a developer and consultant I can also confirm his social skills since he's very reliable, always on time and has a very high standard regarding his own work. From my side, I would definitely work with him again and can recommend to everybody to do so as well.
+        [...] Despite his technical skills as a developer and consultant I can also confirm his social skills since he&apos;s very reliable, always on time and has a very high standard regarding his own work. From my side, I would definitely work with him again and can recommend to everybody to do so as well.
       </Testimonial>
 
       <Services />

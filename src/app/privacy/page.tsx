@@ -87,12 +87,12 @@ export default async function Privacy() {
 
                         <p>Ape Dev follows a standard procedure of using log files. These files log visitors when they
                             visit
-                            websites. All hosting companies do this and a part of hosting services' analytics. The
+                            websites. All hosting companies do this and a part of hosting services&apos; analytics. The
                             information collected by log files include internet protocol (IP) addresses, browser type,
                             Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the
                             number of clicks. These are not linked to any information that is personally identifiable.
                             The
-                            purpose of the information is for analyzing trends, administering the site, tracking users'
+                            purpose of the information is for analyzing trends, administering the site, tracking users&apos;
                             movement on the website, and gathering demographic information.</p>
 
                     </div>
@@ -122,7 +122,7 @@ export default async function Privacy() {
                         <h2 className="text-base font-semibold leading-6 text-gray-900">Third Party Privacy
                             Policies</h2>
 
-                        <p>Ape Dev's Privacy Policy does not apply to other advertisers or websites. Thus, we are
+                        <p>Ape Dev&apos;s Privacy Policy does not apply to other advertisers or websites. Thus, we are
                             advising
                             you to consult the respective Privacy Policies of these third-party ad servers for more
                             detailed
@@ -132,7 +132,7 @@ export default async function Privacy() {
                         <p>You can choose to disable cookies through your individual browser options. To know more
                             detailed
                             information about cookie management with specific web browsers, it can be found at the
-                            browsers'
+                            browsers&apos;
                             respective websites.</p>
                     </div>
                     <div className="border-b border-gray-200 pb-5 mb-6">
@@ -141,11 +141,11 @@ export default async function Privacy() {
                             Personal Information)</h2>
 
                         <p>Under the CCPA, among other rights, California consumers have the right to:</p>
-                        <p>Request that a business that collects a consumer's personal data disclose the categories and
+                        <p>Request that a business that collects a consumer&apos;s personal data disclose the categories and
                             specific pieces of personal data that a business has collected about consumers.</p>
                         <p>Request that a business delete any personal data about the consumer that a business has
                             collected.</p>
-                        <p>Request that a business that sells a consumer's personal data, not sell the consumer's
+                        <p>Request that a business that sells a consumer&apos;s personal data, not sell the consumer&apos;s
                             personal
                             data.</p>
                         <p>If you make a request, we have one month to respond to you. If you would like to exercise any
