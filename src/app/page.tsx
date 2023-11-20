@@ -18,6 +18,7 @@ import logoMovamo from '@/images/clients/movamo/movamo-gmb-h-logo-xl.webp'
 import logoMn from '@/images/clients/mn/More_Logo_Suite_RGB_Primary_Black_v1_16f701c1-b225-4b52-a8e3-659b7fb2a5b6.webp'
 import logoAy from '@/images/clients/ay/Aboutyou_logo_1.jpg'
 import logoFestglanz from '@/images/clients/festglanz/festglanz_deko_logo_brush.png'
+import logoHolidayHost from '@/images/clients/holidayhost/NoBorderWhiteBG_Holiday_Host_Logo.png.webp'
 
 import imageLaptop from '@/images/laptop.jpg'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
@@ -33,6 +34,7 @@ const clients = [
   ['Movamo', logoMovamo, 'https://movamo.de/'],
   ['About You', logoAy, 'https://aboutyou.de/'],
   ['Festglanz', logoFestglanz, 'https://festglanz.de/'],
+  ['Holiday Host', logoHolidayHost, 'https://holidayhost.de/'],
   //['Jungheinrich Digital Solutions', logoEsn],
   //['Check24', logoEsn],
   //['Two S', logoEsn],
