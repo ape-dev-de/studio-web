@@ -11,19 +11,28 @@ import { StylizedImage } from '@/components/StylizedImage'
 import { Testimonial } from '@/components/Testimonial'
 import logoEsn from '@/images/clients/esn/esn_logo.svg'
 import logoCF from '@/images/clients/cf/logo-computerfutures-white.svg'
-import logoTqg from '@/images/clients/tqg/logo.webp'
+import logoTqg from '@/images/clients/tqg/logo_white.webp'
+import logoFitmart from '@/images/clients/fitmart/fitmart-logo-white--web.svg'
+import logoFoodist from '@/images/clients/foodist/Foodist-Logo.png'
+import logoMovamo from '@/images/clients/movamo/movamo-gmb-h-logo-xl.webp'
+import logoMn from '@/images/clients/mn/More_Logo_Suite_RGB_Primary_Black_v1_16f701c1-b225-4b52-a8e3-659b7fb2a5b6.webp'
+import logoAy from '@/images/clients/ay/Aboutyou_logo_1.jpg'
+import logoFestglanz from '@/images/clients/festglanz/festglanz_deko_logo_brush.png'
+
 import imageLaptop from '@/images/laptop.jpg'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
 
 const clients = [
-  //['The Quality Group GmbH', logoTqg],
-  ['ESN', logoEsn],
-  //['Fitmart', logoEsn],
-  //['More Nutrition', logoEsn],
-  //['Synergy', logoEsn],
-  //['Foodist', logoEsn],
-  //['Movamo', logoEsn],
-  //['About You', logoEsn],
+  ['The Quality Group GmbH', logoTqg, 'https://www.tqgg.de/'],
+  ['ESN', logoEsn, 'https://www.esn.com/'],
+  ['Computer Futures', logoCF, 'https://www.computerfutures.com/'],
+  ['Fitmart', logoFitmart, 'https://fitmart.de/'],
+  ['More Nutrition', logoMn, 'https://morenutrition.de/'],
+  //['Synergy', logoSynergy],
+  ['Foodist', logoFoodist, 'https://foodist.de/'],
+  ['Movamo', logoMovamo, 'https://movamo.de/'],
+  ['About You', logoAy, 'https://aboutyou.de/'],
+  ['Festglanz', logoFestglanz, 'https://festglanz.de/'],
   //['Jungheinrich Digital Solutions', logoEsn],
   //['Check24', logoEsn],
   //['Two S', logoEsn],
@@ -31,10 +40,10 @@ const clients = [
 
 function Clients() {
   return (
-    <div className="mt-24 rounded-4xl bg-neutral-950 py-20 sm:mt-32 sm:py-32 lg:mt-56">
+    <div className="mt-24 rounded-4xl bg-neutral-950 py-20 sm:mt-32 sm:py-32 lg:mt-56  lg:mx-4">
       <Container>
         <FadeIn className="flex items-center gap-x-8">
-          <h2 className="text-center font-display text-sm font-semibold tracking-wider text-white sm:text-left">
+          <h2 className="text-center font-display text-sm font-semibold tracking-wider text-white sm:text-left ">
             We&apos;ve helped hundreds of amazing people to make their clients happier, faster.
           </h2>
           <div className="h-px flex-auto bg-neutral-800" />
@@ -44,11 +53,13 @@ function Clients() {
             role="list"
             className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-6"
           >
-            {clients.map(([client, logo]) => (
-              <li key={client} >
-                <FadeIn>
-                  <Image src={logo} alt={client} unoptimized />
+            {clients.map(([client, logo, url]) => (
+              <li key={client}  className="h-full">
+                <a href={url} target="_blank">
+                <FadeIn className="h-full flex flex-row items-center">
+                  <Image src={logo} alt={client} unoptimized className={"flex-"}/>
                 </FadeIn>
+                </a>
               </li>
             ))}
           </ul>

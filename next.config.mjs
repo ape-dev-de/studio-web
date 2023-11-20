@@ -14,7 +14,7 @@ import { unifiedConditional } from 'unified-conditional'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
-  output: process.env.NODE_ENV === 'development' ? 'standalone': 'export',
+  output: 'export',
   basePath:  process.env.NODE_ENV === 'production' ? '' : '',
 }
 
