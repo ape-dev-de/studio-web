@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
+import LinkComponent from "@/components/Link";
 
 export default function NotFound() {
   return (
@@ -16,12 +17,12 @@ export default function NotFound() {
         <p className="mt-2 text-sm text-neutral-600">
           Sorry, we couldn’t find the page you’re looking for.
         </p>
-        <Link
+        <LinkComponent
           href="/"
           className="mt-4 text-sm font-semibold text-neutral-950 transition hover:text-neutral-700"
         >
           Go to the home page
-        </Link>
+        </LinkComponent>
       </FadeIn>
     </Container>
   )

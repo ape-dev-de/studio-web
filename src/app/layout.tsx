@@ -1,6 +1,7 @@
 import { type Metadata } from 'next'
 
 import { RootLayout } from '@/components/RootLayout'
+import i18nextConfig from '../../next-i18next.config'
 
 import '@/styles/tailwind.css'
 
@@ -24,14 +25,14 @@ export const metadata: Metadata = {
         {url: '/mstile-310x310.png', sizes: '310x310', rel: 'msapplication-TileImage'},
         {url: '/safari-pinned-tab.svg', color: '#5bbad5', rel: 'mask-icon'},
         {url: '/site.webmanifest', rel: 'manifest'},
-    ]
+    ],
 }
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return (
+export default function Layout(props: { children: React.ReactNode }) {
+    return (
     <html lang="en" className="h-full bg-neutral-950 text-base antialiased">
       <body className="flex min-h-full flex-col">
-        <RootLayout>{children}</RootLayout>
+        <RootLayout>{props.children}</RootLayout>
       </body>
     </html>
   )

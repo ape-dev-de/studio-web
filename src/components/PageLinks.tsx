@@ -7,6 +7,7 @@ import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { GridPattern } from '@/components/GridPattern'
 import { SectionIntro } from '@/components/SectionIntro'
 import { formatDate } from '@/lib/formatDate'
+import LinkComponent from "@/components/Link";
 
 function ArrowIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -44,7 +45,7 @@ function PageLink({ page }: { page: Page }) {
           {formatDate(page.date)}
         </time>
         <p className="mt-2.5 text-base text-neutral-600">{page.description}</p>
-        <Link
+        <LinkComponent
           href={page.href}
           className="mt-6 flex gap-x-3 text-base font-semibold text-neutral-950 transition hover:text-neutral-700"
           aria-label={`Read more: ${page.title}`}
@@ -52,7 +53,7 @@ function PageLink({ page }: { page: Page }) {
           Read more
           <ArrowIcon className="w-6 flex-none fill-current" />
           <span className="absolute inset-0" />
-        </Link>
+        </LinkComponent>
       </Border>
     </article>
   )

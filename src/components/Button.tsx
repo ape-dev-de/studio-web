@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import clsx from 'clsx'
+import LinkComponent from "@/components/Link";
 
 type ButtonProps = {
   invert?: boolean
@@ -33,8 +34,8 @@ export function Button({
   }
 
   return (
-    <Link className={className} {...props}>
+    <LinkComponent className={className} {...props}>
       {inner}
-    </Link>
+    </LinkComponent>
   )
 }

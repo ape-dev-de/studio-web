@@ -20,6 +20,7 @@ import { GridPattern } from '@/components/GridPattern'
 import { Logo, Logomark } from '@/components/Logo'
 import { Offices } from '@/components/Offices'
 import { SocialMedia } from '@/components/SocialMedia'
+import LinkComponent from "@/components/Link";
 
 const RootLayoutContext = createContext<{
   logoHovered: boolean
@@ -63,7 +64,7 @@ function Header({
   return (
     <Container>
       <div className="flex items-center justify-between">
-        <Link
+        <LinkComponent
           href="/"
           aria-label="Home"
           onMouseEnter={() => setLogoHovered(true)}
@@ -74,7 +75,7 @@ function Header({
             invert={invert}
             filled={logoHovered}
           />
-        </Link>
+        </LinkComponent>
         <div className="flex items-center gap-x-8">
           <Button href="/contact" invert={invert}>
             Contact
@@ -124,13 +125,13 @@ function NavigationItem({
   children: React.ReactNode
 }) {
   return (
-    <Link
+    <LinkComponent
       href={href}
       className="group relative isolate -mx-6 bg-neutral-950 px-6 py-10 even:mt-px sm:mx-0 sm:px-0 sm:py-16 sm:odd:pr-16 sm:even:mt-0 sm:even:border-l sm:even:border-neutral-800 sm:even:pl-16"
     >
       {children}
       <span className="absolute inset-y-0 -z-10 w-screen bg-neutral-900 opacity-0 transition group-odd:right-0 group-even:left-0 group-hover:opacity-100" />
-    </Link>
+    </LinkComponent>
   )
 }
 

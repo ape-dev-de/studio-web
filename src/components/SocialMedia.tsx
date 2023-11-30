@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import clsx from 'clsx'
+import LinkComponent from "@/components/Link";
 
 function FacebookIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
     return (
@@ -84,7 +85,7 @@ export function SocialMedia({
             >
                 {socialMediaProfiles.map((socialMediaProfile) => (
                         <li key={socialMediaProfile.title}>
-                            <Link
+                            <LinkComponent
                                     href={socialMediaProfile.href}
                                     aria-label={socialMediaProfile.title}
                                     className={clsx(
@@ -93,7 +94,7 @@ export function SocialMedia({
                                     )}
                             >
                                 <socialMediaProfile.icon className="h-6 w-6 fill-current"/>
-                            </Link>
+                            </LinkComponent>
                         </li>
                 ))}
             </ul>

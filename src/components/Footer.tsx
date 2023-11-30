@@ -1,10 +1,10 @@
-import Link from 'next/link'
 
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { Logo } from '@/components/Logo'
 import {SocialMedia, socialMediaProfiles} from '@/components/SocialMedia'
 import {Border} from "@/components/Border";
+import LinkComponent from "@/components/Link";
 
 const navigation = [
             /*{
@@ -52,12 +52,12 @@ function Navigation() {
             <ul role="list" className="mt-4 text-sm text-neutral-700">
               {section.links.map((link, linkIndex) => (
                 <li key={linkIndex} className="mt-4">
-                  <Link
+                  <LinkComponent
                     href={link.href}
                     className="transition hover:text-neutral-950"
                   >
                     {link.title}
-                  </Link>
+                  </LinkComponent>
                 </li>
               ))}
             </ul>
@@ -127,9 +127,9 @@ export function Footer() {
           </div>
         </div>
         <div className="mb-20 mt-24 flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-t border-neutral-950/10 pt-12">
-          <Link href="/" aria-label="Home">
+          <LinkComponent href="/" aria-label="Home">
             <Logo className="h-8" fillOnHover />
-          </Link>
+          </LinkComponent>
           <p className="text-sm text-neutral-700">
             © Ape Dev GmbH {new Date().getFullYear()}
           </p>
