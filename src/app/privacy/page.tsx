@@ -1,13 +1,5 @@
 import {type Metadata} from 'next'
-import Image from 'next/image'
-import {ContactSection} from '@/components/ContactSection'
-import {Container} from '@/components/Container'
-import {FadeIn, FadeInStagger} from '@/components/FadeIn'
 import {PageIntro} from '@/components/PageIntro'
-import {Testimonial} from '@/components/Testimonial'
-import logoEsn from '@/images/clients/esn/esn_logo.svg'
-import {formatDate} from '@/lib/formatDate'
-import {type CaseStudy, type MDXEntry, loadCaseStudies} from '@/lib/mdx'
 
 export const metadata: Metadata = {
     title: 'Privacy poliy - Ape Dev',

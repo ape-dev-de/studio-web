@@ -1,16 +1,13 @@
 import {type Metadata} from 'next'
 
-import {Blockquote} from '@/components/Blockquote'
 import {ContactSection} from '@/components/ContactSection'
 import {Container} from '@/components/Container'
 import {FadeIn} from '@/components/FadeIn'
 import {GridList, GridListItem} from '@/components/GridList'
 import {GridPattern} from '@/components/GridPattern'
-import {List, ListItem} from '@/components/List'
 import {PageIntro} from '@/components/PageIntro'
 import {SectionIntro} from '@/components/SectionIntro'
 import {StylizedImage} from '@/components/StylizedImage'
-import {TagList, TagListItem} from '@/components/TagList'
 import imageLaptop from '@/images/laptop.jpg'
 import imageMeeting from '@/images/meeting.jpg'
 import imageWhiteboard from '@/images/whiteboard.jpg'
@@ -55,41 +52,40 @@ function Section({
 
 function Discover() {
     return (
-            <Section title="Discover" image={{src: imageWhiteboard}}>
+            <Section title="Entdecken" image={{src: imageWhiteboard}}>
                 <div className="space-y-6 text-base text-neutral-600">
                     <p>
                         <p>
                             <strong>Definition:&nbsp;</strong>
 
-                            In this initial phase, we immerse ourselves in understanding your organization&apos;s unique
-                            needs and objectives.
+                            In dieser ersten Phase tauchen wir tief in das Verständnis der einzigartigen Bedürfnisse und Ziele Ihrer Organisation ein.
+
+
                         </p>
                         <p>
                             <dl className="divide-y divide-gray-100">
                                 <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt className="text-sm font-medium leading-6 text-gray-900">Listen and Learn:</dt>
-                                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">We engage with your key stakeholders to gather
-                                        insights, challenges, and aspirations for digitalization.
+                                    <dt className="text-sm font-medium leading-6 text-gray-900">Zuhören und Lernen:</dt>
+                                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                        Wir treten in den Dialog mit Ihren Schlüsselakteuren, um Einsichten, Herausforderungen und Bestrebungen bezüglich der Digitalisierung zu sammeln
                                     </dd>
                                 </div>
                                 <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt className="text-sm font-medium leading-6 text-gray-900">Assessment:</dt>
-                                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">A thorough analysis of your current systems and
-                                        processes, identifying pain points and opportunities for improvement.
+                                    <dt className="text-sm font-medium leading-6 text-gray-900">Bewertung:</dt>
+                                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">Eine gründliche Analyse Ihrer aktuellen Systeme und Prozesse, um Schmerzpunkte und Chancen für Verbesserungen zu identifizieren
                                     </dd>
                                 </div>
                                 <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt className="text-sm font-medium leading-6 text-gray-900">Persona Mapping:</dt>
-                                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">We create customer personas to better understand
-                                        your end-users, ensuring solutions are tailored to their needs.
+                                    <dt className="text-sm font-medium leading-6 text-gray-900">Persona-Mapping:</dt>
+                                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                        Wir erstellen Kundenpersonas, um Ihre Endnutzer besser zu verstehen und sicherzustellen, dass Lösungen auf ihre Bedürfnisse zugeschnitten sind.
                                     </dd>
                                 </div>
                             </dl>
                         </p>
                         <p>
-                            <strong>Outcome:&nbsp;</strong>
-                            A comprehensive understanding of your digitalization requirements, user needs, and a clear
-                            roadmap for moving forward.
+                            <strong>Ergebnis:&nbsp;</strong>
+                            Ein umfassendes Verständnis Ihrer Anforderungen an die Digitalisierung, der Bedürfnisse der Nutzer und ein klarer Fahrplan für die nächsten Schritte.
                         </p>
                     </p>
                 </div>
@@ -100,38 +96,38 @@ function Discover() {
 
 function Build() {
     return (
-            <Section title="Co-Create & Develop" image={{src: imageLaptop, shape: 1}}>
+            <Section title="Gemeinsames Entwickeln & Gestalten" image={{src: imageLaptop, shape: 1}}>
                 <div className="space-y-6 text-base text-neutral-600">
                     <p>
                         <p>
                             <strong>Definition:&nbsp;</strong>
-                            In this collaborative phase, we work closely with your team to design and develop digital solutions that meet your objectives.
+                            In dieser kollaborativen Phase arbeiten wir eng mit Ihrem Team zusammen, um digitale Lösungen zu entwerfen und zu entwickeln, die Ihren Zielen entsprechen.
                         </p>
                         <p>
                             <dl className="divide-y divide-gray-100">
                                 <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt className="text-sm font-medium leading-6 text-gray-900">Co-Creation Workshops:</dt>
+                                    <dt className="text-sm font-medium leading-6 text-gray-900">Co-Creation-Workshops:</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                        Collaborative brainstorming sessions to ideate and prioritize digitalization initiatives.
+                                        Gemeinsame Brainstorming-Sitzungen, um Digitalisierungsinitiativen zu entwickeln und zu priorisieren
                                     </dd>
                                 </div>
                                 <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt className="text-sm font-medium leading-6 text-gray-900">Agile Development:</dt>
+                                    <dt className="text-sm font-medium leading-6 text-gray-900">Agiles Entwickeln:</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                        Utilizing Agile methodologies, we develop and iterate solutions in small, customer-centric increments.
+                                        Unter Verwendung agiler Methoden entwickeln und iterieren wir Lösungen in kleinen, kundenzentrierten Schritten.
                                     </dd>
                                 </div>
                                 <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt className="text-sm font-medium leading-6 text-gray-900">User Testing:</dt>
+                                    <dt className="text-sm font-medium leading-6 text-gray-900">Nutzertests:</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                        Regular user testing and feedback loops to ensure the developed solutions align with user expectations.
+                                        Regelmäßige Nutzertests und Feedbackschleifen, um sicherzustellen, dass die entwickelten Lösungen den Erwartungen der Nutzer entsprechen.
                                     </dd>
                                 </div>
                             </dl>
                         </p>
                         <p>
-                            <strong>Outcome:&nbsp;</strong>
-                            A set of digital solutions that are customer-centric, tailored to your specific needs, and developed iteratively for continuous improvement.
+                            <strong>Ergebnis:&nbsp;</strong>
+                            Ein Satz von digitalen Lösungen, die kundenzentriert sind, speziell auf Ihre Bedürfnisse zugeschnitten und iterativ für kontinuierliche Verbesserungen entwickelt wurden.
                         </p>
                     </p>
                 </div>
@@ -141,38 +137,40 @@ function Build() {
 
 function Deliver() {
     return (
-            <Section title="Deploy & Evolve" image={{src: imageMeeting, shape: 2}}>
+            <Section title="Implementieren & Weiterentwickeln" image={{src: imageMeeting, shape: 2}}>
                 <div className="space-y-6 text-base text-neutral-600">
                     <p>
                         <p>
                             <strong>Definition:&nbsp;</strong>
-                            the final phase, we focus on deployment and continuous improvement, ensuring your digitalization initiatives evolve with changing needs.
+                            In der letzten Phase konzentrieren wir uns auf die Implementierung und kontinuierliche Verbesserung, um sicherzustellen, dass Ihre Digitalisierungsinitiativen sich mit den sich ändernden Bedürfnissen weiterentwickeln.
                         </p>
                         <p>
                             <dl className="divide-y divide-gray-100">
                                 <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt className="text-sm font-medium leading-6 text-gray-900">Deployment & Training:</dt>
+                                    <dt className="text-sm font-medium leading-6 text-gray-900">Implementierung & Schulung:</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                        Smooth deployment of solutions, accompanied by user training and support.
+                                        Reibungslose Einführung von Lösungen, begleitet von Nutzerschulungen und Unterstützung.
                                     </dd>
                                 </div>
                                 <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt className="text-sm font-medium leading-6 text-gray-900">Monitoring & Optimization:</dt>
+                                    <dt className="text-sm font-medium leading-6 text-gray-900">Überwachung & Optimierung:</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                        Continuous monitoring of system performance and user feedback to make data-driven improvements.
+                                        Kontinuierliche Überwachung der Systemleistung und Nutzerrückmeldungen, um datengesteuerte Verbesserungen vorzunehmen.
                                     </dd>
                                 </div>
                                 <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt className="text-sm font-medium leading-6 text-gray-900">Roadmap Development:</dt>
+                                    <dt className="text-sm font-medium leading-6 text-gray-900">Roadmap-Entwicklung:</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                        Collaboratively create a roadmap for future digitalization initiatives, keeping your organization adaptable and future-proof.
+                                        Gemeinsame Erstellung einer Roadmap für zukünftige Digitalisierungsinitiativen, um Ihre Organisation anpassungsfähig und zukunftssicher zu machen.
                                     </dd>
                                 </div>
                             </dl>
                         </p>
                         <p>
-                            <strong>Outcome:&nbsp;</strong>
-                            Successfully deployed, customer-centric digital solutions that evolve over time, staying aligned with your business goals and the ever-changing digital landscape.
+                            <strong>Ergebnis:&nbsp;</strong>
+                            Erfolgreich implementierte, kundenzentrierte digitale Lösungen, die sich über die Zeit weiterentwickeln und mit Ihren Geschäftszielen und der sich ständig verändernden digitalen Landschaft im Einklang bleiben.
+
+
                         </p>
                     </p>
                 </div>
@@ -191,34 +189,34 @@ function Values() {
                 </div>
 
                 <SectionIntro
-                        eyebrow="Our values"
-                        title="Balancing reliability and innovation"
+                        eyebrow="Unsere Werte"
+                        title="Zuverlässigkeit und Innovation in Balance"
                 >
                     <p>
-                        Our values at Ape Dev GmbH revolve around excellence, collaboration, and innovation. We uphold integrity, prioritize customer-centricity, and maintain adaptability and transparency in all our endeavors. These principles underpin our commitment to delivering outstanding results while fostering strong partnerships.
+                        Zuverlässigkeit und Innovation in Balance Unsere Werte bei Ape Dev GmbH drehen sich um Exzellenz, Zusammenarbeit und Innovation. Wir wahren Integrität, stellen Kundenorientierung in den Vordergrund und bewahren Anpassungsfähigkeit sowie Transparenz in all unseren Bestrebungen. Diese Prinzipien untermauern unser Engagement, herausragende Ergebnisse zu liefern und gleichzeitig starke Partnerschaften zu fördern.
+
                     </p>
                 </SectionIntro>
 
                 <Container className="mt-24">
                     <GridList>
-                        <GridListItem title="Meticulous">
-                            We leave no detail overlooked, ensuring the highest quality in every aspect of your project.
-
+                        <GridListItem title="Akribisch">
+                            Wir übersehen kein Detail und gewährleisten höchste Qualität in jedem Aspekt Ihres Projekts
                         </GridListItem>
-                        <GridListItem title="Efficient">
-                            We optimize processes and resources to deliver results quickly without compromising quality.
+                        <GridListItem title="Effizient">
+                            Wir optimieren Prozesse und Ressourcen, um schnell Ergebnisse zu liefern, ohne die Qualität zu beeinträchtigen.
                         </GridListItem>
-                        <GridListItem title="Adaptable">
-                            We adjust and evolve as your project progresses, accommodating changes and challenges with ease.
+                        <GridListItem title="Anpassungsfähig">
+                            Wir passen uns an und entwickeln uns weiter, während Ihr Projekt fortschreitet, und nehmen Änderungen und Herausforderungen mühelos an.
                         </GridListItem>
-                        <GridListItem title="Honest">
-                            We maintain open and honest communication, providing clarity and trust throughout the project.
+                        <GridListItem title="Ehrlich">
+                            Wir pflegen eine offene und ehrliche Kommunikation und bieten Klarheit und Vertrauen während des gesamten Projekts.
                         </GridListItem>
-                        <GridListItem title="Communicative">
-                            We foster a collaborative environment, keeping you informed and involved in every decision.
+                        <GridListItem title="Kommunikativ">
+                            Wir fördern eine kollaborative Umgebung, halten Sie informiert und in jede Entscheidung eingebunden.
                         </GridListItem>
-                        <GridListItem title="Innovative">
-                            We bring fresh ideas and cutting-edge solutions to drive the success of your project, pushing the boundaries of what&apos;s possible.
+                        <GridListItem title="Innovativ">
+                            Wir bringen frische Ideen und modernste Lösungen ein, um den Erfolg Ihres Projekts voranzutreiben und die Grenzen des Möglichen zu erweitern.
                         </GridListItem>
                     </GridList>
                 </Container>
@@ -227,17 +225,17 @@ function Values() {
 }
 
 export const metadata: Metadata = {
-    title: 'Our Process',
+    title: 'Unser Prozess',
     description:
-            'We believe in efficiency and maximizing our resources to provide the best value to our clients.',
+            'Unser Prozess liefert kontinuierlich Ergebnisse durch iteration und agilen Praktiken.',
 }
 
 export default function Process() {
     return (
             <>
-                <PageIntro eyebrow="Our process" title="Empowering Your Digital Transformation Journey">
+                <PageIntro eyebrow="Unser Prozess" title="Befähigung Ihrer digitalen Transformationsreise">
                     <p>
-                        Customer-Centric Strategies for Seamless Progress and Continuous Innovation
+                        Kundenorientierte Strategien für nahtlosen Fortschritt und kontinuierliche Innovation
                     </p>
                 </PageIntro>
 

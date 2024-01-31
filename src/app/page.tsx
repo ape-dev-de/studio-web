@@ -27,7 +27,7 @@ const clients = [
   ['The Quality Group GmbH', logoTqg, 'https://www.tqgg.de/'],
   ['ESN', logoEsn, 'https://www.esn.com/'],
   ['Computer Futures', logoCF, 'https://www.computerfutures.com/'],
-  ['Fitmart', logoFitmart, 'https://fitmart.de/'],
+  ['F itmart', logoFitmart, 'https://fitmart.de/'],
   ['More Nutrition', logoMn, 'https://morenutrition.de/'],
   //['Synergy', logoSynergy],
   ['Foodist', logoFoodist, 'https://foodist.de/'],
@@ -46,20 +46,20 @@ function Clients() {
       <Container>
         <FadeIn className="flex items-center gap-x-8">
           <h2 className="text-center font-display text-sm font-semibold tracking-wider text-white sm:text-left ">
-            We&apos;ve helped hundreds of amazing people to make their clients happier, faster.
+            Wir haben Hunderten von herausragenden Menschen dabei geholfen, ihre Kunden noch schneller, noch zufriedener zu machen.
           </h2>
           <div className="h-px flex-auto bg-neutral-800" />
         </FadeIn>
         <FadeInStagger faster>
           <ul
             role="list"
-            className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-6"
+            className="mt-10 grid grid-cols-2 gap-x-8 gap-y-8 lg:grid-cols-5"
           >
             {clients.map(([client, logo, url]) => (
               <li key={client}  className="h-full">
                 <a href={url} target="_blank">
                 <FadeIn className="h-full flex flex-row items-center">
-                  <Image src={logo} alt={client} unoptimized className={"flex-"}/>
+                  <Image src={logo} alt={client} unoptimized className={"flex- rounded-md"}/>
                 </FadeIn>
                 </a>
               </li>
@@ -135,14 +135,14 @@ function Services() {
   return (
     <>
       <SectionIntro
-        eyebrow="Services"
-        title="We help you identify, explore and respond to new opportunities."
+        eyebrow="Dienstleistungen"
+        title="Wir helfen Ihnen, neue Möglichkeiten zu identifizieren, zu erforschen und darauf zu reagieren."
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          No matter the challenge, we have the expertise to help you solve it.
-          Web Applications, E-commerce, Games, Mobile Apps, and more.
-          Either you are looking for individual contributors or a full team, a small project or a long-term partnership, we are here to help.
+          Unabhängig von der Herausforderung verfügen wir über das Know-how, um Ihnen bei der Lösung zu helfen.
+          Webanwendungen, Prozessautomatisierung, E-Commerce, 3D-Virtualisierung, Spiele, Mobile Apps und mehr.
+          Egal, ob Sie einzelne Mitwirkende oder ein komplettes Team suchen; ein kleines Projekt oder eine langfristige Partnerschaft - wir stehen Ihnen zur Seite.
         </p>
       </SectionIntro>
       <Container className="mt-16">
@@ -157,20 +157,22 @@ function Services() {
             </FadeIn>
           </div>
           <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-[33rem] lg:pl-4">
-            <ListItem title="Web Application Development">
-              Ready to turn your vision into reality?
-              Our web app experts will lead the way to digital success.
-              MVP to full-scale product, we’ve got you covered.
-              Let&apos;s make it happen.
+            <ListItem title="Webanwendungen">
+              Bereit, Ihre Vision Wirklichkeit werden zu lassen?
+              Unsere Experten für Webanwendungen führen Sie auf dem Weg zum digitalen Erfolg.
+              Vom MVP zum vollständigen Produkt - wir stehen Ihnen zur Seite.
+              Lassen Sie es uns verwirklichen.
             </ListItem>
-            <ListItem title="E-commerce">
-              Revolutionize your online business!
-              We craft e-commerce products and integrations that amplify sales and streamline operations.
+            <ListItem title="Digitaliserung">
+              Revolutionieren Sie Ihr Business!
+              Entdecken Sie bei Ape Dev, wie Digitalisierung Ihre Effizienz steigert und Kosten senkt. Klicken & transformieren!
             </ListItem>
-            <ListItem title="Game Development">
-              Experience gaming excellence!
-              Our solutions for Unity3D elevate performance,
-              giving your game a competitive edge and enhanced gameplay.
+            <ListItem title="3D & Game Development">
+              Wir nutzen wir die fortschrittliche Unity3D-Engine, um Ihre 3D-Virtualisierung und Spieleentwicklung nicht nur zu realisieren,
+              sondern zu perfektionieren.
+              Wir optimieren jeden Schritt des Entwicklungsprozesses,
+              um ein nahtloses und beeindruckendes Spielerlebnis zu garantieren.
+              Unsere Expertise sorgt dafür, dass Ihre Vision mit höchster Qualität und Effizienz zum Leben erweckt wird.
             </ListItem>
           </List>
         </div>
@@ -181,7 +183,8 @@ function Services() {
 
 export const metadata: Metadata = {
   description:
-    'We are a development studio working at the intersection of design and technology.',
+    'Regional betreut, global erfolgreich. Von regionaler Betreuung zu weltweitem Erfolg - mit Ape Dev (eɪp dɛv) als starkem Partner für ganzheitliche digitale Lösungen.' +
+          ' Mit präzise abgestimmten Service und individuell konzipierte Lösungen zum globalen Erfolg.',
 }
 
 export default async function Home() {
@@ -189,20 +192,14 @@ export default async function Home() {
 
   return (
     <>
-      <Container className="mt-24 sm:mt-32 md:mt-56">
+      <Container className="mt-24 sm:mt-24 ">
         <FadeIn className="max-w-3xl">
           <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
-            Software Development made in Germany
+            Regional betreut. Global erfolgreich.
           </h1>
           <p className="mt-6 text-xl text-neutral-600">
-            Elevate your tech projects,
-            large or small,
-            with our German-engineered software mastery.
-            We drive Digitalization with DevOps,
-            Lean Enterprise,
-            and Agile excellence for rapid,
-            efficient development.
-            Ready to transform your digital future?
+            Von regionaler Betreuung zu weltweitem Erfolg - mit Ape Dev (eɪp dɛv) als starkem Partner für ganzheitliche digitale Lösungen.
+            Mit präzise abgestimmten Service und individuell konzipierte Lösungen zum globalen Erfolg.
           </p>
         </FadeIn>
       </Container>
@@ -212,7 +209,7 @@ export default async function Home() {
 
       <Testimonial
         className="mt-24 sm:mt-32 lg:mt-40"
-        client={{ name: 'Phobia', logo: logoCF }}
+        client={{ name: 'Computure Futures', logo: logoCF }}
       >
         [...] Despite his technical skills as a developer and consultant I can also confirm his social skills since he&apos;s very reliable, always on time and has a very high standard regarding his own work. From my side, I would definitely work with him again and can recommend to everybody to do so as well.
       </Testimonial>

@@ -6,10 +6,7 @@ import { Border } from '@/components/Border'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
-import { Offices } from '@/components/Offices'
 import { PageIntro } from '@/components/PageIntro'
-import { SocialMedia } from '@/components/SocialMedia'
-import {InlineWidget} from "react-calendly";
 
 function TextInput({
   label,
@@ -53,9 +50,11 @@ function RadioInput({
 }
 
 function ContactForm() {
-    // <InlineWidget url="https://calendly.com/ape-dev/30min" />
   return (
-    <FadeIn className="lg:order-last">
+    <FadeIn className="lg:order-last rounded-2xl shadow-2xl">
+        <div className="tidycal-embed" data-path="ape-dev/kontakt"></div>
+
+        <script src="https://assets.tidycal.com/js/embed.js" async></script>
     </FadeIn>
   )
 }
@@ -64,19 +63,36 @@ function ContactDetails() {
   return (
     <FadeIn>
       <h2 className="font-display text-base font-semibold text-neutral-950">
-        Our offices
+        Geschäftsräume
       </h2>
       <p className="mt-6 text-base text-neutral-600">
-        We&apos;re a 100% Remote Company. If you want to meet us in person instead, give us a mail and we&apos;ll meet you at your office.
+        Birkenweg 5F<br />
+        21717 Deinste<br />
+        info@ape-dev.de<br />
+        04149 233 9823
       </p>
+        <p className="mt-6 text-base text-neutral-600">
+            Wir operieren Remote in ganz Deutschland. Wenn Sie uns trotzdem persönlich treffen möchten, schreiben Sie uns eine Mail und wir kommen zu Ihnen.
+      </p>
+        <div className="flex gap-8 mt-4">
+            <Button href="https://aitable.ai/share/shrK8Cz4PXxAzx7GuvlXX">
+                Rückruf vereinbaren
+            </Button>
+
+            <Button href="https://aitable.ai/share/shrK8Cz4PXxAzx7GuvlXX">
+                Videocall vereinbaren
+            </Button>
+        </div>
+
+
 
       <Border className="mt-16 pt-16">
         <h2 className="font-display text-base font-semibold text-neutral-950">
-          Email us
+          Schreiben sie uns
         </h2>
         <dl className="mt-6 grid grid-cols-1 gap-8 text-sm sm:grid-cols-2">
           {[
-            ['Inquiries', 'info@ape-dev.de']
+            ['Allgemeine Anfragen', 'info@ape-dev.de']
           ].map(([label, email]) => (
             <div key={email}>
               <dt className="font-semibold text-neutral-950">{label}</dt>
@@ -97,18 +113,18 @@ function ContactDetails() {
 }
 
 export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Let’s work together. We can’t wait to hear from you.',
+  title: 'Kontakt',
+  description: 'Lassen Sie uns zusammenarbeiten. Wir freuen uns auf Ihre Nachricht.'
 }
 
 export default function Contact() {
   return (
     <>
-      <PageIntro eyebrow="Contact us" title="Let’s work together">
-        <p>We can’t wait to hear from you.</p>
+      <PageIntro eyebrow="Kontakt" title="Lassen sie uns gemeinsam großes bewirken.">
+        <p>Buchen sie einen Termin oder rufen sie uns an. Wir können es nicht erwarten mit Ihnen zusammen zu arbeiten.</p>
       </PageIntro>
 
-      <Container className="mt-24 sm:mt-32 lg:mt-40">
+      <Container className="mt-24">
         <div className="grid grid-cols-1 gap-x-8 gap-y-24 lg:grid-cols-2">
           <ContactForm />
           <ContactDetails />

@@ -4,33 +4,27 @@ import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { Logo } from '@/components/Logo'
 import {SocialMedia, socialMediaProfiles} from '@/components/SocialMedia'
-import {Border} from "@/components/Border";
+import {AnimatePresence, motion} from "framer-motion";
+import {useRef, useState} from "react";
 
 const navigation = [
-            /*{
-              title: 'Work',
-              links: [
-                { title: 'FamilyFund', href: '/work/family-fund' },
-                { title: 'Unseal', href: '/work/unseal' },
-                { title: 'Phobia', href: '/work/phobia' },
-                {
-                  title: (
-                    <>
-                      See all <span aria-hidden="true">&rarr;</span>
-                    </>
-                  ),
-                  href: '/work',
-                },
-    ],
-  },*/
   {
-    title: 'Company',
+    title: 'Seiten',
     links: [
-      { title: 'About', href: '/about' },
-      { title: 'Process', href: '/process' },
-      { title: 'Contact', href: '/contact' },
+      { title: 'Über uns', href: '/about' },
+      { title: 'Prozess', href: '/process' },
+      { title: 'Kontakt', href: '/contact' },
     ],
   },
+    /**
+  {
+    title: 'Dienstleistungen',
+    links: [
+      { title: 'Digitalisierung', href: '/digitalisierung' },
+      { title: 'Webentwicklung ', href: '/webentwicklung' },
+      { title: '3D Virtualisierung & Game Dev ', href: '/gamedev' },
+    ],
+  },*/
   {
     title: 'Legal',
     links: [
@@ -42,30 +36,63 @@ const navigation = [
 
 function Navigation() {
   return (
-    <nav>
-      <ul role="list" className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+    <nav className="">
+      <ul role="list" className="flex flex-nowrap ">
         {navigation.map((section, sectionIndex) => (
-          <li key={sectionIndex}>
+          <li key={sectionIndex} className="mx-8">
             <div className="font-display text-sm font-semibold tracking-wider text-neutral-950">
               {section.title}
             </div>
-            <ul role="list" className="mt-4 text-sm text-neutral-700">
-              {section.links.map((link, linkIndex) => (
-                <li key={linkIndex} className="mt-4">
-                  <Link
-                    href={link.href}
-                    className="transition hover:text-neutral-950"
-                  >
-                    {link.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <NavSection section={section} />
           </li>
         ))}
       </ul>
     </nav>
   )
+}
+function NavSection({section}: { section: {title: string; links: { title: string; href: string }[] }}) {
+
+    let [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+    let timeoutRef = useRef<number | null>(null)
+
+    return <ul role="list" className="mt-4 text-sm text-neutral-700">
+        {section.links.map((link, linkIndex) => (
+                <li key={linkIndex} className="mt-4">
+                    <Link
+                            key={link.title}
+                            href={link.href}
+                            className="relative -mx-3 bg-gray-200 rounded-xl px-3 py-2 text-md text-gray-700 transition-colors delay-150 hover:text-gray-100 hover:delay-0 "
+                            onMouseEnter={() => {
+                                if (timeoutRef.current) {
+                                    window.clearTimeout(timeoutRef.current)
+                                }
+                                setHoveredIndex(linkIndex)
+                            }}
+                            onMouseLeave={() => {
+                                timeoutRef.current = window.setTimeout(() => {
+                                    setHoveredIndex(null)
+                                }, 200)
+                            }}
+                    >
+                        <AnimatePresence>
+                            {hoveredIndex === linkIndex && (
+                                    <motion.span
+                                            className="absolute inset-0 rounded-lg bg-gray-700"
+                                            layoutId="hoverBackground"
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1, transition: { duration: 0.15 } }}
+                                            exit={{
+                                                opacity: 0,
+                                                transition: { duration: 0.15 },
+                                            }}
+                                    />
+                            )}
+                        </AnimatePresence>
+                        <span className="relative z-10">{link.title}</span>
+                    </Link>
+                </li>
+        ))}
+    </ul>
 }
 
 function ArrowIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -115,23 +142,22 @@ function NewsletterForm() {
 
 export function Footer() {
   return (
-    <Container as="footer" className="mt-24 w-full sm:mt-32 lg:mt-40">
+    <Container as="footer" className="mt-24 w-full sm:mt-32 lg:mt-40 ">
       <FadeIn>
-        <div className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
+        <div className="flex place-content-between px-12 flex-wrap">
           <Navigation />
-          <div >
-              <h2 className="font-display text-base font-semibold text-neutral-950">
-                Follow us
-              </h2>
-              <SocialMedia className="mt-6" />
-          </div>
         </div>
         <div className="mb-20 mt-24 flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-t border-neutral-950/10 pt-12">
           <Link href="/" aria-label="Home">
             <Logo className="h-8" fillOnHover />
           </Link>
           <p className="text-sm text-neutral-700">
-            © Ape Dev GmbH {new Date().getFullYear()}
+              <div className="flex flex-col gap-2">
+                  <SocialMedia className="mt-6" />
+                  <span>
+                  © Ape Dev GmbH {new Date().getFullYear()}
+                  </span>
+              </div>
           </p>
         </div>
       </FadeIn>
