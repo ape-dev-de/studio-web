@@ -21,14 +21,14 @@ import logoAy from '@/images/clients/ay/Aboutyou_logo_1.jpg'
 import logoFestglanz from '@/images/clients/festglanz/festglanz_deko_logo_brush.png'
 import logoHolidayHost from '@/images/clients/holidayhost/NoBorderWhiteBG_Holiday_Host_Logo.png.webp'
 
-import imageLaptop from '@/images/laptop.jpg'
+import imageLaptop from '@/images/laptop@0.5x.webp'
 import {type CaseStudy, loadCaseStudies, type MDXEntry} from '@/lib/mdx'
 
 const clients = [
     {client: 'The Quality Group GmbH', logo: logoTqg, url: 'https://www.tqgg.de/'},
     {client: 'ESN', logo: logoEsn, url: 'https://www.esn.com/'},
     {client: 'Computer Futures', logo: logoCF, url: 'https://www.computerfutures.com/'},
-    {client: 'F itmart', logo: logoFitmart, url: 'https://fitmart.de/'},
+    {client: 'Fitmart', logo: logoFitmart, url: 'https://fitmart.de/'},
     {client: 'More Nutrition', logo: logoMn, url: 'https://morenutrition.de/'},
     {client: 'Foodist', logo: logoFoodist, url: 'https://foodist.de/'},
     {client: 'Movamo', logo: logoMovamo, url: 'https://movamo.de/'},

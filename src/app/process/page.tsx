@@ -8,9 +8,9 @@ import {GridPattern} from '@/components/GridPattern'
 import {PageIntro} from '@/components/PageIntro'
 import {SectionIntro} from '@/components/SectionIntro'
 import {StylizedImage} from '@/components/StylizedImage'
-import imageLaptop from '@/images/laptop.jpg'
-import imageMeeting from '@/images/meeting.jpg'
-import imageWhiteboard from '@/images/whiteboard.jpg'
+import imageLaptop from '@/images/laptop@0.5x.webp'
+import imageMeeting from '@/images/meeting@0.5x.webp'
+import imageWhiteboard from '@/images/whiteboard@0.5x.webp'
 
 function Section({
                      title,
