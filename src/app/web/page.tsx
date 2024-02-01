@@ -86,7 +86,7 @@ export default async function About() {
                             Wir erarbeiten gemeinsam mit Ihnen die beste Lösung für Ihr Unternehmen.
                         </p>
                         <p className="flex space-evenly gap-12">
-                            <Button href="https://tidycal.com/ape-dev/digitalisierung">
+                            <Button href="https://tidycal.com/ape-dev/digitalisierung" target="_blank" rel="nofollow">
                                 Kostenlose Beratung buchen
                             </Button>
                             <Button href="/process">

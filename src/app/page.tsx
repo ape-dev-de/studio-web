@@ -156,8 +156,7 @@ function Services() {
 
 export const metadata: Metadata = {
     description:
-            'Regional betreut, global erfolgreich. Von regionaler Betreuung zu weltweitem Erfolg - mit Ape Dev (eɪp dɛv) als starkem Partner für ganzheitliche digitale Lösungen.' +
-            ' Mit präzise abgestimmten Service und individuell konzipierte Lösungen zum globalen Erfolg.',
+            'Regional betreut, global erfolgreich. Von regionaler Betreuung zu weltweitem Erfolg - mit Ape Dev als starkem Partner für ganzheitliche digitale Lösungen.',
 }
 
 export default async function Home() {

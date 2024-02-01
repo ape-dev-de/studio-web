@@ -86,6 +86,8 @@ export function SocialMedia({
                         <li key={socialMediaProfile.title}>
                             <Link
                                     href={socialMediaProfile.href}
+                                    target="_blank"
+                                    rel="nofollow"
                                     aria-label={socialMediaProfile.title}
                                     className={clsx(
                                             'transition',

@@ -51,9 +51,9 @@ function Culture() {
 }
 
 export const metadata: Metadata = {
-    title: 'Über uns',
+    title: 'Digitalisierung',
     description:
-            'Wir glauben, dass unsere Stärke in unserem kollaborativen Ansatz liegt, der unsere Kunden in den Mittelpunkt all unseres Handelns stellt.',
+            'Durch innovativen iterativen Prozess und Synergy aus Fachexpertise und ihrem Business Know-How zum Erfolg',
 }
 
 const clients = [
@@ -73,8 +73,11 @@ export default async function About() {
                             Wir arbeiten immer Hand in Hand mit unseren Kunden, denn es ist <b> IHR Business</b>.
                             Wir erarbeiten gemeinsam mit Ihnen die beste Lösung für Ihr Unternehmen indem wir unsere Fachkenntnisse mit Ihren Betriebserfahrungen kombinieren.
                         </p>
+                        <p>
+                            Gerne kommen wir vorbei und analysieren und Beraten Vor ort in den Regionen zwischen Bremen, Stade und Hamburg.
+                        </p>
                         <p className="flex space-evenly gap-12">
-                            <Button href="https://tidycal.com/ape-dev/digitalisierung">
+                            <Button href="https://tidycal.com/ape-dev/digitalisierung" target="_blank"  rel="nofollow">
                                 Kostenlose Beratung buchen
                             </Button>
                             <Button href="/process">
@@ -83,6 +86,8 @@ export default async function About() {
                         </p>
                     </div>
                 </PageIntro>
+
+
 
 
                 <Clients clients={clients } />

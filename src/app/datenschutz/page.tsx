@@ -198,7 +198,7 @@ export default async function Privacy() {
                             page.</p>
 
                         <p>Our Privacy Policy was created with the help of the <a
-                                href="https://www.termsfeed.com/privacy-policy-generator/">Privacy Policy Generator</a>.
+                                href="https://www.termsfeed.com/privacy-policy-generator/" rel="nofollow">Privacy Policy Generator</a>.
                         </p>
                     </div>
 

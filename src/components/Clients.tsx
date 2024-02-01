@@ -19,7 +19,7 @@ export  default function Clients({clients}: {clients: {client: string, logo: Sta
                         >
                             {clients.map(({client, logo, url}) => (
                                     <li key={client}  className="h-full">
-                                        <a href={url} target="_blank">
+                                        <a href={url} target="_blank" rel="nofollow">
                                             <FadeIn className="h-full flex flex-row items-center">
                                                 <Image src={logo} alt={client} unoptimized className={"flex- rounded-md"}/>
                                             </FadeIn>

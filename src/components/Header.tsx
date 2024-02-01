@@ -63,7 +63,7 @@ export function PocketHeader() {
                             <NavLinks/>
                         </div>
                         <div className="hidden md:flex md:gap-10 justify-center items-center">
-                            <Button href="/contact" className="hidden md:block ">
+                            <Button href="/kontakt" className="hidden md:block ">
                                 Kontakt aufnehmen
                             </Button>
                         </div>
@@ -115,7 +115,7 @@ export function PocketHeader() {
                                                                 </MobileNavLink>
                                                             </div>
                                                             <div className="mt-8 flex flex-col gap-4">
-                                                                <Button href="/contact">Kontakt aufnehmen</Button>
+                                                                <Button href="/kontakt">Kontakt aufnehmen</Button>
                                                             </div>
                                                         </Popover.Panel>
                                                     </>

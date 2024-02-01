@@ -75,11 +75,11 @@ function ContactDetails() {
             Wir operieren Remote in ganz Deutschland. Wenn Sie uns trotzdem persönlich treffen möchten, schreiben Sie uns eine Mail und wir kommen zu Ihnen.
       </p>
         <div className="flex gap-8 mt-4">
-            <Button href="https://aitable.ai/share/shrK8Cz4PXxAzx7GuvlXX">
+            <Button href="https://aitable.ai/share/shrK8Cz4PXxAzx7GuvlXX" target="_blank" rel="nofollow">
                 Rückruf vereinbaren
             </Button>
 
-            <Button href="https://aitable.ai/share/shrK8Cz4PXxAzx7GuvlXX">
+            <Button href="https://tidycal.com/ape-dev/kontakt" target="_blank" rel="nofollow">
                 Videocall vereinbaren
             </Button>
         </div>

@@ -13,7 +13,7 @@ export function ContactSection() {
               Jetzt ist der Moment, um Großes zu bewirken! 🚀 Drücken Sie den Turbo-Button für Ihr Unternehmen.
             </h2>
             <div className="mt-6 flex">
-              <Button href="/contact" invert>
+              <Button href="/kontakt" invert>
                 Kontakt aufnehmen
               </Button>
             </div>
