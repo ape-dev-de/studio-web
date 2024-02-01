@@ -17,7 +17,7 @@ import {type CaseStudy, type MDXEntry, loadCaseStudies} from '@/lib/mdx'
 export const metadata: Metadata = {
     title: 'Imprint - Ape Dev',
     description:
-            'Legal information about Ape Dev, including contact details and legal notices.',
+            'Legal information about Ape Dev, including kontakt details and legal notices.',
 }
 
 export default async function Imprint() {

@@ -233,7 +233,12 @@ export const metadata: Metadata = {
 export default function Process() {
     return (
             <>
-                <PageIntro eyebrow="Unser Prozess" title="Befähigung Ihrer digitalen Transformationsreise">
+                <PageIntro className="hidden sm:block" eyebrow="Unser Prozess" title="Befähigung Ihrer digitalen Transformationsreise">
+                    <p>
+                        Kundenorientierte Strategien für nahtlosen Fortschritt und kontinuierliche Innovation
+                    </p>
+                </PageIntro>
+                <PageIntro eyebrow="Unser Prozess"  className="block sm:hidden"  title="Befähigung Ihrer digitalen Transformations- reise">
                     <p>
                         Kundenorientierte Strategien für nahtlosen Fortschritt und kontinuierliche Innovation
                     </p>

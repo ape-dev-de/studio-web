@@ -13,23 +13,22 @@ const navigation = [
     links: [
       { title: 'Über uns', href: '/about' },
       { title: 'Prozess', href: '/process' },
-      { title: 'Kontakt', href: '/contact' },
+      { title: 'Kontakt', href: '/kontakt' },
     ],
   },
-    /**
   {
     title: 'Dienstleistungen',
     links: [
-      { title: 'Digitalisierung', href: '/digitalisierung' },
-      { title: 'Webentwicklung ', href: '/webentwicklung' },
-      { title: '3D Virtualisierung & Game Dev ', href: '/gamedev' },
+      { title: 'Digitalisierung', href: '/digitalisierung' },/**
+      { title: 'Webentwicklung ', href: '/web' },
+      { title: '3D Virtualisierung & Game Dev ', href: '/gamedev' }, */
     ],
-  },*/
+  },
   {
     title: 'Legal',
     links: [
       { title: 'Imprint', href: '/imprint' },
-      { title: 'Privacy Policy ', href: '/privacy' },
+      { title: 'Privacy Policy ', href: '/datenschutz' },
     ],
   },
 ]
@@ -37,9 +36,9 @@ const navigation = [
 function Navigation() {
   return (
     <nav className="">
-      <ul role="list" className="flex flex-nowrap ">
+      <ul role="list" className="flex flex-wrap">
         {navigation.map((section, sectionIndex) => (
-          <li key={sectionIndex} className="mx-8">
+          <li key={sectionIndex} className="mx-8 mb-6">
             <div className="font-display text-sm font-semibold tracking-wider text-neutral-950">
               {section.title}
             </div>
@@ -144,7 +143,7 @@ export function Footer() {
   return (
     <Container as="footer" className="mt-24 w-full sm:mt-32 lg:mt-40 ">
       <FadeIn>
-        <div className="flex place-content-between px-12 flex-wrap">
+        <div className="flex place-content-between px-4 md:px-12 flex-wrap">
           <Navigation />
         </div>
         <div className="mb-20 mt-24 flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-t border-neutral-950/10 pt-12">

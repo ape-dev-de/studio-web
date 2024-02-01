@@ -7,16 +7,18 @@ export function PageIntro({
   eyebrow,
   title,
   children,
+  className,
   centered = false,
 }: {
   eyebrow: string
   title: string
   children: React.ReactNode
   centered?: boolean
+    className?: string
 }) {
   return (
     <Container
-      className={clsx('mt-24', centered && 'text-center')}
+      className={clsx('mt-24', centered && 'text-center', className)}
     >
       <FadeIn>
         <h1>
