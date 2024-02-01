@@ -36,7 +36,7 @@ export default async function Imprint() {
                                     <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                         <dt className="text-sm font-medium leading-6 text-gray-900">Address</dt>
                                         <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                            Ape Dev<br/>
+                                            Ape Dev GmbH<br/>
                                             Birkenweg 5F<br/>
                                             21717 Deinste
                                         </dd>
@@ -64,7 +64,7 @@ export default async function Imprint() {
                                     <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                         <dt className="text-sm font-medium leading-6 text-gray-900">Phone:</dt>
                                         <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                            01515 9695164
+                                            (+49) 04149 233 9823
                                         </dd>
                                     </div>
                                 </dl>
@@ -78,6 +78,19 @@ export default async function Imprint() {
                                         <dt className="text-sm font-medium leading-6 text-gray-900">Email:</dt>
                                         <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                                             info@ape-dev.de
+                                        </dd>
+                                    </div>
+                                </dl>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className="mt-6 border-t border-gray-100">
+                                <dl className="divide-y divide-gray-100">
+                                    <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                        <dt className="text-sm font-medium leading-6 text-gray-900">Domain:</dt>
+                                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                            https://ape-dev.de
                                         </dd>
                                     </div>
                                 </dl>
