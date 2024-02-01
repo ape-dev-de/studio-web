@@ -150,14 +150,12 @@ export function Footer() {
           <Link href="/" aria-label="Home">
             <Logo className="h-8" fillOnHover />
           </Link>
-          <p className="text-sm text-neutral-700">
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 text-sm text-neutral-700">
                   <SocialMedia className="mt-6" />
                   <span>
                   © Ape Dev GmbH {new Date().getFullYear()}
                   </span>
               </div>
-          </p>
         </div>
       </FadeIn>
     </Container>
