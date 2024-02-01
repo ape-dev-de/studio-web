@@ -7,7 +7,6 @@ import {AnimatePresence, motion} from 'framer-motion'
 import {Button} from '@/components/Button'
 import {Logo} from '@/components/Logo'
 import {NavLinks} from '@/components/NavLinks'
-import {CloseIcon} from "next/dist/client/components/react-dev-overlay/internal/icons/CloseIcon";
 
 function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
     return (
@@ -22,7 +21,7 @@ function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
     )
 }
 
-function ChevronUpIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+function CloseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
     return (
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
                 <path
