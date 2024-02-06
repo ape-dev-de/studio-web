@@ -122,7 +122,7 @@ export default async function Imprint() {
                                         </dt>
                                         <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                                             The European Commission provides a platform for online conflict
-                                            resolution:https://ec.europa.eu/consumers/odrYou can find our e-mail address
+                                            resolution:https://ec.europa.eu/consumers/odr. You can find our e-mail address
                                             in the legal notice above.We are not willing or obliged to participate in
                                             conflict resolution proceedings before a consumer arbitration board.
                                         </dd>
