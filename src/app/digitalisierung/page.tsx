@@ -8,7 +8,7 @@ import Clients from "@/components/Clients";
 import {Border} from "@/components/Border";
 import {FadeIn, FadeInStagger} from "@/components/FadeIn";
 import {Container} from "@/components/Container";
-import imageSuccess from "@/images/success.jpg";
+import imageSuccess from "@/images/success@0.5x.webp";
 import {Section} from "@/components/Section";
 
 export const metadata: Metadata = {
