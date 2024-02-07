@@ -27,7 +27,6 @@ export default async function Digitalisierung() {
                 <Container
                         className="mt-24"
                 >
-                    <FadeIn>
                         <h1>
                           <span className="block font-display text-base font-semibold text-neutral-950">
                             Digitalisierung
@@ -87,7 +86,6 @@ export default async function Digitalisierung() {
                                 </Button>
                             </p>
                         </div>
-                    </FadeIn>
                 </Container>
 
                 <Section title="Erfolg durch Digitalisierung" image={{src: imageSuccess}} counter={false}>

@@ -20,7 +20,6 @@ export function PageIntro({
     <Container
       className={clsx('mt-24', centered && 'text-center', className)}
     >
-      <FadeIn>
         <h1>
           <span className="block font-display text-base font-semibold text-neutral-950">
             {eyebrow}
@@ -43,7 +42,6 @@ export function PageIntro({
         >
           {children}
         </div>
-      </FadeIn>
     </Container>
   )
 }
