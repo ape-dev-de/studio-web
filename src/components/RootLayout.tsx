@@ -84,29 +84,7 @@ function Navigation() {
 }
 
 function RootLayoutInner({ children }: { children: React.ReactNode }) {
-  let panelId = useId()
-  let [expanded, setExpanded] = useState(false)
-  let openRef = useRef<React.ElementRef<'button'>>(null)
-  let closeRef = useRef<React.ElementRef<'button'>>(null)
-  let navRef = useRef<React.ElementRef<'div'>>(null)
   let shouldReduceMotion = useReducedMotion()
-
-  useEffect(() => {
-    function onClick(event: MouseEvent) {
-      if (
-        event.target instanceof HTMLElement &&
-        event.target.closest('a')?.href === window.location.href
-      ) {
-        setExpanded(false)
-      }
-    }
-
-    window.addEventListener('click', onClick)
-
-    return () => {
-      window.removeEventListener('click', onClick)
-    }
-  }, [])
 
   return (
     <MotionConfig transition={shouldReduceMotion ? { duration: 0 } : undefined}>

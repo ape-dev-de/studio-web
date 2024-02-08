@@ -7,6 +7,7 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { PageIntro } from '@/components/PageIntro'
+import {NoSSR} from "next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr";
 
 function TextInput({
   label,
@@ -52,7 +53,7 @@ function RadioInput({
 function ContactForm() {
   return (
     <FadeIn className="lg:order-last rounded-2xl shadow-2xl">
-        <div className="tidycal-embed" data-path="ape-dev/kontakt"></div>
+        <div className="tidycal-embed" data-path="ape-dev/kontakt" suppressHydrationWarning={true}></div>
 
         <script src="https://assets.tidycal.com/js/embed.js" async></script>
     </FadeIn>

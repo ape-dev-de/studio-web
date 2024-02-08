@@ -31,6 +31,12 @@ const navigation = [
       { title: 'Privacy Policy ', href: '/datenschutz' },
     ],
   },
+  {
+    title: 'Tools',
+    links: [
+      { title: 'Datenschutzwissen (beta)', href: 'https://wissen.ape-dev.de' },
+    ],
+  },
 ]
 
 function Navigation() {
