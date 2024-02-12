@@ -50,16 +50,6 @@ function RadioInput({
   )
 }
 
-function ContactForm() {
-  return (
-    <FadeIn className="lg:order-last rounded-2xl shadow-2xl">
-        <div className="tidycal-embed" data-path="ape-dev/kontakt" suppressHydrationWarning={true}></div>
-
-        <script src="https://assets.tidycal.com/js/embed.js" async></script>
-    </FadeIn>
-  )
-}
-
 function ContactDetails() {
   return (
     <FadeIn>
@@ -76,12 +66,8 @@ function ContactDetails() {
             Wir operieren Remote in ganz Deutschland. Wenn Sie uns trotzdem persönlich treffen möchten, schreiben Sie uns eine Mail und wir kommen zu Ihnen.
       </p>
         <div className="flex gap-8 mt-4">
-            <Button href="https://aitable.ai/share/shrK8Cz4PXxAzx7GuvlXX" target="_blank" rel="nofollow">
-                Rückruf vereinbaren
-            </Button>
-
-            <Button href="https://tidycal.com/ape-dev/kontakt" target="_blank" rel="nofollow">
-                Videocall vereinbaren
+            <Button href="https://calendly.com/ape-dev/digitalisierung" target="_blank" rel="nofollow">
+                Digitalisierung + Datenschutz Erstberatung
             </Button>
         </div>
 
@@ -127,7 +113,6 @@ export default function Contact() {
 
       <Container className="mt-24">
         <div className="grid grid-cols-1 gap-x-8 gap-y-24 lg:grid-cols-2">
-          <ContactForm />
           <ContactDetails />
         </div>
       </Container>

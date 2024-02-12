@@ -25,16 +25,10 @@ const navigation = [
     ],
   },
   {
-    title: 'Legal',
+    title: 'Meta',
     links: [
-      { title: 'Imprint', href: '/imprint' },
-      { title: 'Privacy Policy ', href: '/datenschutz' },
-    ],
-  },
-  {
-    title: 'Tools',
-    links: [
-      { title: 'Datenschutzwissen (beta)', href: 'https://wissen.ape-dev.de' },
+      { title: 'Impressum', href: '/imprint' },
+      { title: 'Datenschutz ', href: '/datenschutz' },
     ],
   },
 ]

@@ -27,72 +27,73 @@ export default async function Digitalisierung() {
                 <Container
                         className="mt-24"
                 >
-                        <h1>
+                    <h1>
                           <span className="block font-display text-base font-semibold text-neutral-950">
                             Digitalisierung
                           </span>
-                            <span className="sr-only"> - </span>
-                            <span
-                                    className="mt-6 block max-w-5xl font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-6xl"
-                            >
+                        <span className="sr-only"> - </span>
+                        <span
+                                className="mt-6 block max-w-5xl font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-6xl"
+                        >
                             Digitalisierung vorantreiben, gemeinsam Innovationen schaffen
                           </span>
-                        </h1>
-                        <div
-                                className="mt-10 text-xl text-neutral-600"
-                        >
-                            <div className="flex flex-wrap md:flex-nowrap justify-between gap-10">
-                                <FadeInStagger>
-                                    <dl>
-                                        <Border as={FadeIn} position="left" className="pl-8 mb-6">
-                                            <dd className="font-display ">
-                                                Umsatz und Gewinn steigern
-                                            </dd>
-                                        </Border>
-                                        <Border as={FadeIn} position="left" className="pl-8 mb-6">
-                                            <dd className="font-display ">
-                                                Arbeitsaufwand und Kosten reduzieren
-                                            </dd>
-                                        </Border>
-                                        <Border as={FadeIn} position="left" className="pl-8 mb-6">
-                                            <dd className="font-display ">
-                                                Hand in Hand mit <b>IHREM Business</b>
-                                            </dd>
-                                        </Border>
-                                        <Border as={FadeIn} position="left" className="pl-8 mb-6">
-                                            <dd className="font-display ">
-                                                Beratung vor Ort
-                                            </dd>
-                                        </Border>
+                    </h1>
+                    <div
+                            className="mt-10 text-xl text-neutral-600"
+                    >
+                        <div className="flex flex-wrap md:flex-nowrap justify-between gap-10">
+                            <FadeInStagger>
+                                <dl>
+                                    <Border as={FadeIn} position="left" className="pl-8 mb-6">
+                                        <dd className="font-display ">
+                                            Umsatz und Gewinn steigern
+                                        </dd>
+                                    </Border>
+                                    <Border as={FadeIn} position="left" className="pl-8 mb-6">
+                                        <dd className="font-display ">
+                                            Arbeitsaufwand und Kosten reduzieren
+                                        </dd>
+                                    </Border>
+                                    <Border as={FadeIn} position="left" className="pl-8 mb-6">
+                                        <dd className="font-display ">
+                                            Hand in Hand mit <b>IHREM Business</b>
+                                        </dd>
+                                    </Border>
+                                    <Border as={FadeIn} position="left" className="pl-8 mb-6">
+                                        <dd className="font-display ">
+                                            Beratung vor Ort
+                                        </dd>
+                                    </Border>
 
-                                    </dl>
-                                </FadeInStagger>
-                                <div className="w-600 grow">
-                                    <iframe className="max-w-[100%]" width="600" height="315"
-                                            src="https://www.youtube-nocookie.com/embed/0dBcVxxzX-M?si=pyFx7qFlD-nqy-Mx"
-                                            title="YouTube video player" frameBorder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                            allowFullScreen></iframe>
-                                </div>
+                                </dl>
+                            </FadeInStagger>
+                            <div className="w-600 grow">
+                                <iframe className="max-w-[100%]" width="600" height="315"
+                                        src="https://www.youtube-nocookie.com/embed/0dBcVxxzX-M?si=pyFx7qFlD-nqy-Mx"
+                                        title="YouTube video player" frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowFullScreen></iframe>
                             </div>
-                            <p className="flex place-content-between md:place-content-start gap-12 m-10">
-                                <Button className="px-10" href="https://tidycal.com/ape-dev/digitalisierung"
-                                        target="_blank"
-                                        rel="nofollow">
-                                    Kostenlose Beratung buchen
-                                </Button>
-                                <Button className="px-10" href="/process">
-                                    Mehr erfahren
-                                </Button>
-                            </p>
                         </div>
+                        <p className="flex place-content-between md:place-content-start gap-12 m-10">
+                            <Button className="px-10" href="https://calendly.com/ape-dev/digitalisierung"
+                                    target="_blank"
+                                    rel="nofollow">
+                                Kostenlose Beratung buchen
+                            </Button>
+                            <Button className="px-10" href="/process">
+                                Mehr erfahren
+                            </Button>
+                        </p>
+                    </div>
                 </Container>
 
                 <Section title="Erfolg durch Digitalisierung" image={{src: imageSuccess}} counter={false}>
                     <FadeInStagger>
                         <div className="space-y-6 text-base text-neutral-600">
                             <p>
-                                Digitalisierung ist ein Sammelbegriff für Prozesse und Techniken die im Alltag helfen administrative Arbeiten teilweise oder vollständig zu automatisieren.
+                                Digitalisierung ist ein Sammelbegriff für Prozesse und Techniken die im Alltag helfen
+                                administrative Arbeiten teilweise oder vollständig zu automatisieren.
                             </p>
                             <dl className="divide-y divide-gray-100">
                                 <div className="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
@@ -109,12 +110,12 @@ export default async function Digitalisierung() {
                                 <div className="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
                                     <dt className="text-sm font-medium leading-6 text-gray-900">Flexibel</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0">
-                                            Wir arbeiten immer Hand in Hand mit unseren Kunden, denn es
-                                            ist <b> IHR
-                                            Business</b>.
-                                            Wir erarbeiten gemeinsam mit Ihnen die beste Lösung für Ihr
-                                            Unternehmen, indem
-                                            wir unsere Fachkenntnisse mit Ihren Betriebserfahrungen kombinieren.
+                                        Wir arbeiten immer Hand in Hand mit unseren Kunden, denn es
+                                        ist <b> IHR
+                                        Business</b>.
+                                        Wir erarbeiten gemeinsam mit Ihnen die beste Lösung für Ihr
+                                        Unternehmen, indem
+                                        wir unsere Fachkenntnisse mit Ihren Betriebserfahrungen kombinieren.
                                     </dd>
                                 </div>
                                 <div className="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
@@ -128,7 +129,8 @@ export default async function Digitalisierung() {
                                 <div className="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
                                     <dt className="text-sm font-medium leading-6 text-gray-900">Kosteneffizient</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0">
-                                        Die Einsparungen in Geld oder Arbeitskraft rentieren sich häufig schon in den ersten 3 Monaten <br />
+                                        Die Einsparungen in Geld oder Arbeitskraft rentieren sich häufig schon in den
+                                        ersten 3 Monaten <br/>
                                         Wir bieten echten Service und rechnen nur tatsächlich geleistete Arbeit ab.<br/>
                                         Keine Pakete und keine versteckten Kosten.
                                     </dd>
