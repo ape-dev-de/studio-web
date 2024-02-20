@@ -5,9 +5,11 @@ import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 
 export function GridList({
   children,
+  maxGridCols = 3,
   className,
 }: {
   children: React.ReactNode
+  maxGridCols?: number
   className?: string
 }) {
   return (
@@ -15,7 +17,7 @@ export function GridList({
       <ul
         role="list"
         className={clsx(
-          'grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3',
+          'grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-' + maxGridCols,
           className,
         )}
       >

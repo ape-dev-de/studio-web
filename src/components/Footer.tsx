@@ -6,21 +6,26 @@ import { Logo } from '@/components/Logo'
 import {SocialMedia, socialMediaProfiles} from '@/components/SocialMedia'
 import {AnimatePresence, motion} from "framer-motion";
 import {useRef, useState} from "react";
+import Image from "next/image";
+import microsoftLogo from "@/images/partner/RWCZER.avif";
+import wortmannLogo from "@/images/partner/Wortmann_AG_Logo.svg";
 
 const navigation = [
   {
-    title: 'Seiten',
+    title: 'Firma',
     links: [
       { title: 'Über uns', href: '/about' },
       { title: 'Prozess', href: '/process' },
+      { title: 'Partner ', href: '/partner' },
       { title: 'Kontakt', href: '/kontakt' },
     ],
   },
   {
     title: 'Dienstleistungen',
     links: [
-      { title: 'Digitalisierung', href: '/digitalisierung' },/**
+      { title: 'Digitalisierung', href: '/digitalisierung' },
       { title: 'Webentwicklung ', href: '/web' },
+      { title: 'Datenschutzbeauftragter ', href: '/dsb' },/**
       { title: '3D Virtualisierung & Game Dev ', href: '/gamedev' }, */
     ],
   },
@@ -152,7 +157,7 @@ export function Footer() {
         <div className="flex place-content-between px-4 md:px-12 flex-wrap">
           <Navigation />
         </div>
-          
+
         <div className="mb-20 mt-24 flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-t border-neutral-950/10 pt-12">
           <Link href="/" aria-label="Home">
             <Logo className="h-8" fillOnHover />
