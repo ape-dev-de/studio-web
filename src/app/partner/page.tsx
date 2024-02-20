@@ -21,11 +21,11 @@ function Points() {
                 <Container className="mt-16">
                     <GridList maxGridCols={2}>
                         <GridListItem title="Microsoft" invert>
-                            <a href="https://microsoft.com"><Image src={MicrosoftLogo} className="bg-white h-40 w-auto" alt="Microsoft" unoptimized/></a>
+                            <a href="https://microsoft.com" rel="nofollow"><Image src={MicrosoftLogo} className="bg-white h-40 w-auto" alt="Microsoft" unoptimized/></a>
                             <p className={"mt-6"}>Wir Sind Microsoft Partner und vertreiben, installieren und administrieren Microsoft Produkte, wie M365, Azure und Dynamics 365.</p>
                         </GridListItem>
                         <GridListItem title="Wortmann AG" invert>
-                            <a href="https://wortmann.de" ><Image src={WortmannLogo} className="bg-white  h-40 w-auto" alt="Wortmann" unoptimized/></a>
+                            <a href="https://wortmann.de" rel="nofollow"><Image src={WortmannLogo} className="bg-white  h-40 w-auto" alt="Wortmann" unoptimized/></a>
                             <p className={"mt-6"}>
                             Die Wortmann AG (Terra) ist unser Partner wenn es um komplizierte Enterprise-Setups geht.
                             </p>
@@ -33,7 +33,7 @@ function Points() {
                     </GridList>
                     <GridList maxGridCols={3} className={"mt-16"}>
                         <GridListItem title="branchenverzeichnis.org" invert>
-                            <a href="https://branchenverzeichnis.org">Branchenverzeichnis.org</a>
+                            <a href="https://branchenverzeichnis.org" rel="nofollow">Branchenverzeichnis.org</a>
                         </GridListItem>
                     </GridList>
                 </Container>
