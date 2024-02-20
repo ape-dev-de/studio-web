@@ -65,7 +65,7 @@ export default async function About() {
                             Verstöße gegen den Datenschutz können zu hohen Bußgeldern bis zu 20 Millionen Euro oder 4% des weltweiten Jahresumsatzes führen. Mit Ape Dev GmbH als Ihrem externen Datenschutzbeauftragten vermeiden Sie diese Risiken und schützen Ihr Unternehmen vor finanziellen Schäden.
                         </p>
                         <p className="flex space-evenly gap-12">
-                            <Button href="/konktakt">
+                            <Button href="/kontakt">
                                 jetzt konsultieren und Bußgelde vermeiden
                             </Button>
                         </p>

@@ -5,7 +5,7 @@ import {RedirectType} from "next/dist/client/components/redirect";
 
 export const metadata: Metadata = {
     title: 'Privacy',
-    description: 'Lassen Sie uns zusammenarbeiten. Wir freuen uns auf Ihre Nachricht.'
+    description: 'Unsere Datnsc.'
 }
 
 export default function Privacy() {

@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /cdn-cgi/
+
+# Host
+Host: https://ape-dev.de
+
+# Sitemaps
+Sitemap: https://ape-dev.de/sitemap.xml
