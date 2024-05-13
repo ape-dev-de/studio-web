@@ -13,7 +13,7 @@ export default async function Imprint() {
             <>
                 <PageIntro
                         eyebrow="Legal Notice"
-                        title="Impressum nach § 5 Telemediengesetz
+                        title="Impressum nach § 5 DDG
 "
                 >
                     <div className="bg-white px-4 py-classNamepx-6">
