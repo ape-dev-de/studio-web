@@ -24,8 +24,8 @@ export default async function Imprint() {
                                         <dt className="text-sm font-medium leading-6 text-gray-900">Adresse</dt>
                                         <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                                             Ape Dev GmbH<br/>
-                                            Birkenweg 5F<br/>
-                                            21717 Deinste
+                                            Sonnenkamp 37A<br/>
+                                            21717 Fredenbeck
                                         </dd>
                                     </div>
                                 </dl>

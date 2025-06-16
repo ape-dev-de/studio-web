@@ -57,8 +57,8 @@ function ContactDetails() {
         Geschäftsräume
       </h2>
       <p className="mt-6 text-base text-neutral-600">
-        Birkenweg 5F<br />
-        21717 Deinste<br />
+        Sonnenkamp 37A<br />
+        21717 Fredenbeck<br />
         info@ape-dev.de<br />
         04149 233 9823
       </p>

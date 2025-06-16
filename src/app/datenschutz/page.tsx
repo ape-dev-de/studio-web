@@ -89,8 +89,8 @@ export default async function Privacy() {
                         </p>
                         <ul className="mx-6 bg-gray-200 py-2 px-4 rounded shadow-2xl max-w-sm">
                             <li>Ape Dev GmbH</li>
-                            <li>Birkenweg 5F</li>
-                            <li>21717 Deinste</li>
+                            <li>Sonnenkamp 37A</li>
+                            <li>21717 Fredenbeck</li>
                             <li>Deutschland</li>
                             <li>Tel.: 04149 233 9823</li>
                             <li>E-Mail: info@ape-dev.de</li>
