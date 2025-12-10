@@ -31,8 +31,6 @@ export default async function Privacy() {
           <p>Gilt für die folgenden Domains:</p>
           <ul className="mx-6 bg-gray-200 py-2 px-4 rounded shadow-2xl max-w-sm">
             <li>ape-dev.de</li>
-            <li>wissen.ape-dev.de</li>
-            <li>kurse.ape-dev.de</li>
           </ul>
           <p className="mt-6">
             Hauptaufgabe: Informationsbeschaffung und -vermittlung. Wir behandeln eure personenbezogenen Daten vertraulich

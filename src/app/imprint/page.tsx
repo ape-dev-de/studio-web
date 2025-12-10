@@ -66,15 +66,6 @@ export default async function Imprint() {
                                         <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                                             https://ape-dev.de
                                         </dd>
-                                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                            https://wissen.ape-dev.de
-                                        </dd>
-                                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                            https://kurse.ape-dev.de
-                                        </dd>
-                                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                            https://alexispeters.de
-                                        </dd>
                                     </div>
                                 </dl>
                             </div>
