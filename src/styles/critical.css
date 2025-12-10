@@ -1,0 +1,88 @@
+/* Critical above-the-fold CSS - Inlined in HTML for instant render */
+
+/* Base styles for immediate render */
+html {
+  height: 100%;
+  background-color: rgb(10, 10, 10);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.75rem;
+}
+
+/* Prevent FOUC (Flash of Unstyled Content) */
+.hidden {
+  display: none;
+}
+
+/* Critical layout */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.min-h-full {
+  min-height: 100%;
+}
+
+/* Minimal spacing */
+.mt-24 {
+  margin-top: 6rem;
+}
+
+.pt-9 {
+  padding-top: 2.25rem;
+}
+
+/* Background colors for key sections */
+.bg-neutral-950 {
+  background-color: rgb(10, 10, 10);
+}
+
+.bg-white {
+  background-color: rgb(255, 255, 255);
+}
+
+/* Text colors */
+.text-neutral-950 {
+  color: rgb(10, 10, 10);
+}
+
+.text-neutral-600 {
+  color: rgb(82, 82, 82);
+}
+
+/* Container max-width */
+.max-w-3xl {
+  max-width: 48rem;
+}
+
+/* Relative positioning */
+.relative {
+  position: relative;
+}
+
+.isolate {
+  isolation: isolate;
+}
+
+/* Flex auto */
+.flex-auto {
+  flex: 1 1 auto;
+}
+
+/* Width 100% */
+.w-full {
+  width: 100%;
+}
