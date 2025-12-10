@@ -207,7 +207,7 @@ function Values() {
 export const metadata: Metadata = {
     title: 'Unser Prozess',
     description:
-            'Unser Prozess liefert kontinuierlich Ergebnisse durch iteration und agilen Praktiken.',
+            'Unser Prozess liefert kontinuierlich Ergebnisse durch Iteration und agile Praktiken.',
 }
 
 export default function Process() {

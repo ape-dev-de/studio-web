@@ -16,6 +16,18 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
   output: 'export',
   basePath:  process.env.NODE_ENV === 'production' ? '' : '',
+  optimizeFonts: true,
+  swcMinify: true,
+  experimental: {
+    optimizeCss: true,
+  },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+    // Remove React properties in production
+    reactRemoveProperties: process.env.NODE_ENV === 'production',
+  },
+  // Reduce bundle size
+  productionBrowserSourceMaps: false,
 }
 
 console.log(process.env.NODE_ENV);

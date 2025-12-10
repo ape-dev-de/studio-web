@@ -91,24 +91,12 @@ export default async function Privacy() {
           <h4 className="text-2xl">Art 13 DSGVO lit e + f - Empfänger und Drittlandtransfers</h4>
           <div className="mx-6 bg-gray-200 py-2 px-8 rounded shadow-2xl grid grid-cols-3 md:grid-cols-4 gap-8">
             <TableRow
-              topic="Hosting: Github Pages"
+              topic="Hosting: Hetzner Online GmbH"
               data={["IP-Adresse", "Browserdaten", "Datum und Uhrzeit des Zugriffs", "Geräte- und Browsereinstellungen", "Betriebssystem", "Referrer-URL"]}
             >
-              Statische Website-Auslieferung. Daten in den USA, auf Grundlage von Standardvertragsklauseln (SCC). <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement">GitHub Datenschutzerklärung</a>
-            </TableRow>
-            <TableRow
-              topic="CDN: Cloudflare"
-              data={["IP-Adresse", "Browserdaten", "Datum und Uhrzeit des Zugriffs", "Geräte- und Browsereinstellungen", "Betriebssystem", "Referrer-URL"]}
-            >
-              Performance & Sicherheit. Daten ggf. in Drittländern auf Basis von SCCs. <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare Datenschutzerklärung</a>
+              Server-Standort: Deutschland. Auftragsverarbeitung gemäß Art. 28 DSGVO. <a href="/dpa-2025-12-10.pdf" target="_blank" rel="noopener">Auftragsverarbeitungsvertrag (AVV)</a> | <a href="https://www.hetzner.com/de/rechtliches/datenschutz" target="_blank" rel="noopener">Hetzner Datenschutzerklärung</a>
             </TableRow>
             <TableRow topic="Cookies" data={['keine']}>Wir verwenden absolut keine Cookies.</TableRow>
-            <TableRow
-              topic="Videos: YouTube"
-              data={["IP-Adresse", "Browserdaten", "Datum und Uhrzeit des Zugriffs", "Geräte- und Browsereinstellungen", "Betriebssystem", "Referrer-URL", "Localstorage"]}
-            >
-              Eingebettete YouTube-Videos im erweiterten Datenschutzmodus. Daten ggf. in den USA. <a href="https://policies.google.com/privacy?hl=de">YouTube Datenschutzerklärung</a>
-            </TableRow>
             <TableRow topic="Logs" data={['IP-Adresse']}>
               Statistische Auswertung zur Sicherheit. Keine Weitergabe an Dritte.
             </TableRow>

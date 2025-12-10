@@ -14,7 +14,7 @@ import {Section} from "@/components/Section";
 export const metadata: Metadata = {
     title: 'Digitalisierung',
     description:
-            'Durch innovativen iterativen Prozess und Synergy aus Fachexpertise und ihrem Business Know-How zum Erfolg',
+            'Durch innovativen iterativen Prozess und Synergie aus Fachexpertise und ihrem Business Know-How zum Erfolg',
 }
 
 const clients = [
@@ -41,40 +41,31 @@ export default async function Digitalisierung() {
                     <div
                             className="mt-10 text-xl text-neutral-600"
                     >
-                        <div className="flex flex-wrap md:flex-nowrap justify-between gap-10">
-                            <FadeInStagger>
-                                <dl>
-                                    <Border as={FadeIn} position="left" className="pl-8 mb-6">
-                                        <dd className="font-display ">
-                                            Umsatz und Gewinn steigern
-                                        </dd>
-                                    </Border>
-                                    <Border as={FadeIn} position="left" className="pl-8 mb-6">
-                                        <dd className="font-display ">
-                                            Arbeitsaufwand und Kosten reduzieren
-                                        </dd>
-                                    </Border>
-                                    <Border as={FadeIn} position="left" className="pl-8 mb-6">
-                                        <dd className="font-display ">
-                                            Hand in Hand mit <b>IHREM Business</b>
-                                        </dd>
-                                    </Border>
-                                    <Border as={FadeIn} position="left" className="pl-8 mb-6">
-                                        <dd className="font-display ">
-                                            Beratung vor Ort
-                                        </dd>
-                                    </Border>
+                        <FadeInStagger>
+                            <dl>
+                                <Border as={FadeIn} position="left" className="pl-8 mb-6">
+                                    <dd className="font-display ">
+                                        Umsatz und Gewinn steigern
+                                    </dd>
+                                </Border>
+                                <Border as={FadeIn} position="left" className="pl-8 mb-6">
+                                    <dd className="font-display ">
+                                        Arbeitsaufwand und Kosten reduzieren
+                                    </dd>
+                                </Border>
+                                <Border as={FadeIn} position="left" className="pl-8 mb-6">
+                                    <dd className="font-display ">
+                                        Hand in Hand mit <b>IHREM Business</b>
+                                    </dd>
+                                </Border>
+                                <Border as={FadeIn} position="left" className="pl-8 mb-6">
+                                    <dd className="font-display ">
+                                        Beratung vor Ort
+                                    </dd>
+                                </Border>
 
-                                </dl>
-                            </FadeInStagger>
-                            <div className="w-600 grow">
-                                <iframe className="max-w-[100%]" width="600" height="315"
-                                        src="https://www.youtube-nocookie.com/embed/0dBcVxxzX-M?si=pyFx7qFlD-nqy-Mx"
-                                        title="YouTube video player" frameBorder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        allowFullScreen></iframe>
-                            </div>
-                        </div>
+                            </dl>
+                        </FadeInStagger>
                         <p className="flex place-content-between md:place-content-start gap-12 m-10">
                             <Button className="px-10" href="https://calendly.com/ape-dev/digitalisierung"
                                     target="_blank"
@@ -121,7 +112,7 @@ export default async function Digitalisierung() {
                                 <div className="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
                                     <dt className="text-sm font-medium leading-6 text-gray-900">Vor Ort</dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-3 sm:mt-0">
-                                        Gerne kommen wir vorbei und analysieren und Beraten vor ort in
+                                        Gerne kommen wir vorbei und analysieren und beraten vor Ort in
                                         den Regionen
                                         zwischen Bremen, Stade und Hamburg.
                                     </dd>

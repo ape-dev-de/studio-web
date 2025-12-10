@@ -78,7 +78,7 @@ function Services() {
                                 Klicken & transformieren!
                             </ListItem>
                             <ListItem title="3D & Game Development">
-                                Wir nutzen wir die fortschrittliche Unity3D-Engine, um Ihre 3D-Virtualisierung und
+                                Wir nutzen die fortschrittliche Unity3D-Engine, um Ihre 3D-Virtualisierung und
                                 Spieleentwicklung nicht nur zu realisieren,
                                 sondern zu perfektionieren.
                                 Wir optimieren jeden Schritt des Entwicklungsprozesses,
@@ -109,7 +109,7 @@ export default async function Home() {
                         <p className="mt-6 text-xl text-neutral-600">
                             Von regionaler Betreuung zu weltweitem Erfolg - mit Ape Dev (eɪp dɛv) als starkem Partner
                             für ganzheitliche digitale Lösungen.
-                            Mit präzise abgestimmten Service und individuell konzipierte Lösungen zum globalen Erfolg.
+                            Mit präzise abgestimmtem Service und individuell konzipierten Lösungen zum globalen Erfolg.
                         </p>
                     </div>
                 </Container>
@@ -119,7 +119,7 @@ export default async function Home() {
 
                 <Testimonial
                         className="mt-24 sm:mt-32 lg:mt-40"
-                        client={{name: 'Computure Futures', logo: logoCF}}
+                        client={{name: 'Computer Futures', logo: logoCF}}
                 >
                     [...] Despite his technical skills as a developer and consultant I can also confirm his social
                     skills since he&apos;s very reliable, always on time and has a very high standard regarding his own
