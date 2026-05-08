@@ -1,0 +1,29 @@
+title: "CTA Section"
+fields:
+  - handle: title
+    field:
+      display: Title
+      type: text
+      validate:
+        - required
+  - import: set_description
+  - handle: style
+    field:
+      display: Layout
+      type: button_group
+      options:
+        centered: Centered
+        split: Split
+      default: centered
+      width: 50
+  - handle: background_color
+    field:
+      display: "Background Color"
+      type: button_group
+      options:
+        primary: Primary
+        secondary: Secondary
+        white: White
+      default: primary
+      width: 50
+  - import: button

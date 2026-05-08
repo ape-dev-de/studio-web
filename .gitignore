@@ -1,41 +1,44 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
+# macOS / IDE / OS junk
 .DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# local env files
-.env*.local
-
-# registry credentials
-.registry-credentials
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
 .idea
-/var/
+.vscode
+.fleet
+.nova
+.zed
+*.pem
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Registry / deploy credentials
+.registry-credentials
+.deploy-key
+
+# ----- Statamic / Laravel -----
+/statamic/.env
+/statamic/.env.backup
+/statamic/.env.production
+/statamic/auth.json
+/statamic/node_modules
+/statamic/vendor
+/statamic/public/build
+/statamic/public/hot
+/statamic/public/static
+/statamic/public/storage
+/statamic/public/vendor/statamic
+/statamic/storage/*.key
+/statamic/storage/pail
+/statamic/storage/framework/cache/
+/statamic/storage/framework/sessions/
+/statamic/storage/framework/views/
+/statamic/storage/logs
+/statamic/storage/forms/*/
+!/statamic/storage/forms/.gitkeep
+/statamic/database/database.sqlite
+/statamic/users/*
+!/statamic/users/.gitkeep
+/statamic/.phpunit.cache
+/statamic/.phpunit.result.cache
+/statamic/.phpactor.json

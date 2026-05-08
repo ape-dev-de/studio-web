@@ -1,0 +1,1190 @@
+<!doctype html>
+{{#
+    Ape Dev — single layout file (Navy v2 / Klarkonform-vivid).
+    Tokens: resources/css/site.css. Util partial: partials/icon.antlers.html (legacy).
+    Icons: Material Symbols Outlined (Bunny Fonts via CSS @import + <link> fallback).
+#}}
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ seo_title ?? title }} | {{ theme:site_name ?? 'Ape Dev' }}</title>
+    <meta name="description" content="{{ seo_description ?? theme:meta_description ?? '' }}">
+    <link rel="canonical" href="{{ current_url }}">
+    <meta property="og:title" content="{{ seo_title ?? title }} | {{ theme:site_name ?? 'Ape Dev' }}">
+    <meta property="og:description" content="{{ seo_description ?? theme:meta_description ?? '' }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ current_url }}">
+    <meta property="og:locale" content="de_DE">
+    {{ if og_image }}
+        <meta property="og:image" content="{{ og_image:url }}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:image:alt" content="{{ seo_title ?? title }}">
+    {{ else }}
+        <meta property="og:image" content="/assets/brand/og-default.png">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:image:alt" content="Ape Dev Studio">
+    {{ /if }}
+    <meta property="og:site_name" content="{{ theme:site_name ?? 'Ape Dev' }}">
+
+    {{# Twitter / X Cards #}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ seo_title ?? title }} | {{ theme:site_name ?? 'Ape Dev' }}">
+    <meta name="twitter:description" content="{{ seo_description ?? theme:meta_description ?? '' }}">
+    <meta name="twitter:image" content="{{ if og_image }}{{ og_image:url }}{{ else }}/assets/brand/og-default.png{{ /if }}">
+
+    <meta name="theme-color" content="#03192b">
+
+    {{# Structured data — Organization schema (W4 SEO) #}}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Ape Dev GmbH",
+        "alternateName": "Ape Dev Studio",
+        "url": "https://ape-dev.de",
+        "logo": "https://ape-dev.de/assets/brand/logo-full.svg",
+        "description": "Software, Modernisierung & Compliance — Studio in Norddeutschland.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "DE",
+            "addressRegion": "Norddeutschland"
+        }
+    }
+    </script>
+
+    {{# Favicons (legacy set carried over from old Next.js public/) #}}
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#3b82f6">
+    <link rel="manifest" href="/site.webmanifest">
+
+    {{# Fonts are self-hosted via @fontsource packages in resources/css/site.css #}}
+
+    <style>
+        [x-cloak]{display:none!important}
+        .skip-link{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
+        .skip-link:focus{position:fixed;left:16px;top:16px;width:auto;height:auto;padding:12px 20px;background:var(--color-primary);color:var(--color-on-primary);border-radius:8px;font-weight:600;z-index:1000;}
+    </style>
+    {{ vite src="resources/css/site.css|resources/js/site.js" }}
+</head>
+<body class="font-sans antialiased {{ theme:hover_effects_enabled ? 'hover-effects' : '' }}">
+
+<a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+
+{{# ===== NAV =================================================================== #}}
+<header class="sticky top-0 z-50" style="background: rgba(3,25,43,0.80); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-outline-variant);" x-data="{ open: false }">
+    <nav class="container-page flex items-center justify-between" style="padding-block: 16px;">
+        <a href="/" class="flex items-center gap-2" style="text-decoration: none;" aria-label="Ape Dev Studio — Startseite">
+            <img src="/assets/brand/logo-full.svg" alt="Ape Dev" style="height: 40px; width: auto; display: block;" width="150" height="40">
+            <span style="font-family: var(--font-sans); font-size: 0.75rem; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-primary); opacity: 0.8;">Studio</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-6">
+            {{ nav:header }}
+                {{ if last }}
+                    <a href="{{ url }}" class="btn btn-primary ml-2" style="padding: 8px 16px;">{{ title }}</a>
+                {{ else }}
+                    {{# Hover bridge: parent + dropdown share x-data and a single mouseenter/leave with delayed close. #}}
+                    <div class="relative"
+                        {{ if children }}x-data="{ dropdown: false, t: null }"
+                            @mouseenter="clearTimeout(t); dropdown = true"
+                            @mouseleave="t = setTimeout(() => dropdown = false, 200)"{{ /if }}>
+                        <a href="{{ url }}"
+                            class="t-body-sm transition-colors inline-flex items-center"
+                            style="text-decoration: none; padding: 4px 0;
+                                {{ if is_current || is_parent }}
+                                    color: var(--color-primary); font-weight: 700; border-bottom: 2px solid var(--color-primary);
+                                {{ else }}
+                                    color: var(--color-on-surface-variant);
+                                {{ /if }}">
+                            {{ title }}
+                            {{ if children }}
+                                <svg class="ml-1" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.6;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            {{ /if }}
+                        </a>
+                        {{ if children }}
+                            {{# No mt gap — invisible top padding inside the panel keeps hover continuous. #}}
+                            <div x-show="dropdown" x-cloak
+                                x-transition:enter="transition ease-out duration-150"
+                                x-transition:enter-start="opacity-0 translate-y-1"
+                                x-transition:enter-end="opacity-100 translate-y-0"
+                                class="absolute left-0 top-full w-64 z-50"
+                                style="padding-top: 12px;">
+                                <div style="background: var(--color-surface-container); border: 1px solid var(--color-outline-variant); border-radius: var(--radius-lg); padding: 8px 0; box-shadow: var(--shadow-lg);">
+                                    {{ children }}
+                                        <a href="{{ url }}" class="block t-body-sm transition-colors"
+                                            style="text-decoration: none; padding: 10px 16px;
+                                                color: {{ if is_current }}var(--color-primary){{ else }}var(--color-on-surface-variant){{ /if }};">{{ title }}</a>
+                                    {{ /children }}
+                                </div>
+                            </div>
+                        {{ /if }}
+                    </div>
+                {{ /if }}
+            {{ /nav:header }}
+        </div>
+
+        <button @click="open = !open" class="md:hidden inline-flex items-center justify-center" style="width: 40px; height: 40px; color: var(--color-on-surface);" :aria-expanded="open" aria-label="Menü">
+            <svg x-show="!open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            <svg x-show="open" x-cloak width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="6" y1="18" x2="18" y2="6"></line></svg>
+        </button>
+    </nav>
+
+    {{# Mobile menu #}}
+    <div x-show="open" x-cloak @click.outside="open = false"
+        class="md:hidden" style="border-top: 1px solid var(--color-outline-variant); background: var(--color-surface);">
+        <div class="container-page" style="padding-block: 16px;">
+            {{ nav:header }}
+                {{ if last }}
+                    <a href="{{ url }}" class="btn btn-primary w-full" style="margin-top: 12px;">{{ title }}</a>
+                {{ else }}
+                    <a href="{{ url }}" class="block t-body" style="text-decoration: none; padding: 12px 0;
+                        color: {{ if is_current || is_parent }}var(--color-primary){{ else }}var(--color-on-surface){{ /if }};">{{ title }}</a>
+                {{ /if }}
+            {{ /nav:header }}
+        </div>
+    </div>
+</header>
+
+
+<main id="main" tabindex="-1">
+
+
+{{# ===== BLOCKS =============================================================== #}}
+{{ blocks scope="block" }}
+
+
+    {{# ----- HERO ----- #}}
+    {{ if block:type == 'hero' }}
+        <section class="hero-atmo relative overflow-hidden section-lg{{ if block:background_type == 'grid' }} hero-has-grid{{ /if }}" style="padding-top: 96px;">
+
+            {{ if block:image && block:background_type == 'image' }}
+                <div class="absolute inset-0" aria-hidden="true">
+                    {{ block:image }}<img src="{{ url }}" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" style="opacity: 0.20;" width="{{ width ?? 1920 }}" height="{{ height ?? 1080 }}" loading="eager" fetchpriority="low">{{ /block:image }}
+                </div>
+            {{ /if }}
+
+            {{ if block:background_type == 'grid' }}
+                <div class="hero-grid" aria-hidden="true" data-hero-grid>
+                    <div class="hero-grid-cells">
+                        {{# 8 cols x 4 rows = 32 cells, matches grid-template-rows: repeat(4, 1fr) #}}
+                        <span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span>
+                        <span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span>
+                        <span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span>
+                        <span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span><span class="hero-grid-cell"></span>
+                    </div>
+                </div>
+            {{ /if }}
+
+            <div class="container-page relative" style="z-index: 1;">
+                <div class="mx-auto max-w-3xl text-center">
+                    {{ if block:has_subtitle && block:subtitle }}
+                        <p class="eyebrow" style="margin-bottom: 16px;">{{ block:subtitle }}</p>
+                    {{ /if }}
+
+                    <h1 class="t-display" style="margin-bottom: 16px; max-width: 56rem; margin-inline: auto;">
+                        {{ if block:wink_word }}{{ block:title | explode:{block:wink_word} | first }}<span class="headline-pop">{{ block:wink_word }}</span>{{ block:title | explode:{block:wink_word} | last }}{{ else }}{{ block:title }}{{ /if }}
+                    </h1>
+
+                    {{ if block:has_description && block:description }}
+                        <div class="t-body-lg" style="color: var(--color-on-surface-variant); max-width: 42rem; margin-inline: auto; margin-bottom: 48px;">
+                            {{ block:description }}
+                        </div>
+                    {{ /if }}
+
+                    {{ if block:button_toggle && block:button_label }}
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <a href="{{ block:button_link }}" class="btn btn-primary" style="padding: 14px 24px; font-size: 1rem;">{{ block:button_label }}</a>
+                            {{ if block:secondary_button_label && block:secondary_button_link }}
+                                <a href="{{ block:secondary_button_link }}" class="btn btn-secondary" style="padding: 14px 24px; font-size: 1rem;">{{ block:secondary_button_label }}</a>
+                            {{ /if }}
+                        </div>
+                    {{ /if }}
+                </div>
+            </div>
+        </section>
+        {{ if block:background_type == 'grid' }}
+            <style>
+                .hero-grid {
+                    position: absolute;
+                    inset: 0 0 0 auto;
+                    width: 70%;
+                    pointer-events: none;
+                    /* fade the cascade away toward the bottom-left so it dissolves behind the headline */
+                    -webkit-mask-image: linear-gradient(225deg, #000 0%, #000 32%, transparent 78%);
+                            mask-image: linear-gradient(225deg, #000 0%, #000 32%, transparent 78%);
+                    z-index: 0;
+                }
+                .hero-grid-cells {
+                    position: absolute;
+                    inset: 0;
+                    display: grid;
+                    grid-template-columns: repeat(8, 1fr);
+                    grid-template-rows: repeat(4, 1fr);
+                    gap: 22px;
+                    padding: 24px;
+                    pointer-events: auto;
+                }
+                .hero-grid-cell {
+                    --proximity: 0;
+                    display: block;
+                    border-radius: 10px;
+                    background: rgba(173, 198, 255, calc(0.025 + var(--proximity) * 0.20));
+                    border: 1px solid rgba(173, 198, 255, calc(0.06 + var(--proximity) * 0.50));
+                    box-shadow: 0 0 calc(var(--proximity) * 28px) calc(var(--proximity) * -8px) rgba(59, 130, 246, calc(var(--proximity) * 0.45));
+                    transform: skewX(-14deg);
+                    transition-property: background-color, border-color, box-shadow;
+                    transition-timing-function: ease;
+                    transition-duration: 200ms; /* default; JS overrides per-direction for trail effect */
+                    will-change: background-color, border-color;
+                }
+                /* sparse static highlights — a few cells get a higher base brightness so the grid feels alive even without cursor */
+                .hero-grid-cell:nth-child(6),
+                .hero-grid-cell:nth-child(11),
+                .hero-grid-cell:nth-child(17),
+                .hero-grid-cell:nth-child(23),
+                .hero-grid-cell:nth-child(26),
+                .hero-grid-cell:nth-child(30) {
+                    background: rgba(173, 198, 255, calc(0.11 + var(--proximity) * 0.20));
+                    border-color: rgba(173, 198, 255, calc(0.28 + var(--proximity) * 0.42));
+                }
+                /* Hide on touch / small viewports — without hover there's no payoff */
+                @media (max-width: 1023px), (hover: none) {
+                    .hero-grid { display: none; }
+                }
+                @media (prefers-reduced-motion: reduce) {
+                    .hero-grid-cell { transition: none; }
+                }
+            </style>
+            <script>
+                (function() {
+                    if (!window.matchMedia('(hover: hover) and (min-width: 1024px)').matches) return;
+                    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                    var grid = document.querySelector('[data-hero-grid]');
+                    if (!grid) return;
+                    var cells = Array.prototype.slice.call(grid.querySelectorAll('.hero-grid-cell'));
+                    var section = grid.closest('.hero-has-grid');
+                    if (!section) return;
+                    var rafId = null;
+                    var lastX = 0, lastY = 0;
+                    var RANGE = 110; // px — tight 2D proximity radius
+                    var prev = new Array(cells.length).fill(0);
+                    var DUR_ON  = '90ms';   // fast attack
+                    var DUR_OFF = '700ms';  // slow decay → trail effect
+                    function update() {
+                        rafId = null;
+                        for (var i = 0; i < cells.length; i++) {
+                            var rect = cells[i].getBoundingClientRect();
+                            var cx = rect.left + rect.width / 2;
+                            var cy = rect.top + rect.height / 2;
+                            var dx = lastX - cx;
+                            var dy = lastY - cy;
+                            var dist = Math.sqrt(dx * dx + dy * dy);
+                            // quadratic falloff — sharp drop-off, only the cell directly under cursor + immediate neighbours glow
+                            var t = dist >= RANGE ? 0 : (1 - dist / RANGE);
+                            var proximity = Math.min(t * t, 1.0);
+                            // direction-dependent transition: rising (cell entering glow) = fast, falling (fading away) = slow trail
+                            if (proximity > prev[i]) {
+                                cells[i].style.transitionDuration = DUR_ON;
+                            } else if (proximity < prev[i]) {
+                                cells[i].style.transitionDuration = DUR_OFF;
+                            }
+                            prev[i] = proximity;
+                            cells[i].style.setProperty('--proximity', proximity.toFixed(3));
+                        }
+                    }
+                    section.addEventListener('pointermove', function(e) {
+                        lastX = e.clientX;
+                        lastY = e.clientY;
+                        if (rafId === null) rafId = requestAnimationFrame(update);
+                    });
+                    section.addEventListener('pointerleave', function() {
+                        for (var i = 0; i < cells.length; i++) {
+                            cells[i].style.transitionDuration = DUR_OFF;
+                            prev[i] = 0;
+                            cells[i].style.setProperty('--proximity', '0');
+                        }
+                    });
+                })();
+            </script>
+        {{ /if }}
+    {{ /if }}
+
+
+    {{# ----- HEADERS ----- #}}
+    {{ if block:type == 'headers' }}
+        <section class="section">
+            <div class="container-prose text-center max-w-3xl mx-auto">
+                {{ if block:has_subtitle && block:subtitle }}<p class="eyebrow eyebrow-muted" style="margin-bottom: 12px;">{{ block:subtitle }}</p>{{ /if }}
+                {{ if block:size == 'h3' }}
+                    <h3 class="t-h3">{{ block:title }}</h3>
+                {{ elseif block:size == 'h4' }}
+                    <h4 class="t-h4">{{ block:title }}</h4>
+                {{ else }}
+                    <h2 class="t-headline">{{ block:title }}</h2>
+                {{ /if }}
+                {{ if block:has_description && block:description }}
+                    <div class="t-body-lg" style="color: var(--color-on-surface-variant); margin-top: 24px;">{{ block:description }}</div>
+                {{ /if }}
+            </div>
+        </section>
+    {{ /if }}
+
+
+    {{# ----- FEATURE_MULTIPLE — link wraps card when set ----- #}}
+    {{ if block:type == 'feature_multiple' }}
+        <section class="section">
+            <div class="container-page">
+                <div class="text-center max-w-2xl mx-auto" style="margin-bottom: 48px;">
+                    {{ if block:has_subtitle && block:subtitle }}<p class="eyebrow eyebrow-muted" style="margin-bottom: 12px;">{{ block:subtitle }}</p>{{ /if }}
+                    {{ if block:title }}<h2 class="t-headline">{{ block:title }}</h2>{{ /if }}
+                    {{ if block:has_description && block:description }}
+                        <div class="t-body-lg" style="color: var(--color-on-surface-variant); margin-top: 24px;">{{ block:description }}</div>
+                    {{ /if }}
+                </div>
+
+                {{ if block:features }}
+                    <div class="grid grid-cols-1 md:grid-cols-2 {{ block:columns == '2' ? '' : 'lg:grid-cols-3' }}{{ block:columns == '4' ? ' xl:grid-cols-4' : '' }} gap-6">
+                        {{ block:features }}
+                            {{ if link }}<a href="{{ link }}" class="glass-card hover-grow group" style="text-decoration: none; color: inherit; display: block;" aria-label="Mehr über {{ title | strip_tags }} erfahren">{{ else }}<div class="glass-card">{{ /if }}
+                                {{ if block:has_icon && icon_type != 'none' }}
+                                    <div class="flex items-center justify-center" style="width: 48px; height: 48px; border-radius: var(--radius-lg); background: var(--color-surface-container); border: 1px solid rgba(59,130,246,0.20); margin-bottom: 16px;">
+                                        <span class="material-symbols-outlined" aria-hidden="true" style="color: var(--color-primary);">{{ if icon_name == 'shield-check' }}verified_user{{ elseif icon_name == 'arrow-path' }}cached{{ elseif icon_name == 'users' }}groups{{ elseif icon_name == 'pencil' }}edit{{ elseif icon_name == 'globe' }}public{{ elseif icon_name == 'cube' }}category{{ elseif icon_name == 'chart-bar' }}bar_chart{{ elseif icon_name == 'numbered-list' }}format_list_numbered{{ elseif icon_name == 'check' }}check_circle{{ elseif icon_name == 'heart' }}favorite{{ elseif icon_name == 'star' }}star{{ elseif icon_name == 'envelope' }}mail{{ elseif icon_name == 'bolt' }}bolt{{ elseif icon_name == 'lock' }}lock{{ elseif icon_name == 'code' }}code{{ elseif icon_name == 'chat' }}chat{{ elseif icon_name == 'home' }}home{{ elseif icon_name == 'phone' }}phone{{ elseif icon_name == 'briefcase' }}work{{ elseif icon_name == 'building' }}business{{ elseif icon_name == 'clipboard' }}assignment{{ elseif icon_name == 'cog' }}settings{{ elseif icon_name == 'search' }}search{{ elseif icon_name == 'shield' }}shield{{ elseif icon_name == 'sparkles' }}auto_awesome{{ elseif icon_name == 'refresh' }}refresh{{ elseif icon_name == 'info' }}info{{ elseif icon_name == 'arrow-right' }}arrow_forward{{ else }}{{ icon_name }}{{ /if }}</span>
+                                    </div>
+                                {{ /if }}
+                                <h3 class="t-h3" style="margin-bottom: 8px;">{{ title }}</h3>
+                                {{ if description }}
+                                    <p class="t-body-sm" style="color: var(--color-on-surface-variant);">{{ description | nl2br }}</p>
+                                {{ /if }}
+                                {{ if link }}
+                                    <p class="t-code" style="color: var(--color-primary); margin-top: 16px;" aria-hidden="true">Mehr erfahren →</p>
+                                {{ /if }}
+                            {{ if link }}</a>{{ else }}</div>{{ /if }}
+                        {{ /block:features }}
+                    </div>
+                {{ /if }}
+            </div>
+        </section>
+    {{ /if }}
+
+
+    {{# ----- FEATURE_SINGLE ----- #}}
+    {{ if block:type == 'feature_single' }}
+        <section {{ if block:anchor_id }}id="{{ block:anchor_id }}"{{ /if }} class="section" style="scroll-margin-top: 96px;">
+            <div class="container-page">
+                <div class="{{ if block:image }}grid grid-cols-1 lg:grid-cols-2 items-center gap-12{{ else }}max-w-3xl mx-auto{{ /if }}">
+
+                    {{ if block:image }}
+                        <div class="{{ block:image_position == 'right' ? 'lg:order-last' : '' }}">
+                            <div class="overflow-hidden glass-card" style="padding: 8px;">
+                                <div class="aspect-[4/3] rounded">
+                                    {{ block:image }}<img src="{{ url }}" alt="{{ alt ?? block:alt ?? block:subtitle ?? block:title }}" class="w-full h-full object-cover" style="border-radius: var(--radius-md);" loading="lazy" decoding="async" width="{{ width ?? 800 }}" height="{{ height ?? 600 }}">{{ /block:image }}
+                                </div>
+                            </div>
+                        </div>
+                    {{ /if }}
+
+                    <div class="{{ block:image && block:image_position == 'right' ? 'lg:order-first' : '' }}">
+                        {{ if block:has_subtitle && block:subtitle }}<p class="eyebrow eyebrow-left" style="margin-bottom: 12px;">{{ block:subtitle }}</p>{{ /if }}
+                        {{ if block:title }}<h2 class="t-headline" style="margin-bottom: 16px;">{{ block:title }}</h2>{{ /if }}
+                        {{ if block:has_description && block:description }}
+                            <div class="t-body-lg" style="color: var(--color-on-surface-variant);">{{ block:description }}</div>
+                        {{ /if }}
+
+                        {{ if block:has_features && block:features }}
+                            <ul style="margin-top: 32px; display: flex; flex-direction: column; gap: 16px;">
+                                {{ block:features }}
+                                    <li class="flex gap-3">
+                                        <span class="flex-none flex items-center justify-center" style="width: 28px; height: 28px; border-radius: var(--radius-lg); background: var(--color-surface-container); border: 1px solid rgba(59,130,246,0.20); margin-top: 2px;">
+                                            <span class="material-symbols-outlined" aria-hidden="true" style="font-size: 18px; color: var(--color-primary);">{{ if icon_name == 'shield-check' }}verified_user{{ elseif icon_name == 'arrow-path' }}cached{{ elseif icon_name == 'users' }}groups{{ elseif icon_name == 'globe' }}public{{ elseif icon_name == 'cube' }}category{{ elseif icon_name == 'check' }}check_circle{{ elseif icon_name == 'code' }}code{{ elseif icon_name == 'shield' }}shield{{ else }}{{ icon_name }}{{ /if }}</span>
+                                        </span>
+                                        <div>
+                                            <span class="t-body" style="font-weight: 600;">{{ title }}</span>
+                                            {{ if description }}<p class="t-body-sm" style="color: var(--color-on-surface-variant); margin-top: 4px;">{{ description }}</p>{{ /if }}
+                                        </div>
+                                    </li>
+                                {{ /block:features }}
+                            </ul>
+                        {{ /if }}
+
+                        {{ if block:button_toggle && block:button_label }}
+                            <div style="margin-top: 32px;"><a href="{{ block:button_link }}" class="btn btn-primary">{{ block:button_label }}</a></div>
+                        {{ /if }}
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    {{ /if }}
+
+
+    {{# ----- PORTFOLIO_STACK — sticky scroll-stack of project screenshots ----- #}}
+    {{ if block:type == 'portfolio_stack' }}
+        <section {{ if block:anchor_id }}id="{{ block:anchor_id }}"{{ /if }} class="section pf-stack-section" style="scroll-margin-top: 96px;">
+            <div class="container-page">
+                <div class="text-center max-w-2xl mx-auto" style="margin-bottom: 64px;">
+                    {{ if block:has_subtitle && block:subtitle }}<p class="eyebrow eyebrow-muted" style="margin-bottom: 12px;">{{ block:subtitle }}</p>{{ /if }}
+                    {{ if block:title }}<h2 class="t-headline">{{ block:title }}</h2>{{ /if }}
+                    {{ if block:has_description && block:description }}
+                        <div class="t-body-lg" style="color: var(--color-on-surface-variant); margin-top: 24px;">{{ block:description }}</div>
+                    {{ /if }}
+                    {{ if block:tagline }}
+                        <p class="t-code" style="color: var(--color-primary); margin-top: 24px; letter-spacing: 0.04em; text-transform: uppercase;">{{ block:tagline }}</p>
+                    {{ /if }}
+                </div>
+
+                {{ if block:items }}
+                    <div class="pf-stack" role="list">
+                        {{ block:items }}
+                            <article class="pf-card" data-category="{{ category_label | lower | replace:' ':'-' | replace:',':'' }}" role="listitem">
+                                <div class="pf-card-frame">
+                                    {{ if image }}
+                                        <div class="pf-card-shot">
+                                            {{ image }}<img src="{{ url }}" alt="Screenshot von {{ project_title }} — {{ category_label }}" loading="lazy" decoding="async" width="1600" height="900">{{ /image }}
+                                        </div>
+                                    {{ /if }}
+                                    <div class="pf-card-body">
+                                        {{ if category_label }}<p class="eyebrow eyebrow-left pf-card-eyebrow" style="margin-bottom: 8px;">{{ category_label }}</p>{{ /if }}
+                                        <h3 class="t-h3" style="margin-bottom: 12px;">{{ project_title }}</h3>
+                                        {{ if description }}<p class="t-body" style="color: var(--color-on-surface-variant); margin-bottom: 20px;">{{ description }}</p>{{ /if }}
+                                        {{ if url }}
+                                            <a href="{{ url }}" target="_blank" rel="external noopener noreferrer" class="pf-card-link" aria-label="{{ project_title }} in neuem Tab öffnen">
+                                                <span>{{ link_label ?? 'Site besuchen' }}</span>
+                                                <span aria-hidden="true" class="pf-card-arrow">↗</span>
+                                            </a>
+                                        {{ /if }}
+                                    </div>
+                                </div>
+                            </article>
+                        {{ /block:items }}
+                    </div>
+                {{ /if }}
+            </div>
+        </section>
+        <style>
+            .pf-stack {
+                position: relative;
+                display: block;
+            }
+            .pf-card {
+                position: sticky;
+                display: block;
+                margin: 0 0 48px 0;
+                isolation: isolate;
+            }
+            .pf-card:last-child { margin-bottom: 0; }
+            .pf-card:nth-child(1) { top: 96px;  z-index: 1; }
+            .pf-card:nth-child(2) { top: 116px; z-index: 2; }
+            .pf-card:nth-child(3) { top: 136px; z-index: 3; }
+            .pf-card:nth-child(4) { top: 156px; z-index: 4; }
+            .pf-card:nth-child(5) { top: 176px; z-index: 5; }
+            .pf-card:nth-child(6) { top: 196px; z-index: 6; }
+            .pf-card-frame {
+                display: grid;
+                grid-template-columns: 1.4fr 1fr;
+                gap: 32px;
+                align-items: center;
+                padding: 24px;
+                border-radius: var(--radius-lg);
+                background-color: var(--color-surface-container);
+                background-image: none;
+                border: 1px solid var(--color-outline-variant);
+                box-shadow: 0 24px 48px -24px rgba(0,0,0,0.55);
+            }
+            .pf-card-shot {
+                aspect-ratio: 16 / 9;
+                overflow: hidden;
+                border-radius: var(--radius-md);
+                border: 1px solid var(--color-outline-variant);
+                background: var(--color-surface);
+            }
+            .pf-card-shot img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: top center;
+                display: block;
+            }
+            .pf-card-body { min-width: 0; }
+            .pf-card-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                color: var(--color-primary);
+                text-decoration: none;
+                font-weight: 600;
+                border-bottom: 1px solid transparent;
+                transition: border-color 160ms ease, transform 160ms ease;
+            }
+            .pf-card-link:hover,
+            .pf-card-link:focus-visible {
+                border-bottom-color: currentColor;
+            }
+            .pf-card-link:hover .pf-card-arrow,
+            .pf-card-link:focus-visible .pf-card-arrow {
+                transform: translate(2px, -2px);
+            }
+            .pf-card-arrow {
+                display: inline-block;
+                transition: transform 160ms ease;
+            }
+
+            /* Category-specific accents — gradient layered OVER solid base so cards stay opaque */
+            .pf-card[data-category="tech"]       .pf-card-frame { border-color: rgba(59,130,246,0.45); background-image: linear-gradient(180deg, rgba(59,130,246,0.10), rgba(59,130,246,0)); }
+            .pf-card[data-category="tech"]       .pf-card-eyebrow { color: var(--color-primary); }
+            .pf-card[data-category="warm"]       .pf-card-frame,
+            .pf-card[data-category="warm-einladend"] .pf-card-frame { border-color: rgba(217,119,6,0.45); background-image: linear-gradient(180deg, rgba(217,119,6,0.10), rgba(217,119,6,0)); }
+            .pf-card[data-category="warm"]       .pf-card-eyebrow,
+            .pf-card[data-category="warm-einladend"] .pf-card-eyebrow { color: rgb(245,158,11); }
+            .pf-card[data-category="enterprise"] .pf-card-frame { border-color: rgba(148,163,184,0.45); background-image: linear-gradient(180deg, rgba(148,163,184,0.10), rgba(148,163,184,0)); }
+            .pf-card[data-category="enterprise"] .pf-card-eyebrow { color: rgb(203,213,225); }
+            .pf-card[data-category="corporate"]  .pf-card-frame { border-color: rgba(96,165,250,0.45); background-image: linear-gradient(180deg, rgba(30,64,175,0.18), rgba(30,64,175,0)); }
+            .pf-card[data-category="corporate"]  .pf-card-eyebrow { color: rgb(147,197,253); }
+
+            @media (max-width: 1023px) {
+                .pf-card-frame { grid-template-columns: 1fr; padding: 16px; }
+                .pf-card { position: static; }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .pf-card { position: static; }
+                .pf-card-arrow { transition: none; }
+            }
+        </style>
+    {{ /if }}
+
+
+    {{# ----- LOGO_CLOUD — monochrome silhouettes on transparent canvas ----- #}}
+    {{ if block:type == 'logo_cloud' }}
+        <section class="section overflow-hidden">
+            <div class="container-page">
+                <div class="text-center" style="margin-bottom: 32px;">
+                    {{ if block:has_subtitle && block:subtitle }}<p class="eyebrow eyebrow-muted" style="margin-bottom: 8px;">{{ block:subtitle }}</p>{{ /if }}
+                    {{ if block:title }}<h2 class="t-headline">{{ block:title }}</h2>{{ /if }}
+                </div>
+                {{ if block:logos }}
+                    <div class="logo-cloud">
+                        {{ block:logos }}
+                            {{ if logo }}
+                                <span class="logo-chip {{ if treatment == 'original' }}logo-original{{ /if }}">
+                                    {{ logo }}<img src="{{ url }}" alt="{{ name ?? 'Kunden-Logo' }}" loading="lazy" decoding="async" width="{{ width ?? 200 }}" height="{{ height ?? 80 }}">{{ /logo }}
+                                </span>
+                            {{ else }}
+                                <span class="logo-chip logo-chip-text">{{ name }}</span>
+                            {{ /if }}
+                        {{ /block:logos }}
+                        <span class="t-code" style="color: var(--color-on-surface-variant); align-self: center;">und viele mehr</span>
+                    </div>
+                {{ /if }}
+            </div>
+        </section>
+    {{ /if }}
+
+
+    {{# ----- CTA_SECTION (decorative bg icon: forum) ----- #}}
+    {{ if block:type == 'cta_section' }}
+        <section class="section">
+            <div class="container-page">
+                <div class="relative overflow-hidden" style="background: var(--color-surface-container); padding: 48px 32px; border-radius: var(--radius-lg); border: 1px solid rgba(59,130,246,0.15);">
+                    <div class="absolute pointer-events-none" style="top: 16px; right: 16px; opacity: 0.06;" aria-hidden="true">
+                        <span class="material-symbols-outlined" aria-hidden="true" style="font-size: 140px; color: var(--color-primary);">contacts</span>
+                    </div>
+                    <div class="relative max-w-2xl mx-auto text-center" style="z-index: 1;">
+                        {{ if block:title }}<h2 class="t-headline" style="margin-bottom: 16px;">{{ block:title }}</h2>{{ /if }}
+                        {{ if block:has_description && block:description }}
+                            <div class="t-body" style="color: var(--color-on-surface-variant); margin-bottom: 24px;">{{ block:description }}</div>
+                        {{ /if }}
+                        {{ if block:button_toggle && block:button_label }}
+                            <a href="{{ block:button_link }}" class="btn btn-primary">{{ block:button_label }}</a>
+                        {{ /if }}
+                    </div>
+                </div>
+            </div>
+        </section>
+    {{ /if }}
+
+
+    {{# ----- BENTO_CTA ----- #}}
+    {{ if block:type == 'bento_cta' }}
+        <section class="section">
+            <div class="container-page">
+                {{ $cols = block:bento_layout:columns ?? 2 }}
+                <style>.bento-{{ block:id }}{display:grid; gap:16px;} @media(min-width:640px){.bento-{{ block:id }}{grid-template-columns:repeat({{ $cols }}, minmax(0,1fr));}}</style>
+                <div class="bento-{{ block:id }}">
+                    {{ block:bento_items }}
+                        {{ if type == 'cta_card' }}
+                            <div class="glass-card flex flex-col justify-center hover-grow" style="grid-column: span {{ col_span ?? 1 }}; min-height: 220px; background: linear-gradient(135deg, rgba(59,130,246,0.10), rgba(16,42,76,0.6)); border: 1px solid rgba(59,130,246,0.25);">
+                                <h3 class="t-h3" style="margin-bottom: 12px;">{{ heading }}</h3>
+                                {{ if has_description && description }}<div class="t-body" style="color: var(--color-on-surface-variant);">{{ description }}</div>{{ /if }}
+                                {{ if button_label }}<div style="margin-top: 24px;"><a href="{{ button_link }}" class="btn btn-primary">{{ button_label }}</a></div>{{ /if }}
+                            </div>
+                        {{ /if }}
+                        {{ if type == 'stat_card' }}
+                            <div class="glass-card text-center hover-grow" style="grid-column: span {{ col_span ?? 1 }};">
+                                <p class="t-h2" style="color: var(--color-primary);">{{ value }}</p>
+                                <p class="t-code" style="color: var(--color-on-surface-variant); margin-top: 4px;">{{ label }}</p>
+                            </div>
+                        {{ /if }}
+                        {{ if type == 'text_card' }}
+                            <div class="glass-card hover-grow" style="grid-column: span {{ col_span ?? 1 }};">
+                                {{ if heading }}<p class="t-h3">{{ heading }}</p>{{ /if }}
+                                {{ if text }}<p class="t-body-sm" style="color: var(--color-on-surface-variant); margin-top: 8px;">{{ text }}</p>{{ /if }}
+                            </div>
+                        {{ /if }}
+                        {{ if type == 'image' }}
+                            <div class="overflow-hidden" style="grid-column: span {{ col_span ?? 1 }}; border-radius: var(--radius-lg);">
+                                {{ image }}<img src="{{ url }}" alt="{{ alt ?? heading ?? 'Bild' }}" class="w-full h-full object-cover" loading="lazy" decoding="async" width="{{ width ?? 800 }}" height="{{ height ?? 600 }}">{{ /image }}
+                            </div>
+                        {{ /if }}
+                        {{ if type == 'image_text_card' }}
+                            <div class="overflow-hidden relative" style="grid-column: span {{ col_span ?? 1 }}; min-height: 240px; border-radius: var(--radius-lg);">
+                                {{ image }}<img src="{{ url }}" alt="{{ heading ?? 'Bild mit Text' }}" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" width="{{ width ?? 800 }}" height="{{ height ?? 600 }}">{{ /image }}
+                                <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(3,25,43,0.85) 0%, transparent 60%);"></div>
+                                <div class="relative h-full flex flex-col justify-end" style="padding: 20px;">
+                                    {{ if heading }}<p class="t-h4" style="color: var(--color-on-surface);">{{ heading }}</p>{{ /if }}
+                                    {{ if text }}<p class="t-body-sm" style="color: var(--color-on-surface-variant); margin-top: 4px;">{{ text }}</p>{{ /if }}
+                                </div>
+                            </div>
+                        {{ /if }}
+                    {{ /block:bento_items }}
+                </div>
+            </div>
+        </section>
+    {{ /if }}
+
+
+    {{# ----- FEATURE_TABLE — capability → implementation, grouped ----- #}}
+    {{ if block:type == 'feature_table' }}
+        <section class="section">
+            <div class="container-prose">
+                <div class="glass-card" style="padding: clamp(1.5rem, 3vw, 2.5rem);">
+                    {{ if block:subtitle }}<span class="eyebrow eyebrow-left" style="display: inline-flex; margin-bottom: 12px;">{{ block:subtitle }}</span>{{ /if }}
+                    {{ if block:title }}<h2 class="t-headline" style="margin-bottom: {{ block:lede ? '12px' : '24px' }};">{{ block:title }}</h2>{{ /if }}
+                    {{ if block:lede }}
+                        <p class="t-body" style="color: var(--color-on-surface-variant); max-width: 60ch; margin-bottom: 24px;">{{ block:lede }}</p>
+                    {{ /if }}
+
+                    {{ block:groups }}
+                        {{ if group_label }}
+                            <div role="heading" aria-level="3" class="t-code" style="color: var(--color-primary); letter-spacing: 0.08em; margin-top: 32px; margin-bottom: 12px;">{{ group_label }}</div>
+                        {{ /if }}
+                        <table class="feature-table" style="width: 100%; border-collapse: collapse;">
+                            <thead class="sr-only">
+                                <tr>
+                                    <th>Capability</th>
+                                    <th>Implementation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{ rows }}
+                                    <tr style="border-bottom: 1px solid var(--color-outline-variant);">
+                                        <td class="ft-capability" style="padding: 14px 16px 14px 0; color: var(--color-on-surface); width: 60%; vertical-align: top;">{{ capability }}</td>
+                                        <td class="ft-impl" style="padding: 14px 0 14px 16px; text-align: right; vertical-align: top;">
+                                            <span style="color: var(--color-primary); font-weight: 500;">{{ implementation_name }}</span>
+                                            {{ if implementation_note }}
+                                                <span style="color: var(--color-on-surface-variant); margin: 0 4px;">·</span>
+                                                <span style="font-family: var(--font-mono); color: var(--color-on-surface-variant); font-size: 0.875em;">{{ implementation_note }}</span>
+                                            {{ /if }}
+                                        </td>
+                                    </tr>
+                                {{ /rows }}
+                            </tbody>
+                        </table>
+                    {{ /block:groups }}
+
+                    {{ if block:footnote }}<p class="t-body-sm" style="color: var(--color-on-surface-variant); margin-top: 24px;">{{ block:footnote }}</p>{{ /if }}
+                </div>
+            </div>
+        </section>
+        <style>
+            /* Mobile: tr → stacked card */
+            @media (max-width: 640px) {
+                .feature-table tbody tr {
+                    display: block;
+                    padding: 14px 0;
+                    border-bottom: 1px solid var(--color-outline-variant);
+                }
+                .feature-table .ft-capability,
+                .feature-table .ft-impl {
+                    display: block;
+                    width: 100%;
+                    padding: 0;
+                    text-align: left;
+                }
+                .feature-table .ft-impl { margin-top: 6px; }
+            }
+            /* Last row no border */
+            .feature-table tbody tr:last-child { border-bottom: 0 !important; }
+        </style>
+    {{ /if }}
+
+
+    {{# ----- COMPARISON_TABLE ----- #}}
+    {{ if block:type == 'comparison_table' }}
+        <section class="section">
+            <div class="container-prose">
+                {{ if block:has_subtitle && block:subtitle }}<span class="eyebrow eyebrow-left">{{ block:subtitle }}</span>{{ /if }}
+                {{ if block:title }}<h2 class="t-headline" style="margin-top: 16px; max-width: 42rem;">{{ block:title }}</h2>{{ /if }}
+                {{ if block:has_description && block:description }}
+                    <div class="t-body-lg" style="color: var(--color-on-surface-variant); max-width: 42rem; margin-top: 24px;">{{ block:description }}</div>
+                {{ /if }}
+                <div class="overflow-hidden glass-card" style="padding: 0; margin-top: 48px;">
+                    <table class="w-full" style="border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th class="text-left t-code" style="padding: 20px; color: var(--color-on-surface-variant); width: 32%;">&nbsp;</th>
+                                <th class="text-left t-h4" style="padding: 20px; background: rgba(59,130,246,0.08); color: var(--color-primary); border-bottom: 1px solid var(--color-outline-variant);">{{ block:highlight_label }}</th>
+                                <th class="text-left t-h4" style="padding: 20px; color: var(--color-on-surface); border-bottom: 1px solid var(--color-outline-variant);">{{ block:alternative_label }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{ block:rows }}
+                                <tr>
+                                    <td class="align-top t-body-sm" style="padding: 20px; color: var(--color-on-surface-variant); border-top: 1px solid var(--color-outline-variant);">{{ criterion }}</td>
+                                    <td class="align-top" style="padding: 20px; background: rgba(59,130,246,0.05); border-top: 1px solid var(--color-outline-variant);">
+                                        <div class="t-body" style="font-weight: 600;">{{ highlight_value }}</div>
+                                        {{ if highlight_note }}<div class="t-body-sm" style="color: var(--color-on-surface-variant); margin-top: 4px;">{{ highlight_note }}</div>{{ /if }}
+                                    </td>
+                                    <td class="align-top" style="padding: 20px; border-top: 1px solid var(--color-outline-variant);">
+                                        <div class="t-body">{{ alternative_value }}</div>
+                                        {{ if alternative_note }}<div class="t-body-sm" style="color: var(--color-on-surface-variant); margin-top: 4px;">{{ alternative_note }}</div>{{ /if }}
+                                    </td>
+                                </tr>
+                            {{ /block:rows }}
+                        </tbody>
+                    </table>
+                </div>
+                {{ if block:footnote }}<p class="t-body-sm" style="color: var(--color-on-surface-variant); margin-top: 24px;">{{ block:footnote }}</p>{{ /if }}
+            </div>
+        </section>
+    {{ /if }}
+
+
+    {{# ----- STEPS ----- #}}
+    {{ if block:type == 'steps' }}
+        <section class="section">
+            <div class="container-page">
+                <div class="text-center max-w-2xl mx-auto" style="margin-bottom: 48px;">
+                    {{ if block:has_subtitle && block:subtitle }}<p class="eyebrow eyebrow-muted" style="margin-bottom: 12px;">{{ block:subtitle }}</p>{{ /if }}
+                    {{ if block:title }}<h2 class="t-headline">{{ block:title }}</h2>{{ /if }}
+                    {{ if block:has_description && block:description }}<div class="t-body-lg" style="color: var(--color-on-surface-variant); margin-top: 24px;">{{ block:description }}</div>{{ /if }}
+                </div>
+                {{ if block:steps }}
+                    <div class="max-w-3xl mx-auto" style="display: flex; flex-direction: {{ block:layout == 'horizontal' ? 'row' : 'column' }}; gap: {{ block:layout == 'horizontal' ? '32px' : '40px' }};">
+                        {{ block:steps }}
+                            <div class="{{ block:layout == 'horizontal' ? 'flex-1 text-center' : 'flex gap-6' }}">
+                                <div class="flex-none flex items-center justify-center {{ block:layout == 'horizontal' ? 'mx-auto' : '' }}" style="width: 48px; height: 48px; border-radius: var(--radius-full); background: var(--color-surface-container); border: 1px solid rgba(59,130,246,0.20); color: var(--color-primary); font-family: var(--font-mono); font-weight: 500;">{{ number }}</div>
+                                <div class="flex-1 {{ block:layout == 'horizontal' ? 'mt-4' : '' }}">
+                                    <h3 class="t-h4">{{ title }}</h3>
+                                    {{ if description }}<p class="t-body" style="color: var(--color-on-surface-variant); margin-top: 8px;">{{ description }}</p>{{ /if }}
+                                </div>
+                            </div>
+                        {{ /block:steps }}
+                    </div>
+                {{ /if }}
+            </div>
+        </section>
+    {{ /if }}
+
+
+    {{# ----- STATS ----- #}}
+    {{ if block:type == 'stats' }}
+        <section class="bg-surface section" style="border-block: 1px solid var(--color-outline-variant);">
+            <div class="container-page">
+                {{ if block:title || (block:has_subtitle && block:subtitle) }}
+                    <div class="text-center" style="margin-bottom: 32px;">
+                        {{ if block:has_subtitle && block:subtitle }}<p class="eyebrow eyebrow-muted" style="margin-bottom: 8px;">{{ block:subtitle }}</p>{{ /if }}
+                        {{ if block:title }}<h2 class="t-headline">{{ block:title }}</h2>{{ /if }}
+                    </div>
+                {{ /if }}
+                {{ if block:stats }}
+                    <div class="grid grid-cols-2 {{ block:columns == '3' ? 'lg:grid-cols-3' : '' }}{{ block:columns == '4' or !block:columns ? 'lg:grid-cols-4' : '' }} gap-6 text-center">
+                        {{ block:stats }}
+                            <div class="group">
+                                <div class="t-display transition-colors" style="font-size: 28px; line-height: 1.2; color: var(--color-on-surface);"
+                                    onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-on-surface)'">{{ value }}</div>
+                                <div class="t-code" style="color: var(--color-on-surface-variant); margin-top: 4px;">{{ label }}</div>
+                            </div>
+                        {{ /block:stats }}
+                    </div>
+                {{ /if }}
+            </div>
+        </section>
+    {{ /if }}
+
+
+    {{# ----- TESTIMONIAL ----- #}}
+    {{ if block:type == 'testimonial' }}
+        <section class="section">
+            <div class="container-page">
+                {{ if block:title || (block:has_subtitle && block:subtitle) }}
+                    <div class="text-center max-w-2xl mx-auto" style="margin-bottom: 48px;">
+                        {{ if block:has_subtitle && block:subtitle }}<p class="eyebrow eyebrow-muted" style="margin-bottom: 12px;">{{ block:subtitle }}</p>{{ /if }}
+                        {{ if block:title }}<h2 class="t-headline">{{ block:title }}</h2>{{ /if }}
+                        {{ if block:has_description && block:description }}<div class="t-body-lg" style="color: var(--color-on-surface-variant); margin-top: 24px;">{{ block:description }}</div>{{ /if }}
+                    </div>
+                {{ /if }}
+                {{ if block:testimonials }}
+                    {{ if block:layout == 'single' }}
+                        <div class="max-w-2xl mx-auto text-center">
+                            {{ block:testimonials | limit:1 }}
+                                <blockquote>
+                                    <p class="t-h2" style="font-weight: 500; font-style: italic; color: var(--color-on-surface);">"{{ quote }}"</p>
+                                    <footer style="margin-top: 24px;">
+                                        <cite class="t-body" style="font-style: normal; font-weight: 600;">{{ author_name ?? author }}</cite>
+                                        {{ if author_role || role }}<p class="t-code" style="color: var(--color-on-surface-variant); margin-top: 4px;">{{ author_role ?? role }}</p>{{ /if }}
+                                    </footer>
+                                </blockquote>
+                            {{ /block:testimonials }}
+                        </div>
+                    {{ else }}
+                        <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 {{ block:columns == '3' ? 'lg:grid-cols-3' : '' }}">
+                            {{ block:testimonials }}
+                                <blockquote class="glass-card hover-grow">
+                                    <p class="t-body" style="font-style: italic; color: var(--color-on-surface);">"{{ quote }}"</p>
+                                    <footer class="t-body-sm" style="margin-top: 16px;">
+                                        <cite style="font-style: normal; font-weight: 600;">{{ author_name ?? author }}</cite>
+                                        {{ if author_role || role }}<span style="color: var(--color-on-surface-variant);"> · {{ author_role ?? role }}</span>{{ /if }}
+                                    </footer>
+                                </blockquote>
+                            {{ /block:testimonials }}
+                        </div>
+                    {{ /if }}
+                {{ /if }}
+            </div>
+        </section>
+    {{ /if }}
+
+
+    {{# ----- CONTACT_SECTION ----- #}}
+    {{ if block:type == 'contact_section' }}
+        <section class="section">
+            <div class="container-prose">
+                {{ if block:has_subtitle && block:subtitle }}<p class="eyebrow eyebrow-left">{{ block:subtitle }}</p>{{ /if }}
+                {{ if block:title }}<h2 class="t-headline" style="margin-top: 16px;">{{ block:title }}</h2>{{ /if }}
+                {{ if block:has_description && block:description }}<div class="t-body-lg" style="color: var(--color-on-surface-variant); margin-top: 24px;">{{ block:description }}</div>{{ /if }}
+                <dl class="grid gap-6 sm:grid-cols-3" style="margin-top: 40px;">
+                    {{ if block:email }}
+                        <div class="glass-card">
+                            <dt class="t-code" style="color: var(--color-on-surface-variant);">E-Mail</dt>
+                            <dd class="t-body" style="margin-top: 8px;"><a href="mailto:{{ block:email }}" style="color: var(--color-primary); text-decoration: none;">{{ block:email | obfuscator }}</a></dd>
+                        </div>
+                    {{ /if }}
+                    {{ if block:phone }}
+                        <div class="glass-card">
+                            <dt class="t-code" style="color: var(--color-on-surface-variant);">Telefon</dt>
+                            <dd class="t-body" style="margin-top: 8px;"><a href="tel:{{ block:phone }}" style="color: var(--color-primary); text-decoration: none;">{{ block:phone }}</a></dd>
+                        </div>
+                    {{ /if }}
+                    {{ if block:address }}
+                        <div class="glass-card">
+                            <dt class="t-code" style="color: var(--color-on-surface-variant);">Adresse</dt>
+                            <dd class="t-body" style="white-space: pre-line; color: var(--color-on-surface); margin-top: 8px;">{{ block:address }}</dd>
+                        </div>
+                    {{ /if }}
+                </dl>
+            </div>
+        </section>
+    {{ /if }}
+
+
+    {{# ----- FORM — inline rendering, optional contact-aside (2-column) ----- #}}
+    {{ if block:type == 'form' }}
+        <section class="section">
+            <div class="container-page">
+                <div class="{{ if block:show_contact_aside }}grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-12{{ else }}max-w-xl mx-auto{{ /if }}">
+
+                    <div>
+                        {{ if block:has_subtitle && block:subtitle }}<p class="eyebrow eyebrow-left">{{ block:subtitle }}</p>{{ /if }}
+                        {{ if block:title }}<h2 class="t-headline" style="margin-top: 16px;">{{ block:title }}</h2>{{ /if }}
+                        {{ if block:has_description && block:description }}<div class="t-body-lg" style="color: var(--color-on-surface-variant); margin-top: 24px;">{{ block:description }}</div>{{ /if }}
+
+                        {{ if block:form_handle }}
+                            <div style="margin-top: 32px;" class="glass-card">
+                                {{ form:create :in="block:form_handle" class="form-grid" }}
+                                    {{ if errors }}
+                                        <div class="form-alert form-alert-error" role="alert" aria-live="assertive" aria-atomic="true">
+                                            <p style="font-weight: 600; margin-bottom: 4px;">Bitte prüfen Sie die Eingaben:</p>
+                                            <ul style="list-style: disc; padding-left: 1.2em;">{{ errors }}<li>{{ value }}</li>{{ /errors }}</ul>
+                                        </div>
+                                    {{ /if }}
+                                    {{ if success }}
+                                        <div class="form-alert form-alert-success" role="status" aria-live="polite" aria-atomic="true">{{ success }}</div>
+                                    {{ /if }}
+
+                                    {{ fields }}
+                                        {{ if type == 'altcha' }}
+                                            <div class="field field-altcha">
+                                                <altcha-widget challengeurl="/altcha/challenge" name="{{ handle }}" hidefooter></altcha-widget>
+                                            </div>
+                                        {{ elseif type == 'textarea' }}
+                                            <div class="field">
+                                                <label for="form-{{ handle }}">{{ display ?? handle }}{{ if required }} <span aria-hidden="true" style="color: var(--color-primary);">*</span>{{ /if }}</label>
+                                                <textarea id="form-{{ handle }}" name="{{ handle }}" rows="6" {{ if required }}required{{ /if }}>{{ old ?? value }}</textarea>
+                                            </div>
+                                        {{ else }}
+                                            <div class="field">
+                                                <label for="form-{{ handle }}">{{ display ?? handle }}{{ if required }} <span aria-hidden="true" style="color: var(--color-primary);">*</span>{{ /if }}</label>
+                                                <input type="{{ input_type ?? 'text' }}" id="form-{{ handle }}" name="{{ handle }}" value="{{ old ?? value }}" {{ if required }}required{{ /if }} autocomplete="{{ handle == 'email' ? 'email' : handle == 'name' ? 'name' : handle == 'telefon' ? 'tel' : 'off' }}">
+                                            </div>
+                                        {{ /if }}
+                                    {{ /fields }}
+
+                                    <div class="field field-submit">
+                                        <button type="submit" class="btn btn-primary">Absenden</button>
+                                        <p class="t-body-sm" style="color: var(--color-on-surface-variant); margin-top: 12px;">Wir antworten innerhalb von zwei Werktagen.</p>
+                                    </div>
+                                {{ /form:create }}
+                            </div>
+                        {{ else }}
+                            <div class="t-body-sm" style="color: var(--color-on-surface-variant); margin-top: 32px;">Kein Formular-Handle hinterlegt.</div>
+                        {{ /if }}
+                    </div>
+
+                    {{# Right column: contact-aside (no phone) #}}
+                    {{ if block:show_contact_aside }}
+                        <aside style="display: flex; flex-direction: column; gap: 32px; padding-top: 64px;">
+                            {{ if block:aside_email }}
+                                <div>
+                                    <p class="t-code" style="color: var(--color-on-surface-variant); margin-bottom: 8px;">Direkt schreiben</p>
+                                    <a href="mailto:{{ block:aside_email }}" class="t-h4" style="color: var(--color-primary); text-decoration: none;">{{ block:aside_email }}</a>
+                                    <p class="t-body-sm" style="color: var(--color-on-surface-variant); margin-top: 8px;">Antwort innerhalb von zwei Werktagen.</p>
+                                </div>
+                            {{ /if }}
+                            {{ if block:aside_address }}
+                                <div>
+                                    <p class="t-code" style="color: var(--color-on-surface-variant); margin-bottom: 8px;">Auf der Karte</p>
+                                    <p class="t-body" style="color: var(--color-on-surface); white-space: pre-line;">{{ block:aside_address }}</p>
+                                </div>
+                            {{ /if }}
+                        </aside>
+                    {{ /if }}
+
+                </div>
+            </div>
+        </section>
+    {{ /if }}
+
+
+    {{# ----- FAQ_SECTION ----- #}}
+    {{ if block:type == 'faq_section' }}
+        <section class="section">
+            <div class="container-prose">
+                <div class="text-center max-w-2xl mx-auto">
+                    {{ if block:has_subtitle && block:subtitle }}<p class="eyebrow eyebrow-muted" style="margin-bottom: 12px;">{{ block:subtitle }}</p>{{ /if }}
+                    {{ if block:title }}<h2 class="t-headline">{{ block:title }}</h2>{{ /if }}
+                </div>
+                {{ if block:items }}
+                    <div class="max-w-3xl mx-auto" style="margin-top: 48px;" x-data="{ open: null }">
+                        {{ block:items }}
+                            <div style="border-top: 1px solid var(--color-outline-variant);">
+                                <button type="button" class="flex w-full items-start justify-between text-left t-h4"
+                                    style="padding-block: 24px; color: var(--color-on-surface); background: transparent;"
+                                    @click="open = open === {{ index }} ? null : {{ index }}"
+                                    :aria-expanded="open === {{ index }}"
+                                    aria-controls="faq-answer-{{ block:id }}-{{ index }}"
+                                    id="faq-question-{{ block:id }}-{{ index }}">
+                                    <span>{{ question }}</span>
+                                    <svg aria-hidden="true" class="ml-4 transition-transform" :class="open === {{ index }} ? 'rotate-180' : ''" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary);"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                </button>
+                                <div x-show="open === {{ index }}" x-collapse class="t-body" style="padding-bottom: 24px; color: var(--color-on-surface-variant);" id="faq-answer-{{ block:id }}-{{ index }}" role="region" aria-labelledby="faq-question-{{ block:id }}-{{ index }}">{{ answer }}</div>
+                            </div>
+                        {{ /block:items }}
+                    </div>
+                {{ /if }}
+            </div>
+        </section>
+    {{ /if }}
+
+
+    {{# ----- TEAM_SECTION ----- #}}
+    {{ if block:type == 'team_section' }}
+        <section class="section">
+            <div class="container-page">
+                <div class="text-center max-w-2xl mx-auto" style="margin-bottom: 48px;">
+                    {{ if block:has_subtitle && block:subtitle }}<p class="eyebrow eyebrow-muted" style="margin-bottom: 12px;">{{ block:subtitle }}</p>{{ /if }}
+                    {{ if block:title }}<h2 class="t-headline">{{ block:title }}</h2>{{ /if }}
+                    {{ if block:has_description && block:description }}<div class="t-body-lg" style="color: var(--color-on-surface-variant); margin-top: 24px;">{{ block:description }}</div>{{ /if }}
+                </div>
+                {{ if block:members }}
+                    <div class="grid grid-cols-1 sm:grid-cols-2 {{ block:columns == '4' ? 'lg:grid-cols-4' : 'lg:grid-cols-3' }} gap-8">
+                        {{ block:members }}
+                            <div class="glass-card text-center">
+                                {{ if photo }}
+                                    <div class="overflow-hidden mx-auto" style="width: 96px; height: 96px; border-radius: var(--radius-full); background: var(--color-surface-container); margin-bottom: 16px;">
+                                        {{ glide:photo width="192" height="192" fit="crop" }}<img src="{{ url }}" alt="{{ name }}" loading="lazy" class="w-full h-full object-cover">{{ /glide:photo }}
+                                    </div>
+                                {{ else }}
+                                    <div class="flex items-center justify-center mx-auto" style="width: 96px; height: 96px; border-radius: var(--radius-full); background: var(--color-surface-container); border: 1px solid var(--color-outline-variant); color: var(--color-on-surface-variant); font-weight: 600; margin-bottom: 16px;">
+                                        <span class="t-h3" x-data="{ initials: '{{ name }}'.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2) }" x-text="initials">{{ name | truncate:1:'' }}</span>
+                                    </div>
+                                {{ /if }}
+                                <h3 class="t-h4">{{ name }}</h3>
+                                {{ if role }}<p class="t-code" style="color: var(--color-primary); margin-top: 4px;">{{ role }}</p>{{ /if }}
+                                {{ if bio }}<p class="t-body-sm" style="color: var(--color-on-surface-variant); margin-top: 12px;">{{ bio }}</p>{{ /if }}
+                            </div>
+                        {{ /block:members }}
+                    </div>
+                {{ /if }}
+            </div>
+        </section>
+    {{ /if }}
+
+
+    {{# ----- IFRAME ----- #}}
+    {{ if block:type == 'iframe' }}
+        <section class="section {{ block:full_width ? 'py-0' : '' }}">
+            <div class="{{ block:full_width ? '' : 'container-page' }}">
+                {{ if block:title }}<h2 class="t-headline" style="margin-bottom: 32px;">{{ block:title }}</h2>{{ /if }}
+                <div class="overflow-hidden glass-card" style="padding: 0;">
+                    <iframe src="{{ block:url }}" width="100%" height="{{ block:height ?? 800 }}" frameborder="0" loading="lazy" {{ block:allow_fullscreen ? 'allowfullscreen' : '' }} title="{{ block:title ?? 'Eingebetteter Inhalt' }}" class="block w-full"></iframe>
+                </div>
+            </div>
+        </section>
+    {{ /if }}
+
+
+    {{# ----- DOWNLOAD_SECTION ----- #}}
+    {{ if block:type == 'download_section' }}
+        <section class="section">
+            <div class="container-page">
+                {{ block:download_groups }}
+                    {{ if type == 'group' }}
+                        <div style="{{ !first ? 'margin-top: 48px;' : '' }}">
+                            <h2 class="t-h2" style="margin-bottom: 24px;">{{ group_title }}</h2>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                {{ documents }}
+                                    <a href="{{ url }}" target="_blank" rel="noopener" class="glass-card hover-grow flex items-center gap-4" style="text-decoration: none;">
+                                        <div class="flex-shrink-0 flex items-center justify-center" style="width: 40px; height: 40px; border-radius: var(--radius-lg); background: rgba(59,130,246,0.10); color: var(--color-primary);">
+                                            <span class="material-symbols-outlined" aria-hidden="true" style="font-size: 20px;">download</span>
+                                        </div>
+                                        <div class="min-w-0 flex-1">
+                                            <p class="t-body" style="font-weight: 500; color: var(--color-on-surface);">{{ title ?? basename ?? filename }}</p>
+                                            <p class="t-code" style="color: var(--color-on-surface-variant); margin-top: 2px;">{{ extension | upper }} · {{ size_formatted }}</p>
+                                        </div>
+                                    </a>
+                                {{ /documents }}
+                            </div>
+                        </div>
+                    {{ /if }}
+                {{ /block:download_groups }}
+            </div>
+        </section>
+    {{ /if }}
+
+
+{{ /blocks }}
+
+
+{{# ===== MARKDOWN CONTENT (Impressum, Datenschutz) =========================== #}}
+{{ if content }}
+    <article class="section">
+        <div class="container-prose">
+            {{ unless blocks }}
+                <header style="margin-bottom: 48px;">
+                    <span class="eyebrow eyebrow-left">Rechtliches</span>
+                    <h1 class="t-display" style="margin-top: 16px;">{{ title }}</h1>
+                </header>
+            {{ /unless }}
+            <div class="prose prose-lg max-w-none prose-on-navy
+                prose-headings:font-semibold
+                prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+                prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-3
+                prose-h4:text-lg prose-h4:mt-8 prose-h4:mb-2
+                prose-a:underline-offset-4">
+                {{ content }}
+            </div>
+        </div>
+    </article>
+{{ /if }}
+
+
+</main>
+
+
+{{# ===== FOOTER — Brand row + 3 columns (Kontakt / Navigation / Rechtliches) ===== #}}
+<footer class="bg-surface-lowest" style="border-top: 1px solid var(--color-outline-variant); margin-top: 48px;">
+
+    {{# Top row: brand + tagline #}}
+    <div class="container-page" style="padding-block: 48px 24px; border-bottom: 1px solid var(--color-outline-variant);">
+        <div class="flex items-center gap-3" style="margin-bottom: 12px;">
+            <img src="/assets/brand/logo-3.svg" alt="" aria-hidden="true" style="height: 36px; width: 36px; display: block; flex: none;" width="36" height="36">
+            <span class="t-h3" style="font-weight: 700;">Ape Dev</span>
+            <span class="t-code" style="color: var(--color-primary);">GMBH</span>
+        </div>
+        <p class="t-body" style="color: var(--color-on-surface-variant); max-width: 36rem;">{{ theme:footer_content ?? 'Software, Modernisierung & Compliance.' }}</p>
+    </div>
+
+    {{# Four columns: Kontakt · Leistungen · Navigation · Rechtliches #}}
+    <div class="container-page" style="padding-block: 40px;">
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+
+            {{# Kontakt #}}
+            <div>
+                <span class="t-code" style="color: var(--color-on-surface-variant); opacity: 0.7; display: block; margin-bottom: 20px;">Kontakt</span>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px;">
+                    <li><a href="/kontakt" class="footer-link">Projekt anfragen</a></li>
+                    {{ if theme:site_email }}<li><a href="mailto:{{ theme:site_email }}" class="footer-link">{{ theme:site_email }}</a></li>{{ /if }}
+                </ul>
+            </div>
+
+            {{# Leistungen (eigene Spalte, Eyebrow ist klickbar) #}}
+            <div>
+                <a href="/leistungen" class="t-code footer-eyebrow-link" style="display: block; margin-bottom: 20px;">Leistungen</a>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px;">
+                    <li><a href="/leistungen/individualentwicklung" class="footer-link">Individualentwicklung</a></li>
+                    <li><a href="/leistungen/modernisierung" class="footer-link">Modernisierung &amp; Digitalisierung</a></li>
+                    <li><a href="/leistungen/websites" class="footer-link">Websites</a></li>
+                </ul>
+            </div>
+
+            {{# Navigation #}}
+            <div>
+                <span class="t-code" style="color: var(--color-on-surface-variant); opacity: 0.7; display: block; margin-bottom: 20px;">Navigation</span>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px;">
+                    <li><a href="/compliance" class="footer-link">Compliance</a></li>
+                    <li><a href="/kunden" class="footer-link">Kunden</a></li>
+                    <li><a href="/ueber-uns" class="footer-link">Über uns</a></li>
+                </ul>
+            </div>
+
+            {{# Rechtliches #}}
+            <div>
+                <span class="t-code" style="color: var(--color-on-surface-variant); opacity: 0.7; display: block; margin-bottom: 20px;">Rechtliches</span>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px;">
+                    <li><a href="/impressum" class="footer-link">Impressum</a></li>
+                    <li><a href="/datenschutz" class="footer-link">Datenschutzerklärung</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    {{# Bottom row: legal + version stamps #}}
+    <div class="container-page flex flex-col md:flex-row justify-between items-center" style="padding-block: 16px; border-top: 1px solid var(--color-outline-variant); font-size: 11px; color: rgba(168,179,204,0.45); letter-spacing: 0.04em;">
+        <div>© {{ now format="Y" }} Ape Dev GmbH. Sitz Fredenbeck. HAND-BUILT IN NORDDEUTSCHLAND.</div>
+        <div class="flex gap-4 t-code" style="margin-top: 8px;">
+            <span>Statamic 6 · PHP 8.5</span>
+            <span style="color: rgba(59,130,246,0.7);">Laravel 12 Ready</span>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+document.addEventListener('alpine:init', () => {
+    Alpine.store('theme', {
+        animations: {{ theme:animations_enabled ? 'true' : 'false' }},
+        hoverEffects: {{ theme:hover_effects_enabled ? 'true' : 'false' }}
+    })
+})
+</script>
+
+
+</body>
+</html>

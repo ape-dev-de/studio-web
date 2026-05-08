@@ -1,0 +1,75 @@
+title: 'Logo Cloud'
+fields:
+  -
+    handle: title
+    field:
+      type: text
+      display: Title
+      width: 50
+  -
+    handle: has_subtitle
+    field:
+      type: toggle
+      display: 'Has Subtitle'
+      width: 25
+  -
+    handle: subtitle
+    field:
+      type: text
+      display: Subtitle
+      width: 50
+      if:
+        has_subtitle: 'equals true'
+  -
+    handle: background_style
+    field:
+      type: button_group
+      display: 'Hintergrund'
+      options:
+        gradient: 'Gradient (Primary)'
+        white: 'Weiß'
+        transparent: 'Transparent'
+      default: gradient
+      width: 50
+  -
+    handle: logos
+    field:
+      type: replicator
+      display: Logos
+      button_label: 'Logo hinzufügen'
+      collapse: accordion
+      sets:
+        logo_item:
+          display: Logo
+          fields:
+            -
+              handle: name
+              field:
+                type: text
+                display: 'Firmenname'
+                width: 50
+            -
+              handle: logo
+              field:
+                type: assets
+                display: Logo
+                container: assets
+                max_files: 1
+                width: 50
+            -
+              handle: treatment
+              field:
+                type: button_group
+                display: 'Darstellung'
+                instructions: 'Mono = weiße Silhouette per Filter (gut für SVGs/transparente PNGs). Original = Originalfarben mit weißem Card-Hintergrund (Pflicht für JPEGs/weiß-bg-Logos).'
+                options:
+                  mono: 'Mono (weiße Silhouette)'
+                  original: 'Original (Farb-Logo)'
+                default: mono
+                width: 50
+  -
+    handle: enabled
+    field:
+      type: toggle
+      display: Enabled
+      default: true

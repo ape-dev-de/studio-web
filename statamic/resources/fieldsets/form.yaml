@@ -1,0 +1,36 @@
+title: Form
+fields:
+  - handle: title
+    field:
+      display: Title
+      type: text
+  - import: set_subtitle
+  - import: set_description
+  - handle: form_handle
+    field:
+      display: "Form Handle"
+      type: text
+      instructions: "Statamic form handle to render (e.g. 'kontakt'). Create the form in CP > Utilities > Forms first."
+      validate:
+        - required
+  - handle: show_contact_aside
+    field:
+      display: 'Kontakt-Aside (rechte Spalte)'
+      type: toggle
+      default: false
+      instructions: 'Wenn aktiv: Form links, Kontaktinfo (E-Mail + Adresse) rechts. 2-Spalten-Layout.'
+  - handle: aside_email
+    field:
+      display: 'Aside: E-Mail'
+      type: text
+      input_type: email
+      width: 50
+      if:
+        show_contact_aside: 'equals true'
+  - handle: aside_address
+    field:
+      display: 'Aside: Adresse'
+      type: textarea
+      width: 50
+      if:
+        show_contact_aside: 'equals true'

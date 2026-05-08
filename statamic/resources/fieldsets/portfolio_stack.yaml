@@ -1,0 +1,71 @@
+title: "Portfolio Stack"
+fields:
+  - handle: anchor_id
+    field:
+      display: "Anchor ID"
+      type: text
+      instructions: "Optionale ID fuer Anchor-Links (z.B. 'portfolio' fuer #portfolio)"
+  - handle: title
+    field:
+      display: Title
+      type: text
+      validate:
+        - required
+  - import: set_subtitle
+  - import: set_description
+  - handle: tagline
+    field:
+      display: "Tagline"
+      type: text
+      instructions: "Kurzer Claim ueber dem Stack, z.B. 'Keine generischen Templates, individuelle Layouts.'"
+  - handle: items
+    field:
+      display: "Portfolio Items"
+      type: replicator
+      button_label: "Add Project"
+      instructions: "Reihenfolge bestimmt die Stack-Reihenfolge (oberste Karte landet oben)."
+      sets:
+        main:
+          display: Main
+          sets:
+            portfolio_item:
+              display: "Portfolio Item"
+              fields:
+                - handle: image
+                  field:
+                    display: "Screenshot"
+                    type: assets
+                    container: assets
+                    max_files: 1
+                    mode: grid
+                    validate:
+                      - required
+                - handle: category_label
+                  field:
+                    display: "Category Label"
+                    type: text
+                    instructions: "Kurze Kategorie als Eyebrow, z.B. 'Tech', 'Warm', 'Enterprise', 'Corporate'."
+                    validate:
+                      - required
+                - handle: project_title
+                  field:
+                    display: "Project Title"
+                    type: text
+                    instructions: "Projektname, z.B. 'ape-dev.de'."
+                    validate:
+                      - required
+                - handle: description
+                  field:
+                    display: Description
+                    type: textarea
+                    instructions: "1-2 Saetze zum Charakter des Projekts."
+                - handle: url
+                  field:
+                    display: "External URL"
+                    type: text
+                    instructions: "Vollstaendige URL inkl. https://. Externe Links werden automatisch mit rel='external noopener noreferrer' und target='_blank' versehen."
+                - handle: link_label
+                  field:
+                    display: "Link Label"
+                    type: text
+                    instructions: "Optionaler Linktext, default: 'Site besuchen'."

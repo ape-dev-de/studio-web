@@ -1,0 +1,97 @@
+title: 'Comparison Table'
+fields:
+  -
+    handle: title
+    field:
+      display: 'Überschrift'
+      type: text
+      width: 75
+  -
+    handle: has_subtitle
+    field:
+      display: 'Eyebrow'
+      type: toggle
+      default: true
+      width: 25
+  -
+    handle: subtitle
+    field:
+      display: 'Eyebrow Text'
+      type: text
+      if:
+        has_subtitle: true
+  -
+    handle: has_description
+    field:
+      display: 'Beschreibung anzeigen'
+      type: toggle
+      default: false
+  -
+    handle: description
+    field:
+      display: 'Beschreibung'
+      type: bard
+      buttons: [bold, italic, underline, h3, link, unorderedlist]
+      container: assets
+      if:
+        has_description: true
+  -
+    handle: highlight_label
+    field:
+      display: 'Spaltenlabel A (hervorgehoben)'
+      type: text
+      default: 'Statamic'
+      width: 50
+  -
+    handle: alternative_label
+    field:
+      display: 'Spaltenlabel B'
+      type: text
+      default: 'WordPress'
+      width: 50
+  -
+    handle: rows
+    field:
+      display: 'Vergleichszeilen'
+      type: grid
+      mode: stacked
+      add_row: 'Zeile hinzufügen'
+      reorderable: true
+      fields:
+        -
+          handle: criterion
+          field:
+            display: 'Kriterium'
+            type: text
+            validate: [required]
+            width: 100
+        -
+          handle: highlight_value
+          field:
+            display: 'Wert Spalte A'
+            type: text
+            width: 50
+        -
+          handle: alternative_value
+          field:
+            display: 'Wert Spalte B'
+            type: text
+            width: 50
+        -
+          handle: highlight_note
+          field:
+            display: 'Anmerkung A'
+            type: text
+            width: 50
+        -
+          handle: alternative_note
+          field:
+            display: 'Anmerkung B'
+            type: text
+            width: 50
+  -
+    handle: footnote
+    field:
+      display: 'Fußnote (optional)'
+      type: text
+      instructions: 'z.B. "Nicht jedes Projekt braucht Statamic — manchmal ist WordPress die richtige Antwort."'

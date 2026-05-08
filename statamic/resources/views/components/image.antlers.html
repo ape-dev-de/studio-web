@@ -1,0 +1,33 @@
+{{#
+    Image component partial
+    Usage: {{ partial:components/image :image="image" alt="Alt text" class="w-full" }}
+    Params:
+      image   - Asset object (required)
+      alt     - Alt text (optional, falls back to image title)
+      class   - Additional CSS classes (optional)
+      width   - Glide width (default 800)
+      height  - Glide height (optional)
+      cover   - Whether to use object-cover (default false)
+#}}
+{{ if image }}
+    {{ glide:image
+        width="{{ width ?? 800 }}"
+        {{ if height }}height="{{ height }}"{{ /if }}
+        fit="{{ cover ? 'crop' : 'contain' }}"
+    }}
+        <img
+            src="{{ url }}"
+            srcset="{{ glide:image width='400' }} 400w, {{ glide:image width='800' }} 800w, {{ glide:image width='1200' }} 1200w"
+            sizes="(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px"
+            alt="{{ alt ?? image:alt ?? image:title ?? '' }}"
+            loading="lazy"
+            class="{{ class ?? '' }} {{ cover ? 'w-full h-full object-cover' : '' }}"
+        >
+    {{ /glide:image }}
+{{ else }}
+    <div class="w-full h-full bg-neutral-100 flex items-center justify-center {{ class ?? '' }}">
+        <svg class="w-16 h-16 text-neutral-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+    </div>
+{{ /if }}

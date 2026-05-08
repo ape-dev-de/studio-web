@@ -1,0 +1,23 @@
+title: "Set Description"
+fields:
+  - handle: has_description
+    field:
+      display: "Show Description"
+      type: toggle
+      default: true
+      width: 33
+  - handle: description
+    field:
+      display: Description
+      type: bard
+      buttons:
+        - bold
+        - italic
+        - anchor
+        - unorderedList
+        - orderedList
+      toolbar_mode: floating
+      remove_empty_nodes: false
+      width: 66
+      if:
+        has_description: "equals true"

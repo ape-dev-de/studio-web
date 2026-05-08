@@ -1,0 +1,71 @@
+title: "Feature Single"
+fields:
+  - handle: anchor_id
+    field:
+      display: "Anchor ID"
+      type: text
+      instructions: "Optionale ID fuer Anchor-Links (z.B. 'zeitarbeit' fuer #zeitarbeit)"
+  - handle: title
+    field:
+      display: Title
+      type: text
+  - import: set_subtitle
+  - import: set_description
+  - handle: text_alignment
+    field:
+      display: "Text Alignment"
+      type: button_group
+      options:
+        left: Left
+        center: Center
+        right: Right
+      default: left
+      width: 50
+  - handle: image
+    field:
+      display: Image
+      type: assets
+      container: assets
+      max_files: 1
+      mode: grid
+  - handle: image_position
+    field:
+      display: "Image Position"
+      type: button_group
+      options:
+        left: Left
+        right: Right
+      default: left
+      width: 50
+      if:
+        image: 'not empty'
+  - handle: has_border
+    field:
+      display: "Image Border"
+      type: toggle
+      instructions: "Add a decorative border around the image"
+      width: 50
+  - handle: features
+    field:
+      display: "Feature Items"
+      type: replicator
+      button_label: "Add Feature"
+      sets:
+        main:
+          display: Main
+          sets:
+            feature_item:
+              display: "Feature Item"
+              fields:
+                - import: icon_selector
+                - handle: title
+                  field:
+                    display: Title
+                    type: text
+                    validate:
+                      - required
+                - handle: description
+                  field:
+                    display: Description
+                    type: textarea
+  - import: button

@@ -1,0 +1,24 @@
+tree:
+  -
+    entry: startseite
+  -
+    entry: leistungen
+    children:
+      -
+        entry: individualentwicklung
+      -
+        entry: modernisierung
+      -
+        entry: websites
+  -
+    entry: compliance
+  -
+    entry: kunden
+  -
+    entry: ueber-uns
+  -
+    entry: kontakt
+  -
+    entry: impressum
+  -
+    entry: datenschutz

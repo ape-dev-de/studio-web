@@ -1,0 +1,95 @@
+title: Hero
+fields:
+  - handle: title
+    field:
+      display: Title
+      type: text
+      validate: [required]
+      instructions: 'Main heading. Optional: mark a single word with the "Wink word" field below to apply the hand-drawn underline.'
+  - handle: wink_word
+    field:
+      display: 'Wink-Wort (optional)'
+      type: text
+      instructions: 'Genau ein Wort aus dem Titel, das die hand-drawn Unterlinie bekommt. Leer lassen = kein Wink.'
+      width: 50
+  - import: set_subtitle
+  - import: set_description
+  - handle: background_type
+    field:
+      display: 'Hintergrund'
+      type: button_group
+      options:
+        none: 'Kein Bild'
+        image: 'Bild'
+        grid: 'Interactive Grid'
+      default: none
+      width: 50
+      instructions: 'Interactive Grid: dezente Diagonal-Kaskade oben-rechts mit Proximity-Glow (nur Desktop).'
+  - handle: image
+    field:
+      display: 'Hintergrundbild'
+      type: assets
+      container: assets
+      max_files: 1
+      if:
+        background_type: 'equals image'
+  - handle: has_overlay
+    field:
+      display: 'Dark Overlay'
+      type: toggle
+      width: 50
+      if:
+        background_type: 'equals image'
+  - handle: overlay_opacity
+    field:
+      display: 'Overlay Opacity'
+      type: button_group
+      options:
+        '30': '30%'
+        '50': '50%'
+        '70': '70%'
+      default: '50'
+      width: 50
+      if:
+        has_overlay: 'equals true'
+  - handle: text_alignment
+    field:
+      display: 'Text Alignment'
+      type: button_group
+      options:
+        left: Left
+        center: Center
+      default: center
+  - handle: button_toggle
+    field:
+      display: 'Primärer Button'
+      type: toggle
+      default: true
+  - handle: button_label
+    field:
+      display: 'Primärer Button: Label'
+      type: text
+      width: 50
+      if:
+        button_toggle: 'equals true'
+  - handle: button_link
+    field:
+      display: 'Primärer Button: Link'
+      type: link
+      width: 50
+      if:
+        button_toggle: 'equals true'
+  - handle: secondary_button_label
+    field:
+      display: 'Sekundärer Button: Label (optional)'
+      type: text
+      width: 50
+      if:
+        button_toggle: 'equals true'
+  - handle: secondary_button_link
+    field:
+      display: 'Sekundärer Button: Link'
+      type: link
+      width: 50
+      if:
+        button_toggle: 'equals true'

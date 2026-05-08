@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{{ collection:pages sort="order" }}
+    <url>
+        <loc>{{ permalink }}</loc>
+        <lastmod>{{ updated_at format="Y-m-d" }}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>{{ if slug == 'startseite' }}1.0{{ elseif slug == 'jobangebote' || slug == 'kontakt' }}0.8{{ else }}0.5{{ /if }}</priority>
+    </url>
+{{ /collection:pages }}
+</urlset>

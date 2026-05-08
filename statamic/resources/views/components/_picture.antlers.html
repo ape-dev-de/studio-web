@@ -1,0 +1,54 @@
+{{#
+    Responsive picture component with WebP + fallback
+    Usage: {{ partial:components/_picture :image="image" alt="Alt text" cover="true" lazy="true" sizes="100vw" }}
+    Params:
+      image  - Asset field (required)
+      alt    - Alt text (optional, falls back to image alt/title)
+      class  - Additional CSS classes (optional)
+      cover  - Whether to use object-cover (default false)
+      lazy   - Lazy loading (default true)
+      sizes  - Sizes attribute (default: "(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1280px")
+#}}
+{{ if image }}
+    <picture class="{{ cover ? 'block w-full h-full' : '' }}">
+        {{ image }}
+            {{ if extension == 'svg' || extension == 'gif' }}
+                <img class="{{ class }}" src="{{ url }}" alt="{{ alt ?? image:alt ?? image:title ?? '' }}" {{ if lazy !== 'false' }}loading="lazy"{{ /if }}>
+            {{ else }}
+                <source
+                    srcset="
+                        {{ glide:url preset='xs-webp' }} 320w,
+                        {{ glide:url preset='sm-webp' }} 480w,
+                        {{ glide:url preset='md-webp' }} 768w,
+                        {{ glide:url preset='lg-webp' }} 1280w,
+                        {{ glide:url preset='xl-webp' }} 1440w,
+                        {{ glide:url preset='2xl-webp' }} 1680w"
+                    sizes="{{ sizes ?? '(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1280px' }}"
+                    type="image/webp"
+                >
+                <source
+                    srcset="
+                        {{ glide:url preset='xs' }} 320w,
+                        {{ glide:url preset='sm' }} 480w,
+                        {{ glide:url preset='md' }} 768w,
+                        {{ glide:url preset='lg' }} 1280w,
+                        {{ glide:url preset='xl' }} 1440w,
+                        {{ glide:url preset='2xl' }} 1680w"
+                    sizes="{{ sizes ?? '(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1280px' }}"
+                >
+                <img
+                    {{ if cover }}
+                        class="object-cover w-full h-full {{ class }}"
+                        style="object-position: {{ focus | background_position }}"
+                    {{ else }}
+                        class="{{ class }}"
+                    {{ /if }}
+                    src="{{ glide:url preset='md-webp' }}"
+                    alt="{{ alt ?? image:alt ?? image:title ?? '' }}"
+                    {{ if lazy !== 'false' }}loading="lazy"{{ /if }}
+                    {{ if priority == 'true' }}fetchpriority="high"{{ /if }}
+                >
+            {{ /if }}
+        {{ /image }}
+    </picture>
+{{ /if }}

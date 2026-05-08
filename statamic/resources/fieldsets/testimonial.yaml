@@ -1,0 +1,71 @@
+title: Testimonial
+fields:
+  - handle: title
+    field:
+      display: Title
+      type: text
+  - import: set_subtitle
+  - handle: layout
+    field:
+      display: Layout
+      type: button_group
+      options:
+        single: Single
+        grid: Grid
+        carousel: Carousel
+      default: grid
+      width: 50
+  - handle: columns
+    field:
+      display: Columns
+      type: button_group
+      options:
+        "1": "1"
+        "2": "2"
+        "3": "3"
+      default: "2"
+      instructions: "Number of columns (Grid layout only)"
+      width: 50
+      if:
+        layout: "equals grid"
+  - handle: testimonials
+    field:
+      display: Testimonials
+      type: replicator
+      button_label: "Add Testimonial"
+      sets:
+        main:
+          display: Main
+          sets:
+            testimonial_item:
+              display: "Testimonial"
+              fields:
+                - handle: quote
+                  field:
+                    display: Quote
+                    type: textarea
+                    instructions: "The testimonial text"
+                    validate:
+                      - required
+                - handle: author
+                  field:
+                    display: Author
+                    type: text
+                    instructions: "Name of the person giving the testimonial"
+                    validate:
+                      - required
+                    width: 50
+                - handle: role
+                  field:
+                    display: "Role / Company"
+                    type: text
+                    instructions: "Job title, church, or affiliation"
+                    width: 50
+                - handle: photo
+                  field:
+                    display: Photo
+                    type: assets
+                    container: assets
+                    max_files: 1
+                    mode: grid
+                    instructions: "Optional author portrait"

@@ -1,0 +1,129 @@
+title: Page
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          - handle: title
+            field:
+              display: Title
+              type: text
+              validate:
+                - required
+              width: 100
+          - handle: content
+            field:
+              display: Inhalt
+              type: markdown
+              antlers: true
+              instructions: 'Freitext-Inhalt (z.B. für Impressum, Datenschutz). Wird unterhalb der Blöcke angezeigt.'
+          - handle: blocks
+            field:
+              display: "Page Blocks"
+              type: replicator
+              collapse: accordion
+              button_label: "Add Block"
+              sets:
+                main:
+                  display: "Content Blocks"
+                  sets:
+                    hero:
+                      display: Hero
+                      icon: assets
+                      fields:
+                        - import: hero
+                    feature_single:
+                      display: "Feature Single"
+                      icon: table-cells
+                      fields:
+                        - import: feature_single
+                    feature_multiple:
+                      display: "Feature Multiple"
+                      icon: table-cells
+                      fields:
+                        - import: feature_multiple
+                    cta_section:
+                      display: "Call to Action"
+                      icon: megaphone
+                      fields:
+                        - import: cta_section
+                    contact_section:
+                      display: "Contact Section"
+                      icon: envelope
+                      fields:
+                        - import: contact_section
+                    form:
+                      display: Form
+                      icon: duplicate
+                      fields:
+                        - import: form
+                    stats:
+                      display: Stats
+                      icon: chart-bar
+                      fields:
+                        - import: stats
+                    steps:
+                      display: Steps
+                      icon: numbered-list
+                      fields:
+                        - import: steps
+                    testimonial:
+                      display: Testimonials
+                      icon: chat
+                      fields:
+                        - import: testimonial
+                    logo_cloud:
+                      display: "Logo Cloud"
+                      icon: photograph
+                      fields:
+                        - import: logo_cloud
+                    comparison_table:
+                      display: "Vergleichstabelle"
+                      icon: table-cells
+                      fields:
+                        - import: comparison_table
+                    feature_table:
+                      display: "Feature-Tabelle"
+                      icon: list-bullet
+                      fields:
+                        - import: feature_table
+                    portfolio_stack:
+                      display: "Portfolio Stack"
+                      icon: layout
+                      fields:
+                        - import: portfolio_stack
+  seo:
+    display: SEO
+    sections:
+      -
+        fields:
+          - handle: seo_title
+            field:
+              display: "SEO Titel"
+              type: text
+              instructions: "Ueberschreibt den Standard-Titel fuer Suchmaschinen"
+          - handle: seo_description
+            field:
+              display: "SEO Beschreibung"
+              type: textarea
+              character_limit: 160
+              instructions: "Beschreibung fuer Suchmaschinen (max. 160 Zeichen)"
+          - handle: og_image
+            field:
+              display: "Social Sharing Bild"
+              type: assets
+              max_files: 1
+              container: assets
+              instructions: "Bild fuer Social Media Vorschau (1200x630px empfohlen)"
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          - handle: slug
+            field:
+              display: Slug
+              type: slug
+              generate: true
+              from: title

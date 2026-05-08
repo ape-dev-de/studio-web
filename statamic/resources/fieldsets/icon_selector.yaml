@@ -1,0 +1,45 @@
+title: "Icon Selector"
+fields:
+  - handle: icon_type
+    field:
+      display: "Icon Type"
+      type: button_group
+      options:
+        none: "Kein"
+        generic: "Heroicon"
+        image: "Bild"
+      default: none
+      width: 50
+  - handle: icon_name
+    field:
+      display: "Icon"
+      type: select
+      options:
+        envelope: "Envelope (E-Mail)"
+        phone: "Phone (Telefon)"
+        map-pin: "Map Pin (Adresse)"
+        clock: "Clock (Uhrzeit)"
+        calendar: "Calendar (Kalender)"
+        users: "Users (Personen)"
+        heart: "Heart (Herz)"
+        star: "Star (Stern)"
+        home: "Home (Haus)"
+        globe: "Globe (Welt)"
+        music: "Music (Musik)"
+        book: "Book (Buch)"
+        chat: "Chat (Nachricht)"
+        info: "Info (Information)"
+        check-circle: "Check Circle (Häkchen)"
+      default: info
+      width: 50
+      if:
+        icon_type: "equals generic"
+  - handle: icon
+    field:
+      display: "Icon Bild"
+      type: assets
+      container: assets
+      max_files: 1
+      instructions: "SVG oder PNG"
+      if:
+        icon_type: "equals image"

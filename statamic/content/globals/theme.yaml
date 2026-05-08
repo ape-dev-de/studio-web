@@ -1,0 +1,18 @@
+color_primary: '#1E2230'
+color_secondary: '#5A6172'
+color_accent: '#E5662A'
+color_neutral: '#5A6172'
+font_choice: inter
+site_name: 'Ape Dev'
+site_address: |-
+  Sonnenkamp 37A
+  21717 Fredenbeck
+site_email: 'info@ape-dev.de'
+site_phone: '04149 233 9823'
+social_links: []
+animations_enabled: true
+hover_effects_enabled: true
+header_style: standard
+footer_content: 'Ape Dev GmbH — Strategie, Modernisierung, Compliance & Individualentwicklung aus Norddeutschland.'
+meta_title_template: '{title} — Ape Dev'
+meta_description: 'Ape Dev: Wir helfen Unternehmen beim Wachstum und lösen ihre Probleme. Modernisierung, Compliance, Individualentwicklung in PHP/Laravel — aus Norddeutschland.'

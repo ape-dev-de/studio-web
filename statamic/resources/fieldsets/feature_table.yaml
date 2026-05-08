@@ -1,0 +1,72 @@
+title: 'Feature Table'
+fields:
+  -
+    handle: subtitle
+    field:
+      display: 'Eyebrow'
+      type: text
+      width: 50
+  -
+    handle: title
+    field:
+      display: 'Überschrift (h2)'
+      type: text
+      width: 50
+      validate: [required]
+  -
+    handle: lede
+    field:
+      display: 'Lede (optional, eine Zeile)'
+      type: textarea
+  -
+    handle: groups
+    field:
+      display: 'Tabellen-Gruppen'
+      type: grid
+      mode: stacked
+      add_row: 'Gruppe hinzufügen'
+      reorderable: true
+      min_rows: 1
+      fields:
+        -
+          handle: group_label
+          field:
+            display: 'Gruppen-Label (Subhead)'
+            type: text
+            instructions: 'Optional. Leer lassen für eine einzige Tabelle ohne Subhead.'
+        -
+          handle: rows
+          field:
+            display: 'Zeilen'
+            type: grid
+            mode: stacked
+            add_row: 'Zeile hinzufügen'
+            reorderable: true
+            min_rows: 1
+            fields:
+              -
+                handle: capability
+                field:
+                  display: 'Capability'
+                  type: text
+                  validate: [required]
+                  width: 50
+              -
+                handle: implementation_name
+                field:
+                  display: 'Tool / Implementation-Name'
+                  type: text
+                  validate: [required]
+                  width: 25
+              -
+                handle: implementation_note
+                field:
+                  display: 'Technische Note (optional)'
+                  type: text
+                  instructions: 'Wird in Mono gerendert. Max. ~6 Wörter.'
+                  width: 25
+  -
+    handle: footnote
+    field:
+      display: 'Fußnote (optional)'
+      type: text

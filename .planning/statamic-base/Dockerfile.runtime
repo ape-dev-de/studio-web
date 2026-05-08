@@ -1,0 +1,66 @@
+# syntax=docker/dockerfile:1.6
+#
+# websites/statamic-base:latest — Runtime image for Statamic-site Dockerfiles.
+#
+# Distroless — chainguard/static + FrankenPHP static glibc binary, no shell,
+# no apk, no PHP installed via apk (PHP comes embedded in the FrankenPHP binary).
+#
+# Symlinks (php, php-cli, php-server, frankenphp) point to the same binary;
+# FrankenPHP routes by argv[0] like busybox.
+#
+# Built by pipelines/websites/_statamic-base/. Pushed as
+#   registry.ape-dev.de/websites/statamic-base:latest
+
+# ---- Stage 1: bring in FrankenPHP + create symlinks (Wolfi has shell) -------
+FROM registry.ape-dev.de/mirror/chainguard/wolfi-base:latest-dev AS prep
+
+# FrankenPHP static glibc binary — mirrored as OCI artifact at v1.12.2.
+COPY --from=registry.ape-dev.de/mirror/upstream/frankenphp:v1.12.2 /frankenphp /usr/bin/frankenphp
+
+# Verify + create busybox-style symlinks. FrankenPHP dispatches subcommand
+# by argv[0]: `php-server` → `frankenphp php-server`, `php` → `frankenphp php-cli`, etc.
+RUN chmod +x /usr/bin/frankenphp \
+ && /usr/bin/frankenphp version \
+ && ln -s frankenphp /usr/bin/php \
+ && ln -s frankenphp /usr/bin/php-cli \
+ && ln -s frankenphp /usr/bin/php-server
+
+# Default PHP config (opcache, prod settings) lives at /etc/frankenphp/php.ini
+# inside FrankenPHP's embedded PHP.
+RUN mkdir -p /etc/frankenphp \
+ && { \
+        echo "opcache.enable=1"; \
+        echo "opcache.memory_consumption=192"; \
+        echo "opcache.max_accelerated_files=20000"; \
+        echo "opcache.validate_timestamps=0"; \
+        echo "opcache.interned_strings_buffer=16"; \
+        echo "opcache.jit=tracing"; \
+        echo "opcache.jit_buffer_size=128M"; \
+        echo "expose_php=Off"; \
+        echo "memory_limit=256M"; \
+        echo "upload_max_filesize=20M"; \
+        echo "post_max_size=20M"; \
+    } > /etc/frankenphp/php.ini
+
+# ---- Stage 2: distroless runtime --------------------------------------------
+FROM registry.ape-dev.de/mirror/chainguard/static:latest
+
+LABEL org.opencontainers.image.title="websites/statamic-base" \
+      org.opencontainers.image.description="Distroless FrankenPHP runtime for Statamic sites (chainguard/static base)" \
+      org.opencontainers.image.source="https://github.com/ape-dev-de/infra" \
+      org.opencontainers.image.licenses="proprietary" \
+      org.opencontainers.image.vendor="ape dev"
+
+COPY --from=prep /usr/bin/frankenphp /usr/bin/frankenphp
+COPY --from=prep /usr/bin/php /usr/bin/php
+COPY --from=prep /usr/bin/php-cli /usr/bin/php-cli
+COPY --from=prep /usr/bin/php-server /usr/bin/php-server
+COPY --from=prep /etc/frankenphp /etc/frankenphp
+
+# chainguard/static ships UID/GID 65532 (`nonroot`) by default.
+USER 65532:65532
+WORKDIR /app
+
+EXPOSE 80
+ENTRYPOINT []
+CMD ["frankenphp", "version"]

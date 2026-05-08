@@ -1,0 +1,11 @@
+title: Pages
+revisions: false
+route: '{parent_uri}/{slug}'
+layout: layout
+template: default
+blueprints:
+  - page
+structure:
+  root: true
+  max_depth: 3
+propagate: true

@@ -1,0 +1,192 @@
+---
+# ==========================================================================
+# Concourse CI/CD Pipeline — websites/_statamic-base
+# ==========================================================================
+#
+# Builds two tags off the same source dir:
+#   - websites/statamic-base:builder  (Wolfi + apk PHP + composer, has shell)
+#   - websites/statamic-base:latest   (chainguard/static + FrankenPHP, distroless)
+#
+# Triggers:
+#   - infra-repo change inside pipelines/websites/_statamic-base/
+#   - new digest on registry.ape-dev.de/mirror/chainguard/wolfi-base:latest-dev
+#   - new digest on registry.ape-dev.de/mirror/chainguard/static:latest
+#   - new digest on registry.ape-dev.de/mirror/upstream/frankenphp:v1.12.2
+# ==========================================================================
+
+resources:
+  - name: infra-repo
+    type: git
+    icon: github
+    source:
+      uri: https://github.com/ape-dev-de/infra.git
+      branch: main
+      username: ((github.username))
+      password: ((github.pat))
+      paths:
+        - pipelines/websites/_statamic-base/
+    check_every: 1m
+
+  - name: statamic-base-builder
+    type: registry-image
+    icon: docker
+    source:
+      repository: registry.ape-dev.de/websites/statamic-base
+      username: ((registry.username))
+      password: ((registry.password))
+      tag: builder
+
+  - name: statamic-base-runtime
+    type: registry-image
+    icon: docker
+    source:
+      repository: registry.ape-dev.de/websites/statamic-base
+      username: ((registry.username))
+      password: ((registry.password))
+      tag: latest
+
+  # Trigger upstream rolls
+  - name: wolfi-base-mirror
+    type: registry-image
+    icon: docker
+    source:
+      repository: registry.ape-dev.de/mirror/chainguard/wolfi-base
+      username: ((registry.username))
+      password: ((registry.password))
+      tag: latest-dev
+
+  - name: static-base-mirror
+    type: registry-image
+    icon: docker
+    source:
+      repository: registry.ape-dev.de/mirror/chainguard/static
+      username: ((registry.username))
+      password: ((registry.password))
+      tag: latest
+
+  - name: frankenphp-mirror
+    type: registry-image
+    icon: docker
+    source:
+      repository: registry.ape-dev.de/mirror/upstream/frankenphp
+      username: ((registry.username))
+      password: ((registry.password))
+      tag: v1.12.2
+
+
+jobs:
+
+  - name: self-update
+    plan:
+      - get: infra-repo
+        trigger: true
+      - set_pipeline: websites-statamic-base
+        file: infra-repo/pipelines/websites/_statamic-base/pipeline.yaml
+
+  # --------- Builder tag (Wolfi + apk PHP + composer) ----------
+  - name: build-builder
+    plan:
+      - in_parallel:
+          - get: infra-repo
+            trigger: true
+          - get: wolfi-base-mirror
+            trigger: true
+      - task: prepare-docker-config
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: alpine
+              tag: "3.21"
+          outputs:
+            - name: docker-config
+          params:
+            REGISTRY_USERNAME: ((registry.username))
+            REGISTRY_PASSWORD: ((registry.password))
+          run:
+            path: /bin/sh
+            args:
+              - -c
+              - |
+                ENCODED=$(echo -n "${REGISTRY_USERNAME}:${REGISTRY_PASSWORD}" | base64)
+                echo "{\"auths\":{\"registry.ape-dev.de\":{\"auth\":\"${ENCODED}\"}}}" > docker-config/config.json
+      - task: build-image
+        privileged: true
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: concourse/oci-build-task
+          inputs:
+            - name: infra-repo
+              path: .
+            - name: docker-config
+          outputs:
+            - name: image
+          params:
+            CONTEXT: pipelines/websites/_statamic-base
+            DOCKERFILE: pipelines/websites/_statamic-base/Dockerfile.builder
+            IMAGE_PLATFORM: linux/amd64
+            DOCKER_CONFIG: docker-config
+          run:
+            path: build
+      - put: statamic-base-builder
+        params:
+          image: image/image.tar
+
+  # --------- Runtime tag (chainguard/static + FrankenPHP, distroless) ----------
+  - name: build-runtime
+    plan:
+      - in_parallel:
+          - get: infra-repo
+            trigger: true
+          - get: static-base-mirror
+            trigger: true
+          - get: frankenphp-mirror
+            trigger: true
+      - task: prepare-docker-config
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: alpine
+              tag: "3.21"
+          outputs:
+            - name: docker-config
+          params:
+            REGISTRY_USERNAME: ((registry.username))
+            REGISTRY_PASSWORD: ((registry.password))
+          run:
+            path: /bin/sh
+            args:
+              - -c
+              - |
+                ENCODED=$(echo -n "${REGISTRY_USERNAME}:${REGISTRY_PASSWORD}" | base64)
+                echo "{\"auths\":{\"registry.ape-dev.de\":{\"auth\":\"${ENCODED}\"}}}" > docker-config/config.json
+      - task: build-image
+        privileged: true
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: concourse/oci-build-task
+          inputs:
+            - name: infra-repo
+              path: .
+            - name: docker-config
+          outputs:
+            - name: image
+          params:
+            CONTEXT: pipelines/websites/_statamic-base
+            DOCKERFILE: pipelines/websites/_statamic-base/Dockerfile.runtime
+            IMAGE_PLATFORM: linux/amd64
+            DOCKER_CONFIG: docker-config
+          run:
+            path: build
+      - put: statamic-base-runtime
+        params:
+          image: image/image.tar

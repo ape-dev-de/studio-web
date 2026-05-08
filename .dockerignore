@@ -1,46 +1,39 @@
-# Dependencies
-node_modules
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Build context for the FrankenPHP image is the repo root, but the Dockerfile
+# only COPYs from statamic/. Everything else is excluded for a small, fast build.
 
-# Next.js
-.next
-out
-
-# Testing
-coverage
-
-# Production
-/build
-
-# Misc
-.DS_Store
-*.pem
-
-# Debug
-*.log
-
-# Local env files
-.env*.local
-.env
-
-# Vercel
-.vercel
-
-# Git
+# Source-controlled but not for runtime
 .git
+.github
 .gitignore
-
-# IDE
-.vscode
+.dockerignore
 .idea
+.claude
+.planning
+README.md
+Makefile
+
+# Statamic/Laravel artifacts that don't belong in the image
+statamic/.env
+statamic/.env.local
+statamic/.env.production
+statamic/node_modules
+statamic/vendor
+statamic/storage/logs
+statamic/storage/framework/cache
+statamic/storage/framework/sessions
+statamic/storage/framework/views
+statamic/bootstrap/cache
+statamic/public/build
+statamic/public/static
+statamic/public/hot
+statamic/users
+statamic/.phpunit.cache
+statamic/.phpunit.result.cache
+statamic/tests
+
+# General
+.DS_Store
+*.log
 *.swp
 *.swo
-
-# CI/CD
-.github
-
-# Documentation
-README.md
-LICENSE
+*.pem

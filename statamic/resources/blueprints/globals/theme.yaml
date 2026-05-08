@@ -1,0 +1,213 @@
+title: Theme
+sections:
+  brand:
+    display: Brand
+    fields:
+      -
+        handle: site_logo
+        field:
+          type: assets
+          display: Logo
+          container: assets
+          max_files: 1
+          instructions: 'Website-Logo (wird in Navigation und Footer angezeigt)'
+          width: 100
+      -
+        handle: color_primary
+        field:
+          type: color
+          display: 'Primary Color'
+          default: '#1E3A5F'
+          swatches:
+            - '#1E3A5F'
+            - '#1a365d'
+            - '#2c5282'
+            - '#1D4ED8'
+          width: 50
+      -
+        handle: color_secondary
+        field:
+          type: color
+          display: 'Secondary Color'
+          default: '#78716C'
+          width: 50
+      -
+        handle: color_accent
+        field:
+          type: color
+          display: 'Accent Color'
+          default: '#F59E0B'
+          width: 50
+      -
+        handle: color_neutral
+        field:
+          type: color
+          display: 'Neutral Color'
+          default: '#78716C'
+          width: 50
+      -
+        handle: font_choice
+        field:
+          type: select
+          display: Font
+          options:
+            inter: Inter
+            system: 'System Default'
+          default: inter
+          width: 50
+
+  site_info:
+    display: 'Site Info'
+    fields:
+      -
+        handle: site_name
+        field:
+          type: text
+          display: 'Site Name'
+          default: 'Ape Dev'
+          width: 100
+      -
+        handle: site_address
+        field:
+          type: textarea
+          display: Address
+          width: 50
+      -
+        handle: site_email
+        field:
+          type: text
+          display: Email
+          input_type: email
+          width: 50
+      -
+        handle: site_phone
+        field:
+          type: text
+          display: Phone
+          width: 50
+      -
+        handle: social_section
+        field:
+          display: 'Social Media'
+          type: section
+      -
+        handle: social_instagram
+        field:
+          display: 'Instagram URL'
+          type: text
+          input_type: url
+          instructions: 'Vollstaendige Instagram-Profil-URL'
+      -
+        handle: social_linkedin
+        field:
+          display: 'LinkedIn URL'
+          type: text
+          input_type: url
+          instructions: 'Vollstaendige LinkedIn-Unternehmensseite-URL'
+      -
+        handle: social_xing
+        field:
+          display: 'XING URL'
+          type: text
+          input_type: url
+          instructions: 'Vollstaendige XING-Unternehmensseite-URL'
+
+  buttons:
+    display: 'Buttons & Navigation'
+    fields:
+      -
+        handle: button_border
+        field:
+          display: 'Button-Rahmen'
+          type: button_group
+          options:
+            none: 'Kein Rahmen'
+            light: 'Heller Rahmen'
+            dark: 'Dunkler Rahmen'
+          default: none
+          instructions: 'Optionaler Rahmen um alle Buttons fuer besseren Kontrast (WCAG)'
+          width: 50
+      -
+        handle: button_radius
+        field:
+          display: 'Button-Rundung'
+          type: button_group
+          options:
+            none: 'Eckig'
+            sm: 'Leicht'
+            md: 'Mittel'
+            full: 'Rund'
+          default: md
+          instructions: 'Abrundung der Button-Ecken'
+          width: 50
+      -
+        handle: nav_hover_bg
+        field:
+          display: 'Navigation Hover-Farbe'
+          type: color
+          default: '#F5F5F4'
+          instructions: 'Hintergrundfarbe beim Hover ueber Navigations-Links'
+          width: 50
+      -
+        handle: nav_sliding_indicator
+        field:
+          display: 'Sliding Indicator (Navigation)'
+          type: toggle
+          default: false
+          instructions: 'Animierter Hintergrund der beim Hover zwischen den Nav-Eintraegen gleitet. Laedt Motion-Bibliothek (~18kb) nur wenn aktiviert.'
+          width: 50
+
+  animations:
+    display: Animations
+    fields:
+      -
+        handle: animations_enabled
+        field:
+          type: toggle
+          display: 'Entrance Animations'
+          default: true
+          width: 50
+      -
+        handle: hover_effects_enabled
+        field:
+          type: toggle
+          display: 'Hover Effects'
+          default: true
+          width: 50
+
+  header_footer:
+    display: 'Header & Footer'
+    fields:
+      -
+        handle: header_style
+        field:
+          type: button_group
+          display: 'Header Style'
+          options:
+            standard: Standard
+            transparent: Transparent
+          default: standard
+          width: 50
+      -
+        handle: footer_content
+        field:
+          type: textarea
+          display: 'Footer Text'
+          width: 100
+
+  seo:
+    display: SEO
+    fields:
+      -
+        handle: meta_title_template
+        field:
+          type: text
+          display: 'Title Template'
+          default: '{title} — Ape Dev'
+          width: 100
+      -
+        handle: meta_description
+        field:
+          type: textarea
+          display: 'Default Meta Description'
+          width: 100

@@ -1,0 +1,9 @@
+title: Kontakt
+honeypot: winnie
+email:
+  -
+    id: GZmcqCBa
+    to: info@ape-dev.de
+    from: noreply@ape-dev.de
+    reply_to: '{{ email }}'
+    subject: 'Neue Kontaktanfrage von {{ name }}'

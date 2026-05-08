@@ -1,0 +1,66 @@
+title: Stats
+fields:
+  - handle: title
+    field:
+      display: Title
+      type: text
+  - import: set_subtitle
+  - handle: columns
+    field:
+      display: Columns
+      type: button_group
+      options:
+        "2": "2"
+        "3": "3"
+        "4": "4"
+      default: "4"
+      instructions: "Number of stat columns"
+      width: 50
+  - handle: dark_background
+    field:
+      display: "Dunkler Hintergrund (Navy)"
+      type: toggle
+      default: false
+      instructions: "Volle Breite mit dunklem Primary-Hintergrund"
+      width: 50
+  - handle: stats
+    field:
+      display: "Stats"
+      type: replicator
+      button_label: "Add Stat"
+      sets:
+        main:
+          display: Main
+          sets:
+            stat_item:
+              display: "Stat Item"
+              fields:
+                - handle: value
+                  field:
+                    display: Value
+                    type: text
+                    instructions: 'Displayed number or text, e.g. "500+" or "seit 1990"'
+                    validate:
+                      - required
+                - handle: label
+                  field:
+                    display: Label
+                    type: text
+                    instructions: 'Description of the stat, e.g. "Mitglieder"'
+                    validate:
+                      - required
+                - handle: has_icon
+                  field:
+                    display: "Has Icon"
+                    type: toggle
+                    width: 50
+                - handle: icon
+                  field:
+                    display: Icon
+                    type: assets
+                    container: assets
+                    max_files: 1
+                    mode: grid
+                    instructions: "Optional icon image (SVG or PNG)"
+                    if:
+                      has_icon: "equals true"

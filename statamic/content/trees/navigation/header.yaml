@@ -1,0 +1,27 @@
+tree:
+  -
+    id: e627e017-460e-4c9b-b99e-79eaf4c08f9c
+    entry: leistungen
+    children:
+      -
+        id: 4942504e-fe07-4dfd-bc84-49914743eafd
+        entry: individualentwicklung
+      -
+        id: 7aed6482-f4a4-4333-877c-e3be1cf5e077
+        entry: modernisierung
+      -
+        id: 00bf06fc-6726-48c8-8ca6-f6623b06e326
+        entry: websites
+  -
+    id: 1f5bc185-afec-43f6-814e-f536df637fc9
+    entry: compliance
+    title: Produkte
+  -
+    id: ede31dea-d308-4a19-9f8f-917802e282bf
+    entry: kunden
+  -
+    id: d091bf2b-2118-40bb-8867-6da5e4ad30ce
+    entry: ueber-uns
+  -
+    id: 4704d0c7-6b89-4eaf-912a-d1706dfb20a5
+    entry: kontakt

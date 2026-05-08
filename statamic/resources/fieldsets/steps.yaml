@@ -1,0 +1,52 @@
+title: Steps
+fields:
+  - handle: title
+    field:
+      display: Title
+      type: text
+      validate:
+        - required
+  - import: set_subtitle
+  - import: set_description
+  - handle: layout
+    field:
+      display: Layout
+      type: button_group
+      options:
+        vertical: Vertical
+        horizontal: Horizontal
+      default: vertical
+      instructions: "Vertical: stacked list. Horizontal: side-by-side row."
+      width: 50
+  - handle: steps
+    field:
+      display: Steps
+      type: replicator
+      button_label: "Add Step"
+      sets:
+        main:
+          display: Main
+          sets:
+            step_item:
+              display: "Step Item"
+              fields:
+                - handle: number
+                  field:
+                    display: Number
+                    type: text
+                    instructions: "Step number or label, e.g. 1, 01, A"
+                    validate:
+                      - required
+                    width: 50
+                - handle: title
+                  field:
+                    display: Title
+                    type: text
+                    validate:
+                      - required
+                    width: 50
+                - handle: description
+                  field:
+                    display: Description
+                    type: textarea
+  - import: button

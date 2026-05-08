@@ -1,0 +1,31 @@
+title: Button
+fields:
+  - handle: button_toggle
+    field:
+      display: "Show Button"
+      type: toggle
+      instructions: "Display a call-to-action button"
+  - handle: button_label
+    field:
+      display: "Button Label"
+      type: text
+      if:
+        button_toggle: "equals true"
+  - handle: button_link
+    field:
+      display: "Button Link"
+      type: link
+      if:
+        button_toggle: "equals true"
+  - handle: button_variant
+    field:
+      display: "Button Style"
+      type: button_group
+      options:
+        primary: Primary
+        secondary: Secondary
+        outline: Outline
+      default: primary
+      width: 50
+      if:
+        button_toggle: "equals true"

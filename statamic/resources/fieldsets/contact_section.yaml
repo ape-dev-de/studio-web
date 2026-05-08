@@ -1,0 +1,24 @@
+title: "Contact Section"
+fields:
+  - handle: title
+    field:
+      display: Title
+      type: text
+  - import: set_description
+  - handle: email
+    field:
+      display: "E-Mail Address"
+      type: text
+      input_type: email
+      validate:
+        - email
+  - handle: phone
+    field:
+      display: "Phone Number"
+      type: text
+      input_type: tel
+  - handle: address
+    field:
+      display: Address
+      type: textarea
+      instructions: "Physical address displayed in the contact section"

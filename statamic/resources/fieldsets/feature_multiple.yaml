@@ -1,0 +1,69 @@
+title: "Feature Multiple"
+fields:
+  - handle: title
+    field:
+      display: Title
+      type: text
+      validate:
+        - required
+  - import: set_subtitle
+  - import: set_description
+  - handle: columns
+    field:
+      display: Columns
+      type: button_group
+      options:
+        "2": "2 Columns"
+        "3": "3 Columns"
+        "4": "4 Columns"
+      default: "3"
+      width: 50
+  - handle: text_alignment
+    field:
+      display: "Text Alignment"
+      type: button_group
+      options:
+        left: "Links"
+        center: "Zentriert"
+      default: left
+      width: 50
+  - handle: has_border
+    field:
+      display: "Card Border"
+      type: toggle
+      instructions: "Add a border around each feature card"
+      width: 50
+  - handle: has_icon
+    field:
+      display: "Show Icons"
+      type: toggle
+      instructions: "Show an icon above the feature title"
+  - handle: features
+    field:
+      display: "Feature Cards"
+      type: replicator
+      button_label: "Add Feature"
+      sets:
+        main:
+          display: Main
+          sets:
+            feature_item:
+              display: "Feature Card"
+              fields:
+                - import: icon_selector
+                - handle: title
+                  field:
+                    display: Title
+                    type: text
+                    validate:
+                      - required
+                - handle: description
+                  field:
+                    display: Description
+                    type: textarea
+                    antlers: true
+                - handle: link
+                  field:
+                    display: Link
+                    type: text
+                    instructions: "Optionaler Link (z.B. #zeitarbeit für Anchor oder /seite für Seiten)"

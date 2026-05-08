@@ -1,0 +1,43 @@
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: name
+            field:
+              display: Name
+              type: text
+              validate:
+                - required
+          -
+            handle: email
+            field:
+              display: E-Mail
+              type: text
+              input_type: email
+              validate:
+                - required
+                - email
+          -
+            handle: telefon
+            field:
+              input_type: tel
+              type: text
+              display: Telefon
+              validate:
+                - nullable
+          -
+            handle: nachricht
+            field:
+              display: Nachricht
+              type: textarea
+              validate:
+                - required
+          -
+            handle: altcha
+            field:
+              display: Sicherheitspruefung
+              type: altcha
+              listable: false

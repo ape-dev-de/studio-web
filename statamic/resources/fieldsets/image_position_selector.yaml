@@ -1,0 +1,34 @@
+title: "Image Position Selector"
+fields:
+  - handle: object_fit
+    field:
+      display: "Bildmodus"
+      type: button_group
+      options:
+        cover: "Füllen (Cover)"
+        contain: "Einpassen (Contain)"
+      default: cover
+      width: 33
+      instructions: "Cover = füllt und schneidet. Contain = passt komplett rein."
+  - handle: object_position
+    field:
+      display: "Bildausschnitt"
+      type: button_group
+      options:
+        top: "Oben"
+        center: "Mitte"
+        bottom: "Unten"
+      default: center
+      width: 33
+      instructions: "Vertikale Position des Bildausschnitts"
+  - handle: object_position_h
+    field:
+      display: "Horizontal"
+      type: button_group
+      options:
+        left: "Links"
+        center: "Mitte"
+        right: "Rechts"
+      default: center
+      width: 33
+      instructions: "Horizontale Position des Bildausschnitts"
