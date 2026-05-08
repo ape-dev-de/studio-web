@@ -13,6 +13,12 @@ fields:
       instructions: "Statamic form handle to render (e.g. 'kontakt'). Create the form in CP > Utilities > Forms first."
       validate:
         - required
+  - handle: submit_label
+    field:
+      display: "Submit-Button Label"
+      type: text
+      default: 'Anfrage senden'
+      instructions: "Kontextspezifischer Submit-Text statt generischem 'Absenden' (z.B. 'Anfrage senden', 'Termin vereinbaren')."
   - handle: show_contact_aside
     field:
       display: 'Kontakt-Aside (rechte Spalte)'

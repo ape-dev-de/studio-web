@@ -155,6 +155,32 @@
 
 <main id="main" tabindex="-1">
 
+{{# ===== BREADCRUMBS — only for nested pages (current depth >= 2) ============== #}}
+{{ if segment_2 }}
+    {{# Map known parents to friendly labels — extend if more nesting added #}}
+    {{ if segment_1 == 'leistungen' }}{{ $parent_label = 'Leistungen' }}{{ /if }}
+    <nav aria-label="Brotkrumen-Navigation" class="container-page" style="padding-block: 16px 0; margin-top: 8px;">
+        <ol style="display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; font-size: 0.85rem; color: var(--color-on-surface-variant);">
+            <li><a href="/" style="color: inherit; text-decoration: none;">Startseite</a></li>
+            <li aria-hidden="true" style="opacity: 0.5;">›</li>
+            <li><a href="/{{ segment_1 }}" style="color: inherit; text-decoration: none;">{{ $parent_label ?? segment_1 | title }}</a></li>
+            <li aria-hidden="true" style="opacity: 0.5;">›</li>
+            <li aria-current="page" style="color: var(--color-on-surface);">{{ title }}</li>
+        </ol>
+    </nav>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "{{ site:url }}" },
+            { "@type": "ListItem", "position": 2, "name": "{{ $parent_label ?? segment_1 | title }}", "item": "{{ site:url }}/{{ segment_1 }}" },
+            { "@type": "ListItem", "position": 3, "name": "{{ title }}", "item": "{{ current_url }}" }
+        ]
+    }
+    </script>
+{{ /if }}
+
 
 {{# ===== BLOCKS =============================================================== #}}
 {{ blocks scope="block" }}
@@ -930,13 +956,13 @@
                                         {{ else }}
                                             <div class="field">
                                                 <label for="form-{{ handle }}">{{ display ?? handle }}{{ if required }} <span aria-hidden="true" style="color: var(--color-primary);">*</span>{{ /if }}</label>
-                                                <input type="{{ input_type ?? 'text' }}" id="form-{{ handle }}" name="{{ handle }}" value="{{ old ?? value }}" {{ if required }}required{{ /if }} autocomplete="{{ handle == 'email' ? 'email' : handle == 'name' ? 'name' : handle == 'telefon' ? 'tel' : 'off' }}">
+                                                <input type="{{ input_type ?? 'text' }}" id="form-{{ handle }}" name="{{ handle }}" value="{{ old ?? value }}" {{ if required }}required aria-required="true"{{ /if }} autocomplete="{{ if handle == 'email' }}email{{ elseif handle == 'name' || handle == 'vorname' }}given-name{{ elseif handle == 'nachname' }}family-name{{ elseif handle == 'telefon' || handle == 'phone' }}tel{{ elseif handle == 'firma' || handle == 'unternehmen' || handle == 'organization' }}organization{{ elseif handle == 'website' || handle == 'url' }}url{{ elseif handle == 'strasse' || handle == 'street' }}street-address{{ elseif handle == 'plz' || handle == 'zip' || handle == 'postcode' }}postal-code{{ elseif handle == 'stadt' || handle == 'city' }}address-level2{{ elseif handle == 'land' || handle == 'country' }}country-name{{ else }}off{{ /if }}">
                                             </div>
                                         {{ /if }}
                                     {{ /fields }}
 
                                     <div class="field field-submit">
-                                        <button type="submit" class="btn btn-primary">Absenden</button>
+                                        <button type="submit" class="btn btn-primary">{{ block:submit_label ?? 'Anfrage senden' }}</button>
                                         <p class="t-body-sm" style="color: var(--color-on-surface-variant); margin-top: 12px;">Wir antworten innerhalb von zwei Werktagen.</p>
                                     </div>
                                 {{ /form:create }}
@@ -1167,7 +1193,7 @@
 
     {{# Bottom row: legal + version stamps #}}
     <div class="container-page flex flex-col md:flex-row justify-between items-center" style="padding-block: 16px; border-top: 1px solid var(--color-outline-variant); font-size: 11px; color: rgba(168,179,204,0.45); letter-spacing: 0.04em;">
-        <div>© {{ now format="Y" }} Ape Dev GmbH. Sitz Fredenbeck. HAND-BUILT IN NORDDEUTSCHLAND.</div>
+        <div>© {{ now format="Y" }} Ape Dev GmbH · Sitz Fredenbeck · Norddeutschland</div>
         <div class="flex gap-4 t-code" style="margin-top: 8px;">
             <span>Statamic 6 · PHP 8.5</span>
             <span style="color: rgba(59,130,246,0.7);">Laravel 12 Ready</span>
