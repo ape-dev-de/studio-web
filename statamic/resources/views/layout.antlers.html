@@ -155,27 +155,31 @@
 
 <main id="main" tabindex="-1">
 
-{{# ===== BREADCRUMBS — only for nested pages (current depth >= 2) ============== #}}
+{{# ===== BREADCRUMBS (JSON-LD only — drives SERP path crumbs, no visible UI) ===== #}}
+{{# Map known parents to friendly labels — extend if more nesting is added #}}
+{{ if segment_1 == 'leistungen' }}{{ $parent_label = 'Leistungen' }}{{ /if }}
 {{ if segment_2 }}
-    {{# Map known parents to friendly labels — extend if more nesting added #}}
-    {{ if segment_1 == 'leistungen' }}{{ $parent_label = 'Leistungen' }}{{ /if }}
-    <nav aria-label="Brotkrumen-Navigation" class="container-page" style="padding-block: 16px 0; margin-top: 8px;">
-        <ol style="display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; font-size: 0.85rem; color: var(--color-on-surface-variant);">
-            <li><a href="/" style="color: inherit; text-decoration: none;">Startseite</a></li>
-            <li aria-hidden="true" style="opacity: 0.5;">›</li>
-            <li><a href="/{{ segment_1 }}" style="color: inherit; text-decoration: none;">{{ $parent_label ?? segment_1 | title }}</a></li>
-            <li aria-hidden="true" style="opacity: 0.5;">›</li>
-            <li aria-current="page" style="color: var(--color-on-surface);">{{ title }}</li>
-        </ol>
-    </nav>
+    {{# 3-level: Startseite > Parent > Page #}}
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "{{ site:url }}" },
-            { "@type": "ListItem", "position": 2, "name": "{{ $parent_label ?? segment_1 | title }}", "item": "{{ site:url }}/{{ segment_1 }}" },
+            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "{{ config:app:url }}" },
+            { "@type": "ListItem", "position": 2, "name": "{{ $parent_label ?? segment_1 | title }}", "item": "{{ config:app:url }}/{{ segment_1 }}" },
             { "@type": "ListItem", "position": 3, "name": "{{ title }}", "item": "{{ current_url }}" }
+        ]
+    }
+    </script>
+{{ elseif segment_1 }}
+    {{# 2-level: Startseite > Page #}}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "{{ config:app:url }}" },
+            { "@type": "ListItem", "position": 2, "name": "{{ title }}", "item": "{{ current_url }}" }
         ]
     }
     </script>

@@ -108,7 +108,7 @@ blocks:
     type: testimonial
     has_subtitle: true
     subtitle: 'Persönlich, nicht abstrakt'
-    title: 'Wer Sie anruft, wenn Sie uns anrufen.'
+    title: 'Sie reden direkt mit uns. Punkt.'
     has_description: true
     description:
       -
