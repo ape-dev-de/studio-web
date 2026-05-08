@@ -14,7 +14,9 @@ Consumer Dockerfile pattern:
 FROM registry.ape-dev.de/websites/statamic-base:builder AS build
 WORKDIR /app
 COPY --link . /app
+# Build stage runs as root by default — see ROOT-IMAGE-POLICY.md §3.
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+RUN npm ci --silent && npm run build && rm -rf node_modules
 RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
 
 FROM registry.ape-dev.de/websites/statamic-base:latest
@@ -25,12 +27,12 @@ CMD ["php-server", "--listen=:80", "--root=/app/public", "--access-log"]
 
 ## What's baked in
 
-### `:builder` (Wolfi + apk)
+### `:builder` (Wolfi + apk, root)
 - `php-8.5` (Wolfi 8.5.6 at time of writing)
 - Extensions: `bcmath, curl, dom, exif, fileinfo, gd, iconv, intl, mbstring, pcntl, pdo, pdo_mysql, pdo_sqlite, phar, simplexml, sodium, xml, xmlwriter, zip` — each as `php-8.5-<ext>` apk subpackage. Built-in (`opcache, openssl, session, tokenizer`) live in the core `php-8.5` package.
-- `composer`, `git`, `unzip`, `ca-certificates-bundle`, `tzdata`
+- `composer`, `nodejs-22`, `npm`, `git`, `unzip`, `ca-certificates-bundle`, `tzdata`
 - Opcache + CLI-opcache enabled (speeds up `php artisan config:cache` etc.)
-- `nonroot` user (UID 65532, matches runtime tag for clean `chown` across stages)
+- **Runs as root** by default. Build stage is throwaway; the runtime image (`:latest`) enforces nonroot UID 65532 via the `COPY --from=build --chown=65532:65532` line in consumer Dockerfiles. Pattern matches `klarkonform/app-base` and `mirror-runner` (see `pipelines/registry-mirror/ROOT-IMAGE-POLICY.md` §3 for rationale).
 
 ### `:latest` (chainguard/static, distroless)
 - FrankenPHP `v1.12.2` static glibc binary, mirrored as OCI artifact
