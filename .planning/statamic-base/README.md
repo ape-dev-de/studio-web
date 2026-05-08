@@ -29,7 +29,8 @@ CMD ["php-server", "--listen=:80", "--root=/app/public", "--access-log"]
 
 ### `:builder` (Wolfi + apk, root)
 - `php-8.5` (Wolfi 8.5.6 at time of writing)
-- Extensions: `bcmath, curl, dom, exif, fileinfo, gd, iconv, intl, mbstring, pcntl, pdo, pdo_mysql, pdo_sqlite, phar, simplexml, sodium, xml, xmlwriter, zip` — each as `php-8.5-<ext>` apk subpackage. Built-in (`opcache, openssl, session, tokenizer`) live in the core `php-8.5` package.
+- Extensions: `bcmath, curl, dom, exif, fileinfo, gd, iconv, intl, mbstring, pcntl, pdo, pdo_sqlite, phar, simplexml, sodium, xml, xmlwriter, zip` — each as `php-8.5-<ext>` apk subpackage. Built-in (`opcache, openssl, session, tokenizer`) live in the core `php-8.5` package.
+- **No `pdo_mysql`** — Wolfi's `php-8.5-pdo_mysql` ships with an unresolved `mysqlnd_get_client_info` symbol-link issue. We don't need MySQL for Statamic flat-file or sqlite-Eloquent-fallback. If a future consumer needs MySQL, fork the base or extend in the consumer Dockerfile.
 - `composer`, `nodejs-22`, `npm`, `git`, `unzip`, `ca-certificates-bundle`, `tzdata`
 - Opcache + CLI-opcache enabled (speeds up `php artisan config:cache` etc.)
 - **Runs as root** by default. Build stage is throwaway; the runtime image (`:latest`) enforces nonroot UID 65532 via the `COPY --from=build --chown=65532:65532` line in consumer Dockerfiles. Pattern matches `klarkonform/app-base` and `mirror-runner` (see `pipelines/registry-mirror/ROOT-IMAGE-POLICY.md` §3 for rationale).

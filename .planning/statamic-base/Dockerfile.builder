@@ -42,7 +42,6 @@ RUN apk add --no-cache \
         php-8.5-mbstring \
         php-8.5-pcntl \
         php-8.5-pdo \
-        php-8.5-pdo_mysql \
         php-8.5-pdo_sqlite \
         php-8.5-phar \
         php-8.5-simplexml \

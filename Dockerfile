@@ -11,6 +11,18 @@ FROM registry.ape-dev.de/websites/statamic-base:builder AS build
 WORKDIR /app
 COPY --link statamic/ /app
 
+# Statamic+Laravel-Verzeichnisse VOR composer install — package:discover
+# (post-autoload-dump-Hook) schreibt nach bootstrap/cache/packages.php; ohne
+# das Verzeichnis bricht der composer-Hook ab. Storage-Dirs gleich mit.
+RUN mkdir -p \
+        bootstrap/cache \
+        storage/framework/cache \
+        storage/framework/sessions \
+        storage/framework/views \
+        storage/logs \
+        public/static \
+ && chmod -R 775 bootstrap/cache storage public/static
+
 # Composer: production deps only, optimized autoloader.
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
@@ -24,16 +36,6 @@ RUN php artisan config:cache \
  && php artisan route:cache \
  && php artisan view:cache \
  && (php artisan icons:cache || true)   # Statamic-only, ignoriere fail wenn keine Icon-Sets registriert
-
-# Schreib-Verzeichnisse vorbereiten (Octane-Worker schreibt dort, plus Static-Cache-Pfad).
-RUN mkdir -p \
-        storage/framework/cache \
-        storage/framework/sessions \
-        storage/framework/views \
-        storage/logs \
-        bootstrap/cache \
-        public/static \
- && chmod -R 775 storage bootstrap/cache public/static
 
 # ---- Runtime stage: distroless FrankenPHP -----------------------------------
 FROM registry.ape-dev.de/websites/statamic-base:latest
