@@ -32,8 +32,13 @@ RUN npm ci --silent \
  && rm -rf node_modules
 
 # Statamic-/Laravel-Caches vorbacken — kein Schreibzugriff zur Runtime nötig.
-RUN php artisan config:cache \
- && php artisan route:cache \
+# WICHTIG: KEIN config:cache hier. Das Caching liest .env zur Build-Zeit,
+# friert dann APP_KEY, MAIL_*, DB_* etc. in bootstrap/cache/config.php ein
+# und überschreibt sich nicht durch Runtime-Env-Vars. Statamic/Laravel
+# erwarten APP_KEY aus K8s-Secret (envFrom secretRef ape-dev-de-neu-app),
+# damit alle Env-vars deployment-side bleiben. route+view+icons:cache
+# sind env-unabhängig und werden weiterhin gebacken.
+RUN php artisan route:cache \
  && php artisan view:cache \
  && (php artisan icons:cache || true)   # Statamic-only, ignoriere fail wenn keine Icon-Sets registriert
 
