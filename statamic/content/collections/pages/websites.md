@@ -47,7 +47,7 @@ blocks:
         icon_type: generic
         icon_name: bolt
         title: 'Lighthouse 100, sub-200ms TTFB'
-        description: 'Statisch gecachte Pages aus Caddy/FrankenPHP, dynamische Endpunkte über Octane mit warmem Laravel-Boot. Optimierte Bilder, kein Render-blocking JS. Performance ist kein nachträglicher Tuning-Schritt — sondern Ausgangsbedingung.'
+        description: 'Statisch gecachte Pages aus dem Statamic-Build, dynamische Routes über FrankenPHP-Worker-Mode mit warmem PHP-Prozess. Optimierte Bilder, kein Render-blocking JS. Performance ist kein nachträglicher Tuning-Schritt — sondern Ausgangsbedingung.'
         enabled: true
       -
         id: wf-security
@@ -55,7 +55,7 @@ blocks:
         icon_type: generic
         icon_name: shield-check
         title: 'Sicherheit per Default'
-        description: 'CSP/HSTS/SRI streng konfiguriert, automatische Updates, ALTCHA Proof-of-Work statt CAPTCHA, kein /wp-admin als Angriffsziel.'
+        description: 'TLS automatisch (Let''s Encrypt), kein /wp-admin als Angriffsziel, ALTCHA Proof-of-Work statt CAPTCHA, Updates über die Build-Pipeline statt manueller Patch-Tage.'
         enabled: true
       -
         id: wf-privacy
@@ -144,6 +144,7 @@ blocks:
   -
     id: web-vergleich
     type: comparison_table
+    anchor_id: vergleich
     title: 'Statamic vs. WordPress.'
     has_subtitle: true
     subtitle: 'Warum Statamic'

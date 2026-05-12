@@ -756,7 +756,7 @@
 
     {{# ----- COMPARISON_TABLE ----- #}}
     {{ if block:type == 'comparison_table' }}
-        <section class="section">
+        <section {{ if block:anchor_id }}id="{{ block:anchor_id }}"{{ /if }} class="section" style="scroll-margin-top: 96px;">
             <div class="container-prose">
                 {{ if block:has_subtitle && block:subtitle }}<span class="eyebrow eyebrow-left">{{ block:subtitle }}</span>{{ /if }}
                 {{ if block:title }}<h2 class="t-headline" style="margin-top: 16px; max-width: 42rem;">{{ block:title }}</h2>{{ /if }}

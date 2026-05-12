@@ -1,6 +1,12 @@
 title: 'Comparison Table'
 fields:
   -
+    handle: anchor_id
+    field:
+      display: 'Anchor ID'
+      type: text
+      instructions: "Optionale ID für Anchor-Links (z.B. 'vergleich' für #vergleich)."
+  -
     handle: title
     field:
       display: 'Überschrift'
