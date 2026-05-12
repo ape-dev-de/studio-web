@@ -125,20 +125,6 @@ blocks:
           - clients/festglanz.png
         treatment: original
       -
-        id: m-l-aboutyou
-        type: logo_item
-        name: 'About You'
-        logo:
-          - clients/aboutyou.jpg
-        treatment: original
-      -
-        id: m-l-foodist
-        type: logo_item
-        name: Foodist
-        logo:
-          - clients/foodist.png
-        treatment: original
-      -
         id: m-l-movamo
         type: logo_item
         name: Movamo
