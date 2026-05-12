@@ -974,17 +974,9 @@
                                     </div>
                                 {{ /form:create }}
                             </div>
-                        {{ elseif block:form_handle }}
-                            {{# Fallback während SMTP-Wartung: per E-Mail-Hinweis statt Formular #}}
-                            <div style="margin-top: 32px;" class="glass-card">
-                                <p class="t-h4" style="margin-bottom: 12px;">Formular gerade in Wartung</p>
-                                <p class="t-body" style="color: var(--color-on-surface-variant); margin-bottom: 24px;">
-                                    Unser Postsystem läuft kurz nicht durch. Schreiben Sie uns bitte direkt — wir antworten innerhalb von zwei Werktagen.
-                                </p>
-                                <a href="mailto:{{ theme:site_email }}?subject=Projektanfrage über neu.ape-dev.de" class="btn btn-primary" style="text-decoration: none;">
-                                    {{ theme:site_email }}
-                                </a>
-                            </div>
+                        {{# Wenn form_handle vorhanden, aber via `&& false` oben deaktiviert,
+                            zeigen wir HIER bewusst NICHTS. Die rechte aside-Spalte
+                            ("Direkt schreiben" + mailto + Adresse) übernimmt komplett. #}}
                         {{ else }}
                             <div class="t-body-sm" style="color: var(--color-on-surface-variant); margin-top: 32px;">Kein Formular-Handle hinterlegt.</div>
                         {{ /if }}
