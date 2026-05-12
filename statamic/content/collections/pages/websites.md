@@ -154,7 +154,7 @@ blocks:
         content:
           -
             type: text
-            text: 'WordPress ist großartig — wir nutzen es selbst, wo es passt. Aber für die meisten KMU-Websites ist Statamic die ehrlichere Wahl. Hier ist, warum.'
+            text: 'WordPress ist verbreitet — und für viele Projekte eine Option. Für KMU-Websites mit klaren Anforderungen an Sicherheit, Wartungsaufwand und Betriebsmodell halten wir Statamic für die bessere Wahl. Hier ist, warum.'
     highlight_label: Statamic
     alternative_label: WordPress
     rows:
