@@ -932,12 +932,14 @@
                     <div>
                         {{ if block:has_subtitle && block:subtitle }}<p class="eyebrow eyebrow-left">{{ block:subtitle }}</p>{{ /if }}
                         {{ if block:title }}<h2 class="t-headline" style="margin-top: 16px;">{{ block:title }}</h2>{{ /if }}
-                        {{ if block:has_description && block:description }}<div class="t-body-lg" style="color: var(--color-on-surface-variant); margin-top: 24px;">{{ block:description }}</div>{{ /if }}
 
-                        {{# TEMP: SMTP (stalwart) noch nicht live — Formular durch E-Mail-Fallback ersetzt.
-                            Wieder einkommentieren, sobald MAIL_HOST/MAIL_USER/MAIL_PASS Secret im Cluster ist
-                            und ein Test-Submit durchgeht. Form-Routing+Antlers-Block selber bleibt intakt. #}}
+                        {{# TEMP: SMTP (stalwart) noch nicht live — Formular kpl. raus inkl.
+                            CMS-Description ("Beschreiben Sie Ihr Projekt..."), weil die nur Sinn
+                            macht WENN Form da ist. Wieder einkommentieren sobald MAIL_*-Secret
+                            im Cluster ist und Test-Submit durchgeht. Form-Markup intakt. #}}
                         {{ if block:form_handle && false }}
+                            {{ if block:has_description && block:description }}<div class="t-body-lg" style="color: var(--color-on-surface-variant); margin-top: 24px;">{{ block:description }}</div>{{ /if }}
+
                             <div style="margin-top: 32px;" class="glass-card">
                                 {{ form:create :in="block:form_handle" class="form-grid" }}
                                     {{ if errors }}
@@ -974,11 +976,9 @@
                                     </div>
                                 {{ /form:create }}
                             </div>
-                        {{# Wenn form_handle vorhanden, aber via `&& false` oben deaktiviert,
-                            zeigen wir HIER bewusst NICHTS. Die rechte aside-Spalte
-                            ("Direkt schreiben" + mailto + Adresse) übernimmt komplett. #}}
-                        {{ else }}
-                            <div class="t-body-sm" style="color: var(--color-on-surface-variant); margin-top: 32px;">Kein Formular-Handle hinterlegt.</div>
+                        {{# Kein else-branch: wenn form_handle fehlt ODER Form temp deaktiviert ist,
+                            zeigt der linke Spaltenteil nichts; die aside-Spalte rechts (Direkt
+                            schreiben + Adresse) übernimmt komplett. #}}
                         {{ /if }}
                     </div>
 
