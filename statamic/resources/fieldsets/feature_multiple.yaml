@@ -65,5 +65,7 @@ fields:
                 - handle: link
                   field:
                     display: Link
-                    type: text
-                    instructions: "Optionaler Link (z.B. #zeitarbeit für Anchor oder /seite für Seiten)"
+                    type: link
+                    collections:
+                      - pages
+                    instructions: "Entry aus pages, externe URL (https://…) oder #anchor. Statamic resolved entry::… automatisch zur URL."
