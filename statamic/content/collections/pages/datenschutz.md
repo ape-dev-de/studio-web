@@ -70,7 +70,9 @@ Wir speichern Zugriffslogs maximal 14 Tage. Danach werden sie automatisch gelös
 Zweck: IT-Sicherheit, Missbrauchserkennung. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.
 
 **Cookies / Tracking / Analytics**
-Wir setzen keine Cookies und kein Tracking ein. Keine Analytics-Tools, keine Pixel, keine Social-Plugins. Es findet kein Endgerätezugriff im Sinne von § 25 TTDSG statt, der einer Einwilligung bedürfte.
+Wir setzen keine Tracking-, Analytics- oder Marketing-Cookies ein. Keine Pixel, keine Social-Plugins, kein Profiling, keine Third-Party-Skripte.
+
+Beim Aufruf der Seite werden zwei technisch zwingend notwendige Session-Cookies gesetzt (Server-Session-ID, CSRF-Schutz). Sie speichern keine personenbezogenen Daten, sind `HttpOnly`/`Secure`/`SameSite=Lax` markiert, laufen mit Schließen des Browsers ab und unterliegen nach § 25 Abs. 2 Nr. 2 TDDDG (Telekommunikation-Digitale-Dienste-Datenschutz-Gesetz, Nachfolger des TTDSG seit Mai 2024) nicht der Einwilligungspflicht.
 
 **Webschriften**
 Wir hosten alle verwendeten Schriften (Geist, JetBrains Mono, Material Symbols Outlined) selbst auf unserem Server. Es findet keine Verbindung zu Drittanbietern wie Google Fonts statt; IP-Adressen werden nicht an externe Schriftdienste übertragen.

@@ -41,12 +41,11 @@ Sonnenkamp 37A
 21717 Fredenbeck
 Deutschland
 
-## Konfliktlösung
+## Streitbeilegung
 
-Die Europäische Kommission stellt eine Plattform für die außergerichtliche Online-Streitbeilegung bereit:
-[https://ec.europa.eu/consumers/odr](https://ec.europa.eu/consumers/odr).
+Die europäische Online-Streitbeilegungsplattform (ODR) der EU-Kommission wurde zum 20. Juli 2025 eingestellt; wir verweisen daher nicht mehr auf sie.
 
-Unsere E-Mail-Adresse finden Sie oben im Impressum. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen (§ 36 VSBG).
 
 ## Haftung für Inhalte
 
