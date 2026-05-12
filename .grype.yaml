@@ -6,10 +6,9 @@
 # Jeder ignore-Eintrag MUSS begründet sein. Reviewbarer Pfad: PR-Diff hier.
 
 ignore:
-  # syft binary-classifier matcht den Statamic-CP-JS-Bundle gegen Cygwins
-  # Selbst-Marker-Version "1.3.22-dontuse-21" (upstream-Tag, kein echtes Paket).
-  # Cygwin gibt es im Image gar nicht — distroless chainguard/static + FrankenPHP.
-  # CVE-2016-3067 ist ein Cygwin1.dll-Buffer-Overflow von 2016, hier nicht erreichbar.
+  # syft binary-classifier matcht irgendeinen Statamic-CP-JS-Bundle-Bytes gegen
+  # Cygwins Selbst-Marker-Version "1.3.22-dontuse-21" (upstream-Marker, kein
+  # echtes Paket). Distroless-Image (chainguard/static + FrankenPHP) hat keine
+  # cygwin1.dll — der CVE (Cygwin DLL buffer overflow, 2016, Windows-only)
+  # ist hier nicht reachable. Daher kategorisch ignorieren.
   - vulnerability: CVE-2016-3067
-    package:
-      name: Cygwin
