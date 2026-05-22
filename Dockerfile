@@ -6,7 +6,7 @@
 # nonroot 65532).
 
 # ---- Build stage: composer + vite + cache prep ------------------------------
-FROM registry.ape-dev.de/websites/statamic-base:builder AS build
+FROM docker.nexus.ape-dev.de/websites/statamic-base:builder AS build
 
 WORKDIR /app
 COPY --link statamic/ /app
@@ -43,7 +43,7 @@ RUN php artisan route:cache \
  && (php artisan icons:cache || true)   # Statamic-only, ignoriere fail wenn keine Icon-Sets registriert
 
 # ---- Runtime stage: distroless FrankenPHP -----------------------------------
-FROM registry.ape-dev.de/websites/statamic-base:latest
+FROM docker.nexus.ape-dev.de/websites/statamic-base:latest
 
 # UID 65532:65532 ist der `nonroot`-User aus chainguard/static.
 # Build-Stage lief als root → hier mit --chown auf nonroot übertragen.
